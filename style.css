@@ -1,0 +1,1628 @@
+/* ==========================================================================
+   الموقع الرسمي لمدرسة بني مزار الثانوية بنين الجديدة
+   تصميم بشري معاصر (Modern Editorial Glassmorphism + Bento Grid)
+   ========================================================================== */
+
+:root {
+  /* ألوان المظهر الملكي الليلي (الافتراضي) المستوحى من شعار المدرسة وعلم مصر */
+  --bg-primary: #070f1e;
+  --bg-secondary: #0c1931;
+  --glass-bg: rgba(14, 29, 58, 0.62);
+  --glass-bg-hover: rgba(20, 41, 82, 0.78);
+  --glass-border: rgba(255, 255, 255, 0.13);
+  --glass-highlight: rgba(245, 158, 11, 0.35);
+
+  --text-main: #f8fafc;
+  --text-muted: #cbd5e1;
+  --text-soft: #94a3b8;
+
+  --royal-blue: #1d4ed8;
+  --royal-blue-light: #3b82f6;
+  --flame-gold: #f59e0b;
+  --flame-gold-light: #fbbf24;
+  --egypt-crimson: #dc2626;
+
+  --Watermark-opacity: 0.09;
+  --card-shadow: 0 20px 45px -15px rgba(2, 6, 23, 0.7);
+  --radius-xl: 24px;
+  --radius-lg: 18px;
+  --radius-md: 12px;
+}
+
+html[data-theme="light"] {
+  --bg-primary: #f1f5f9;
+  --bg-secondary: #e2e8f0;
+  --glass-bg: rgba(255, 255, 255, 0.74);
+  --glass-bg-hover: rgba(255, 255, 255, 0.9);
+  --glass-border: rgba(15, 37, 87, 0.14);
+  --glass-highlight: rgba(29, 78, 216, 0.35);
+
+  --text-main: #0f172a;
+  --text-muted: #334155;
+  --text-soft: #64748b;
+
+  --Watermark-opacity: 0.08;
+  --card-shadow: 0 18px 40px -15px rgba(15, 23, 42, 0.12);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-family: "Readex Pro", "Cairo", sans-serif;
+  background-color: var(--bg-primary);
+  color: var(--text-main);
+}
+
+body {
+  min-height: 100vh;
+  background: radial-gradient(circle at 50% 0%, var(--bg-secondary) 0%, var(--bg-primary) 75%);
+  line-height: 1.7;
+  overflow-x: hidden;
+  position: relative;
+  transition: background-color 0.35s ease, color 0.35s ease;
+}
+
+h1,
+h2,
+h3,
+h4,
+strong {
+  font-family: "Cairo", sans-serif;
+  line-height: 1.35;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.container {
+  width: min(1260px, 92%);
+  margin-inline: auto;
+}
+
+/* ==========================================================================
+   1. طبقة شعار المدرسة كخلفية مائية خلف المربعات (School Logo Watermark)
+   ========================================================================== */
+.school-watermark-layer {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.watermark-seal {
+  position: absolute;
+  border-radius: 50%;
+  opacity: var(--Watermark-opacity);
+  filter: saturate(1.15) contrast(1.08);
+  transition: transform 0.4s ease-out, opacity 0.35s ease;
+}
+
+.watermark-seal img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 50%;
+}
+
+.watermark-center {
+  width: clamp(340px, 48vw, 660px);
+  height: clamp(340px, 48vw, 660px);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.watermark-top-left {
+  width: clamp(220px, 26vw, 360px);
+  height: clamp(220px, 26vw, 360px);
+  top: 8%;
+  left: -5%;
+  opacity: calc(var(--Watermark-opacity) * 0.65);
+}
+
+.watermark-bottom-right {
+  width: clamp(240px, 28vw, 400px);
+  height: clamp(240px, 28vw, 400px);
+  bottom: 4%;
+  right: -6%;
+  opacity: calc(var(--Watermark-opacity) * 0.65);
+}
+
+.ambient-glow {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(110px);
+  opacity: 0.22;
+}
+
+.glow-blue {
+  width: 480px;
+  height: 480px;
+  background: var(--royal-blue);
+  top: -100px;
+  right: 10%;
+}
+
+.glow-gold {
+  width: 400px;
+  height: 400px;
+  background: var(--flame-gold);
+  bottom: 12%;
+  left: 8%;
+  opacity: 0.15;
+}
+
+.glow-crimson {
+  width: 340px;
+  height: 340px;
+  background: var(--egypt-crimson);
+  top: 42%;
+  left: 45%;
+  opacity: 0.1;
+}
+
+/* البطاقات الزجاجية التي يظهر خلفها شعار المدرسة */
+.glass-card {
+  position: relative;
+  z-index: 1;
+  background: var(--glass-bg);
+  backdrop-filter: blur(14px) saturate(140%);
+  -webkit-backdrop-filter: blur(14px) saturate(140%);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--card-shadow);
+  transition: transform 0.28s ease, border-color 0.28s ease, background-color 0.28s ease;
+}
+
+.glass-card:hover {
+  background: var(--glass-bg-hover);
+  border-color: var(--glass-highlight);
+}
+
+/* ==========================================================================
+   2. الشريط العلوي والهيدر
+   ========================================================================== */
+.top-utility-bar {
+  position: relative;
+  z-index: 20;
+  background: rgba(7, 15, 30, 0.88);
+  border-bottom: 1px solid var(--glass-border);
+  padding: 0.45rem 0;
+  font-size: 0.82rem;
+  color: #e2e8f0;
+}
+
+.utility-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.gov-badge {
+  font-weight: 600;
+  color: var(--flame-gold-light);
+}
+
+.utility-ticker {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex: 1;
+  justify-content: center;
+  min-width: 240px;
+}
+
+.pulse-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: #22c55e;
+  box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.7);
+  animation: pulseDot 2s infinite;
+  display: inline-block;
+}
+
+@keyframes pulseDot {
+  0% {
+    box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.7);
+  }
+  70% {
+    box-shadow: 0 0 0 8px rgba(34, 197, 94, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(34, 197, 94, 0);
+  }
+}
+
+.theme-toggle-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 0.28rem 0.75rem;
+  border-radius: 999px;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 0.78rem;
+  transition: background 0.2s ease;
+}
+
+.theme-toggle-btn:hover {
+  background: rgba(245, 158, 11, 0.25);
+}
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: var(--glass-bg);
+  backdrop-filter: blur(18px);
+  border-bottom: 1px solid var(--glass-border);
+  padding: 0.75rem 0;
+}
+
+.nav-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.25rem;
+}
+
+.brand-identity {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+}
+
+.brand-logo-ring {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  padding: 3px;
+  background: linear-gradient(135deg, var(--flame-gold), var(--royal-blue-light), var(--egypt-crimson));
+  flex-shrink: 0;
+  box-shadow: 0 6px 18px rgba(245, 158, 11, 0.25);
+}
+
+.brand-logo {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  background: #fff;
+}
+
+.brand-kicker {
+  display: block;
+  font-size: 0.75rem;
+  color: var(--flame-gold);
+  font-weight: 700;
+}
+
+.brand-title {
+  font-size: clamp(1.02rem, 1.5vw, 1.28rem);
+  font-weight: 800;
+}
+
+.main-nav {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.nav-link {
+  padding: 0.5rem 0.85rem;
+  border-radius: 999px;
+  font-size: 0.92rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.nav-link:hover {
+  color: var(--text-main);
+  background: rgba(245, 158, 11, 0.14);
+}
+
+.nav-link-live {
+  border: 1px solid rgba(59, 130, 246, 0.35);
+  background: rgba(29, 78, 216, 0.15);
+}
+
+.live-indicator {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #38bdf8;
+}
+
+.header-cta-group {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.mobile-menu-btn {
+  display: none;
+  flex-direction: column;
+  gap: 4px;
+  background: transparent;
+  border: 1px solid var(--glass-border);
+  padding: 0.5rem;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.mobile-menu-btn span {
+  width: 20px;
+  height: 2px;
+  background: var(--text-main);
+}
+
+/* الأزرار */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.78rem 1.4rem;
+  border-radius: 999px;
+  font-family: "Cairo", sans-serif;
+  font-weight: 700;
+  font-size: 0.95rem;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+}
+
+.btn-sm {
+  padding: 0.48rem 1rem;
+  font-size: 0.85rem;
+}
+
+.btn-block {
+  width: 100%;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--royal-blue), #2563eb);
+  color: #fff;
+  box-shadow: 0 10px 24px -6px rgba(37, 99, 235, 0.55);
+}
+
+.btn-gold {
+  background: linear-gradient(135deg, var(--flame-gold), #d97706);
+  color: #090d16;
+  box-shadow: 0 10px 24px -6px rgba(245, 158, 11, 0.45);
+}
+
+.btn-glass {
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--text-main);
+  border-color: var(--glass-border);
+}
+
+.btn-outline-gold {
+  border-color: var(--flame-gold);
+  color: var(--flame-gold);
+  background: rgba(245, 158, 11, 0.08);
+}
+
+/* ==========================================================================
+   3. قسم الواجهة الترحيبية (Hero Section)
+   ========================================================================== */
+.hero-section {
+  position: relative;
+  z-index: 2;
+  padding: 3rem 0 2.5rem;
+}
+
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 1.75rem;
+  align-items: stretch;
+}
+
+.hero-content {
+  padding: clamp(1.75rem, 3.5vw, 3rem);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: hidden;
+}
+
+.egypt-flag-ribbon {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  height: 5px;
+  background: linear-gradient(90deg, #ce1126 0%, #ce1126 33%, #ffffff 33%, #ffffff 66%, #000000 66%, #000000 100%);
+}
+
+.hero-badge-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-bottom: 1.1rem;
+}
+
+.pill-badge {
+  font-size: 0.8rem;
+  font-weight: 700;
+  padding: 0.32rem 0.85rem;
+  border-radius: 999px;
+}
+
+.pill-gold {
+  background: rgba(245, 158, 11, 0.16);
+  color: var(--flame-gold-light);
+  border: 1px solid rgba(245, 158, 11, 0.35);
+}
+
+.pill-blue {
+  background: rgba(59, 130, 246, 0.16);
+  color: #93c5fd;
+  border: 1px solid rgba(59, 130, 246, 0.35);
+}
+
+.hero-headline {
+  font-size: clamp(1.85rem, 3.3vw, 2.85rem);
+  font-weight: 900;
+  margin-bottom: 1rem;
+}
+
+.text-gradient-gold {
+  display: block;
+  background: linear-gradient(90deg, var(--flame-gold-light), #fde68a, var(--flame-gold));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.hero-lead {
+  font-size: 1.04rem;
+  color: var(--text-muted);
+  margin-bottom: 1.65rem;
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-bottom: 2rem;
+}
+
+.hero-stats-strip {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.75rem;
+  padding-top: 1.35rem;
+  border-top: 1px solid var(--glass-border);
+}
+
+.stat-box {
+  background: rgba(255, 255, 255, 0.04);
+  padding: 0.75rem;
+  border-radius: var(--radius-md);
+  text-align: center;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.stat-num {
+  display: block;
+  font-size: 1.4rem;
+  font-weight: 900;
+  color: var(--flame-gold-light);
+}
+
+.stat-label {
+  font-size: 0.76rem;
+  color: var(--text-soft);
+}
+
+.hero-visual-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.hero-main-frame {
+  position: relative;
+  overflow: hidden;
+  flex: 1;
+  min-height: 310px;
+}
+
+.hero-main-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+
+.hero-main-frame:hover .hero-main-img {
+  transform: scale(1.04);
+}
+
+.frame-overlay-caption {
+  position: absolute;
+  inset-inline: 1rem;
+  bottom: 1rem;
+  background: rgba(7, 15, 30, 0.82);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  padding: 0.75rem 1rem;
+  border-radius: var(--radius-lg);
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: #fff;
+}
+
+.caption-mini-logo {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.frame-overlay-caption strong {
+  display: block;
+  font-size: 0.92rem;
+}
+
+.frame-overlay-caption span {
+  font-size: 0.78rem;
+  color: #cbd5e1;
+}
+
+.hero-floating-cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.mini-showcase-card {
+  padding: 0.65rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.mini-showcase-card img {
+  width: 72px;
+  height: 64px;
+  object-fit: cover;
+  border-radius: var(--radius-md);
+  flex-shrink: 0;
+}
+
+.mini-showcase-card strong {
+  display: block;
+  font-size: 0.86rem;
+}
+
+.mini-showcase-card span {
+  font-size: 0.74rem;
+  color: var(--text-soft);
+}
+
+/* ==========================================================================
+   4. الأقسام العامة وشبكة Bento Grid (ماذا عنا)
+   ========================================================================== */
+.section-block {
+  position: relative;
+  z-index: 2;
+  padding: 3.5rem 0;
+}
+
+.section-header {
+  text-align: center;
+  max-width: 760px;
+  margin: 0 auto 2.5rem;
+}
+
+.section-eyebrow {
+  display: inline-block;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--flame-gold);
+  background: rgba(245, 158, 11, 0.12);
+  border: 1px solid rgba(245, 158, 11, 0.3);
+  padding: 0.25rem 0.9rem;
+  border-radius: 999px;
+  margin-bottom: 0.65rem;
+}
+
+.section-title {
+  font-size: clamp(1.6rem, 2.6vw, 2.3rem);
+  font-weight: 900;
+  margin-bottom: 0.65rem;
+}
+
+.section-subtitle {
+  color: var(--text-muted);
+  font-size: 0.98rem;
+}
+
+.bento-about-grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 1.35rem;
+}
+
+.bento-card {
+  padding: 1.75rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.bento-span-7 {
+  grid-column: span 7;
+}
+
+.bento-span-5 {
+  grid-column: span 5;
+}
+
+.bento-span-4 {
+  grid-column: span 4;
+}
+
+.bento-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.bento-icon {
+  font-size: 1.8rem;
+}
+
+.bento-tag {
+  font-size: 0.76rem;
+  font-weight: 700;
+  padding: 0.25rem 0.7rem;
+  border-radius: 999px;
+  background: rgba(59, 130, 246, 0.18);
+  color: #93c5fd;
+}
+
+.bento-card h3 {
+  font-size: 1.3rem;
+  margin-bottom: 0.65rem;
+}
+
+.bento-card p {
+  color: var(--text-muted);
+  font-size: 0.94rem;
+}
+
+.bento-pillars {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-top: 1.35rem;
+  padding-top: 1.2rem;
+  border-top: 1px solid var(--glass-border);
+}
+
+.pillar-item strong {
+  display: block;
+  margin-bottom: 0.25rem;
+  color: var(--flame-gold-light);
+}
+
+.pillar-item span {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.bento-media-card {
+  padding: 0;
+  overflow: hidden;
+  min-height: 320px;
+}
+
+.bento-media-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.bento-media-overlay {
+  position: absolute;
+  inset: auto 0 0 0;
+  padding: 1.5rem;
+  background: linear-gradient(to top, rgba(7, 15, 30, 0.95), rgba(7, 15, 30, 0.2));
+  color: #fff;
+}
+
+.bento-media-overlay p {
+  color: #cbd5e1;
+}
+
+.bento-logo-showcase {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1.1rem;
+}
+
+.bento-crest-img {
+  width: 88px;
+  height: 88px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.35);
+}
+
+/* ==========================================================================
+   5. قسم كلمة وصورة مدير المدرسة (Principal Section)
+   ========================================================================== */
+.principal-showcase {
+  display: grid;
+  grid-template-columns: 380px 1fr;
+  gap: 2.5rem;
+  padding: clamp(1.5rem, 3.5vw, 2.75rem);
+  align-items: center;
+}
+
+.principal-portrait-frame {
+  position: relative;
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  border: 2px solid rgba(245, 158, 11, 0.45);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.45);
+}
+
+.principal-img {
+  width: 100%;
+  height: 460px;
+  object-fit: cover;
+  object-position: top center;
+}
+
+.portrait-badge {
+  position: absolute;
+  inset-inline: 0.85rem;
+  bottom: 0.85rem;
+  background: rgba(7, 15, 30, 0.88);
+  backdrop-filter: blur(10px);
+  padding: 0.65rem 0.9rem;
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  border: 1px solid rgba(245, 158, 11, 0.35);
+  color: #fff;
+}
+
+.portrait-badge img {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+}
+
+.portrait-badge strong {
+  display: block;
+  font-size: 0.88rem;
+  color: var(--flame-gold-light);
+}
+
+.portrait-badge span {
+  font-size: 0.75rem;
+  color: #cbd5e1;
+}
+
+.principal-heading {
+  font-size: clamp(1.6rem, 2.5vw, 2.2rem);
+  margin: 0.4rem 0 1.1rem;
+}
+
+.principal-quote {
+  font-size: 1.08rem;
+  font-weight: 500;
+  padding: 1.25rem 1.5rem;
+  border-right: 4px solid var(--flame-gold);
+  background: rgba(245, 158, 11, 0.07);
+  border-radius: var(--radius-md);
+  margin-bottom: 1.15rem;
+}
+
+.principal-body-text {
+  color: var(--text-muted);
+  margin-bottom: 1.5rem;
+}
+
+.principal-signature-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--glass-border);
+}
+
+.signature-info strong {
+  display: block;
+  color: var(--flame-gold-light);
+}
+
+.signature-info span {
+  font-size: 0.84rem;
+  color: var(--text-soft);
+}
+
+.leadership-pillars {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.mini-pill {
+  font-size: 0.78rem;
+  padding: 0.3rem 0.75rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid var(--glass-border);
+}
+
+/* ==========================================================================
+   6. التدرج الهرمي للمعلمين (Teachers Hierarchy Tree)
+   ========================================================================== */
+.hierarchy-tree {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.hierarchy-level {
+  width: 100%;
+}
+
+.level-1 {
+  display: flex;
+  justify-content: center;
+}
+
+.level-1 .hierarchy-node {
+  max-width: 440px;
+  width: 100%;
+  text-align: center;
+  border-color: rgba(245, 158, 11, 0.5);
+}
+
+.level-2 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.2rem;
+}
+
+.hierarchy-node {
+  padding: 1.35rem;
+  text-align: center;
+}
+
+.node-rank {
+  display: inline-block;
+  font-size: 0.74rem;
+  font-weight: 700;
+  color: var(--flame-gold);
+  margin-bottom: 0.35rem;
+}
+
+.hierarchy-connector {
+  width: 3px;
+  height: 34px;
+  background: linear-gradient(to bottom, var(--flame-gold), var(--royal-blue-light));
+}
+
+.department-filter-bar {
+  padding: 1.15rem 1.5rem;
+  margin-bottom: 1.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.filter-title {
+  font-weight: 700;
+  font-size: 0.95rem;
+}
+
+.filter-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.filter-btn {
+  padding: 0.45rem 0.95rem;
+  border-radius: 999px;
+  border: 1px solid var(--glass-border);
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--text-muted);
+  font-family: inherit;
+  font-size: 0.84rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.filter-btn.active,
+.filter-btn:hover {
+  background: var(--royal-blue);
+  color: #fff;
+  border-color: var(--royal-blue-light);
+}
+
+.teachers-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+  gap: 1.2rem;
+}
+
+.teacher-card {
+  padding: 1.35rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.teacher-card-head {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+}
+
+.teacher-avatar {
+  width: 52px;
+  height: 52px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, var(--royal-blue), #0f2557);
+  border: 1px solid rgba(245, 158, 11, 0.4);
+  display: grid;
+  place-items: center;
+  font-size: 1.35rem;
+  flex-shrink: 0;
+}
+
+.teacher-role-badge {
+  display: inline-block;
+  font-size: 0.72rem;
+  color: var(--flame-gold-light);
+  font-weight: 700;
+}
+
+.teacher-card h4 {
+  font-size: 1.08rem;
+}
+
+.teacher-card p {
+  font-size: 0.86rem;
+  color: var(--text-muted);
+}
+
+.teacher-meta-footer {
+  margin-top: auto;
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--glass-border);
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.78rem;
+  color: var(--text-soft);
+}
+
+/* ==========================================================================
+   7. قسم أعظم اللحظات البارزة (School Highlights)
+   ========================================================================== */
+.highlights-masonry {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 1.35rem;
+}
+
+.highlight-card {
+  grid-column: span 6;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.highlight-featured {
+  grid-column: span 12;
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+}
+
+.highlight-img-wrap {
+  position: relative;
+  overflow: hidden;
+  min-height: 250px;
+}
+
+.highlight-featured .highlight-img-wrap {
+  min-height: 360px;
+}
+
+.highlight-img-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.highlight-card:hover .highlight-img-wrap img {
+  transform: scale(1.05);
+}
+
+.highlight-badge {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  padding: 0.32rem 0.85rem;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #fff;
+  backdrop-filter: blur(8px);
+}
+
+.badge-crimson {
+  background: rgba(220, 38, 38, 0.85);
+}
+
+.badge-gold {
+  background: rgba(217, 119, 6, 0.88);
+}
+
+.badge-blue {
+  background: rgba(29, 78, 216, 0.88);
+}
+
+.highlight-body {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.highlight-meta {
+  display: flex;
+  gap: 0.5rem;
+  font-size: 0.78rem;
+  color: var(--flame-gold);
+  margin-bottom: 0.45rem;
+}
+
+.highlight-body h3 {
+  font-size: 1.28rem;
+  margin-bottom: 0.55rem;
+}
+
+.highlight-body p {
+  color: var(--text-muted);
+  font-size: 0.92rem;
+}
+
+/* ==========================================================================
+   8. إطار أحدث الأخبار تلقائياً من جروب الفيسبوك (Facebook Auto-Feed Frame)
+   ========================================================================== */
+.fb-frame-wrapper {
+  padding: clamp(1.5rem, 3vw, 2.5rem);
+  border: 1px solid rgba(59, 130, 246, 0.4);
+  box-shadow: 0 25px 60px -15px rgba(29, 78, 216, 0.28);
+}
+
+.fb-frame-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1.5rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid var(--glass-border);
+}
+
+.fb-brand-cluster {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.1rem;
+  max-width: 760px;
+}
+
+.fb-icon-circle {
+  width: 58px;
+  height: 58px;
+  border-radius: 18px;
+  background: linear-gradient(135deg, #1877f2, #0d5ab9);
+  color: #fff;
+  font-family: "Cairo", sans-serif;
+  font-weight: 900;
+  font-size: 2rem;
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  box-shadow: 0 12px 25px rgba(24, 119, 242, 0.4);
+}
+
+.fb-live-pill-row {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  flex-wrap: wrap;
+  margin-bottom: 0.35rem;
+}
+
+.fb-live-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-size: 0.78rem;
+  font-weight: 700;
+  background: rgba(34, 197, 94, 0.15);
+  color: #4ade80;
+  padding: 0.22rem 0.75rem;
+  border-radius: 999px;
+  border: 1px solid rgba(34, 197, 94, 0.3);
+}
+
+.fb-sync-time {
+  font-size: 0.78rem;
+  color: var(--text-soft);
+}
+
+.fb-frame-title {
+  font-size: clamp(1.35rem, 2.2vw, 1.85rem);
+  margin-bottom: 0.35rem;
+}
+
+.fb-frame-desc {
+  font-size: 0.92rem;
+  color: var(--text-muted);
+}
+
+.fb-header-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+}
+
+.fb-categories-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+  margin: 1.35rem 0;
+}
+
+.fb-cat-btn {
+  padding: 0.45rem 1rem;
+  border-radius: 999px;
+  border: 1px solid var(--glass-border);
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--text-muted);
+  font-family: inherit;
+  font-size: 0.84rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.fb-cat-btn.active,
+.fb-cat-btn:hover {
+  background: #1877f2;
+  color: #fff;
+  border-color: #3b82f6;
+}
+
+.fb-posts-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));
+  gap: 1.25rem;
+}
+
+.fb-post-card {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.25s ease, border-color 0.25s ease;
+}
+
+.fb-post-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(24, 119, 242, 0.55);
+}
+
+.fb-post-top {
+  padding: 1rem 1.15rem 0.75rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.fb-post-avatar {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1px solid var(--flame-gold);
+}
+
+.fb-post-author strong {
+  display: block;
+  font-size: 0.9rem;
+}
+
+.fb-post-author span {
+  font-size: 0.75rem;
+  color: var(--text-soft);
+}
+
+.fb-post-media {
+  height: 200px;
+  overflow: hidden;
+}
+
+.fb-post-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.fb-post-content {
+  padding: 1rem 1.15rem;
+  flex: 1;
+}
+
+.fb-post-content h4 {
+  font-size: 1.02rem;
+  margin-bottom: 0.45rem;
+}
+
+.fb-post-content p {
+  font-size: 0.88rem;
+  color: var(--text-muted);
+}
+
+.fb-post-actions {
+  padding: 0.75rem 1.15rem;
+  border-top: 1px solid var(--glass-border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.8rem;
+  color: var(--text-soft);
+}
+
+.fb-post-link {
+  color: #60a5fa;
+  font-weight: 700;
+}
+
+.fb-frame-footer {
+  margin-top: 1.5rem;
+  padding-top: 1.15rem;
+  border-top: 1px dashed var(--glass-border);
+}
+
+.fb-automation-note {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.84rem;
+  color: var(--text-muted);
+}
+
+.fb-automation-note code {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 0.15rem 0.45rem;
+  border-radius: 6px;
+}
+
+/* ==========================================================================
+   9. قسم موقع المدرسة والتواصل (Location & Contact)
+   ========================================================================== */
+.location-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.1fr;
+  gap: 1.5rem;
+}
+
+.location-info-card {
+  padding: 1.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.35rem;
+}
+
+.location-crest-header {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--glass-border);
+}
+
+.location-crest-header img {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+}
+
+.location-crest-header span {
+  font-size: 0.84rem;
+  color: var(--flame-gold);
+}
+
+.contact-details-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.contact-details-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.85rem;
+}
+
+.contact-icon {
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  background: rgba(245, 158, 11, 0.14);
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+}
+
+.contact-details-list strong {
+  display: block;
+  font-size: 0.95rem;
+}
+
+.contact-details-list p {
+  font-size: 0.86rem;
+  color: var(--text-muted);
+}
+
+.quick-inquiry-box {
+  margin-top: auto;
+  padding-top: 1.1rem;
+  border-top: 1px solid var(--glass-border);
+}
+
+.quick-inquiry-box h4 {
+  margin-bottom: 0.75rem;
+  font-size: 0.98rem;
+}
+
+.contact-mini-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+.form-row-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.65rem;
+}
+
+.contact-mini-form input,
+.contact-mini-form select,
+.contact-mini-form textarea {
+  width: 100%;
+  padding: 0.65rem 0.85rem;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--glass-border);
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--text-main);
+  font-family: inherit;
+  font-size: 0.86rem;
+}
+
+.form-feedback {
+  font-size: 0.84rem;
+  color: #4ade80;
+  margin-top: 0.35rem;
+}
+
+.location-map-card {
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.map-frame-wrapper {
+  flex: 1;
+  min-height: 380px;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  border: 1px solid var(--glass-border);
+}
+
+.map-frame-wrapper iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.map-footer-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.4rem 0.5rem;
+}
+
+.map-footer-bar strong {
+  display: block;
+  font-size: 0.92rem;
+}
+
+.map-footer-bar span {
+  font-size: 0.78rem;
+  color: var(--text-soft);
+}
+
+/* ==========================================================================
+   10. الفوتر الرسمي
+   ========================================================================== */
+.site-footer {
+  position: relative;
+  z-index: 2;
+  background: rgba(5, 11, 23, 0.9);
+  border-top: 1px solid var(--glass-border);
+  padding: 3rem 0 1.5rem;
+  margin-top: 2rem;
+  color: #cbd5e1;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr;
+  gap: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.footer-logo-row {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  margin-bottom: 0.85rem;
+}
+
+.footer-logo-row img {
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+}
+
+.footer-logo-row h3 {
+  color: #fff;
+  font-size: 1.15rem;
+}
+
+.footer-logo-row span {
+  font-size: 0.8rem;
+  color: var(--flame-gold-light);
+}
+
+.footer-links h4,
+.footer-meta h4 {
+  color: #fff;
+  margin-bottom: 0.85rem;
+}
+
+.footer-links ul {
+  list-style: none;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5rem;
+}
+
+.footer-links a:hover {
+  color: var(--flame-gold-light);
+}
+
+.footer-bottom {
+  padding-top: 1.25rem;
+  text-align: center;
+  font-size: 0.84rem;
+  color: #94a3b8;
+}
+
+/* ==========================================================================
+   11. استجابة الشاشات (Responsive Design)
+   ========================================================================== */
+@media (max-width: 1024px) {
+  .hero-grid,
+  .principal-showcase,
+  .location-grid,
+  .highlight-featured {
+    grid-template-columns: 1fr;
+  }
+
+  .bento-span-7,
+  .bento-span-5,
+  .bento-span-4 {
+    grid-column: span 12;
+  }
+
+  .level-2 {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .main-nav {
+    display: none;
+    position: absolute;
+    top: 100%;
+    inset-inline: 1rem;
+    background: rgba(7, 15, 30, 0.96);
+    flex-direction: column;
+    padding: 1rem;
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--glass-border);
+  }
+
+  .main-nav.open {
+    display: flex;
+  }
+
+  .mobile-menu-btn {
+    display: flex;
+  }
+
+  .hero-stats-strip,
+  .hero-floating-cards,
+  .bento-pillars,
+  .form-row-2,
+  .footer-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .highlight-card {
+    grid-column: span 12;
+  }
+}
