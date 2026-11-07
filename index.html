@@ -16,7 +16,7 @@
       href="https://fonts.googleapis.com/css2?family=Cairo:wght@500;600;700;800;900&family=Tajawal:wght@400;500;700;800&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="style.css?v=3" />
   </head>
   <body>
     <!-- طبقة شعار المدرسة المائية المحفورة خلف المربعات (تستخدم mix-blend-mode لإخفاء الخلفية البيضاء تماماً) -->
@@ -30,7 +30,25 @@
     <div class="official-topbar">
       <div class="container topbar-inner">
         <div class="topbar-right">
-          <span class="egypt-mini-flag" aria-hidden="true"></span>
+          <svg
+            class="egypt-flag-svg"
+            viewBox="0 0 36 24"
+            width="24"
+            height="16"
+            role="img"
+            aria-label="علم جمهورية مصر العربية"
+          >
+            <rect width="36" height="8" y="0" fill="#CE1126" />
+            <rect width="36" height="8" y="8" fill="#FFFFFF" />
+            <rect width="36" height="8" y="16" fill="#000000" />
+            <!-- نسر صلاح الدين الذهبي في منتصف الشريط الأبيض -->
+            <g fill="#C09300">
+              <path d="M18 8.7c-.5 0-.9.3-.9.8 0 .3.1.5.3.6l-1.9.8c-.3.1-.5.4-.5.8v2.2c0 .5.3.9.8 1.1l1.2.4-.5.8h3l-.5-.8 1.2-.4c.5-.2.8-.6.8-1.1v-2.2c0-.4-.2-.7-.5-.8l-1.9-.8c.2-.1.3-.3.3-.6 0-.5-.4-.8-.9-.8z" />
+              <rect x="16.9" y="10.9" width="2.2" height="2.4" rx="0.3" fill="#FFF8DC" stroke="#C09300" stroke-width="0.35" />
+              <rect x="16" y="14.9" width="4" height="0.65" rx="0.2" fill="#C09300" />
+            </g>
+            <rect width="35.5" height="23.5" x="0.25" y="0.25" fill="none" stroke="rgba(255,255,255,0.32)" stroke-width="0.5" />
+          </svg>
           <span>جمهورية مصر العربية • مديرية التربية والتعليم بالمنيا • إدارة بني مزار التعليمية</span>
         </div>
         <div class="topbar-left">
@@ -768,6 +786,6 @@
       </div>
     </dialog>
 
-    <script src="app.js"></script>
+    <script src="app.js?v=3"></script>
   </body>
 </html>
