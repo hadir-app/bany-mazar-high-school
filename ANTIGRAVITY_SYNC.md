@@ -40,8 +40,8 @@
 ## 🛠️ 4. المهام المخصصة للزميل لإكمالها (Colleague's Assigned Tasks)
 تم ترك **4 مهام محددة وموسومة داخل الكود بـ `TODO [COLLEAGUE TASK #1..#4]`** ليقوم الزميل بتنفيذها عبر Antigravity على جهازه:
 
-### 🔹 المهمة 1 (`COLLEAGUE TASK #1` في `app.js`): ربط جروب الفيسبوك الفعلي والـ Live RSS Feed
-- تعديل الكائن `FB_FEED_CONFIG` في أعلى ملف `app.js` لوضع رابط جروب الفيسبوك الحقيقي للمدرسة، وإضافة رابط JSON Feed (عبر `RSS.app` أو `Facebook Graph API`) ليعمل الجلب التلقائي المباشر، مع إضافة مربع بحث سريع داخل الأخبار.
+### 🔹 المهمة 1 (`COLLEAGUE TASK #1` في `app.js` و `#newsroom`): الربط التلقائي مع صفحة المدرسة الرسمية على فيسبوك
+- تعديل الكائن `FB_FEED_CONFIG` في أعلى ملف `app.js` لوضع رابط **صفحة المدرسة الرسمية على فيسبوك** (`pageUrl`)، وربط السحب التلقائي للمنشورات عبر `Facebook Graph API` أو `RSS.app JSON Feed` أو `Facebook Page Plugin` داخل `#fbPageSyncRoot`.
 
 ### 🔹 المهمة 2 (`COLLEAGUE TASK #2` في `app.js` و `index.html`): استكمال أسماء المعلمين ونافذة بطاقة المعلم (Teacher Modal)
 - إضافة الأسماء التفصيلية لمعلمي مدرسة بني مزار الثانوية بنين الجديدة داخل مصفوفة `TEACHERS_HIERARCHY_DATA` في `app.js`.

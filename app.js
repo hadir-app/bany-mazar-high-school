@@ -11,14 +11,30 @@
  */
 
 // ============================================================================
-// 1. إعدادات الربط التلقائي مع جروب الفيسبوك الرسمي
+// 1. إعدادات الربط التلقائي مع صفحة المدرسة على فيسبوك (مهمة الزميل الرئيسية)
 // ============================================================================
-// TODO [COLLEAGUE TASK #1]: ضع رابط جروب الفيسبوك الرسمي للمدرسة ورابط الـ JSON Feed هنا
+// TODO [COLLEAGUE TASK #1]: اربط صفحة المدرسة الرسمية على فيسبوك هنا (RSS JSON أو Graph API)
 const FB_FEED_CONFIG = {
-  groupUrl: "https://www.facebook.com",
-  rssJsonEndpoint: "", // ضع رابط RSS.app JSON Feed هنا للجلب التلقائي المباشر
+  pageUrl: "https://www.facebook.com", // ضع رابط صفحة المدرسة الرسمية على فيسبوك هنا
+  rssJsonEndpoint: "", // ضع رابط التغذية التلقائية (JSON Feed / Graph API) لسحب منشورات الصفحة تلقائياً
   rotateIntervalMs: 7000,
 };
+
+// مكتبة صور المدرسة المركزية (مهيأة لاستقبال كافة الصور الإضافية القادمة بسهولة)
+const HERO_SCENES = [
+  {
+    src: "assets/images/morning-assembly.jpg",
+    alt: "اصطفاف طلاب ومعلمي مدرسة بني مزار الثانوية الجديدة بنين",
+  },
+  {
+    src: "assets/images/school-facade.jpg",
+    alt: "واجهة مدرسة بني مزار الثانوية الجديدة بنين وعلم مصر",
+  },
+  {
+    src: "assets/images/sports-field.jpg",
+    alt: "الملعب الخماسي النجيل الصناعي بالمدرسة",
+  },
+];
 
 // ============================================================================
 // 2. أيقونات أكاديمية متجهة (SVG) لأقسام هيئة التدريس
@@ -116,7 +132,7 @@ const INITIAL_FB_POSTS = [
     id: "news-1",
     category: "activities",
     catLabel: "الطابور والانضباط",
-    date: "منذ ساعتين • جروب المدرسة الرسمي",
+    date: "منذ ساعتين • صفحة المدرسة الرسمية",
     title: "انتظام الطابور الصباحي وتحية العلم في مدرسة بني مزار الثانوية الجديدة بنين",
     text: "جانب من الاصطفاف الصباحي المهيب لطلاب مدرسة بني مزار الثانوية الجديدة بنين (شرق المحطة) بحضور السيد مدير المدرسة والسادة المعلمين، وسط أجواء من الجدية والانتماء الوطني.",
     image: "assets/images/morning-assembly.jpg",
@@ -490,14 +506,16 @@ async function syncLiveFacebookRss() {
       postsData = data.items.slice(0, 6).map((item, idx) => ({
         id: `rss-${idx}`,
         category: "announcements",
-        catLabel: "منشور متزامن تلقائياً",
-        date: item.pubDate || "تحديث مباشر من الجروب",
-        title: item.title || "منشور جديد من جروب المدرسة",
+        catLabel: "صفحة المدرسة الرسمية",
+        date: item.pubDate || "تحديث تلقائي من صفحة فيسبوك",
+        title: item.title || "منشور جديد من صفحة المدرسة",
         text: item.content_text || item.description || item.title || "",
         image: item.image || "assets/images/morning-assembly.jpg",
-        likes: "مباشر",
-        comments: "جروب فيسبوك",
+        likes: "صفحة المدرسة",
+        comments: "تزامن تلقائي",
       }));
+      const syncBadge = document.getElementById("fbSyncStatus");
+      if (syncBadge) syncBadge.textContent = "● متزامن تلقائياً مع صفحة المدرسة";
       renderFacebookShowcase(0);
       renderNewsStack();
     }
@@ -564,26 +582,47 @@ document.addEventListener("DOMContentLoaded", () => {
   syncLiveFacebookRss();
 
   const fbExtLink = document.getElementById("fbGroupExternalLink");
-  if (fbExtLink && FB_FEED_CONFIG.groupUrl) {
-    fbExtLink.href = FB_FEED_CONFIG.groupUrl;
+  const headerFbBtn = document.getElementById("headerFbPageBtn");
+  if (FB_FEED_CONFIG.pageUrl && FB_FEED_CONFIG.pageUrl !== "https://www.facebook.com") {
+    if (fbExtLink) fbExtLink.href = FB_FEED_CONFIG.pageUrl;
+    if (headerFbBtn) {
+      headerFbBtn.href = FB_FEED_CONFIG.pageUrl;
+      headerFbBtn.target = "_blank";
+      headerFbBtn.rel = "noopener noreferrer";
+    }
+  } else if (fbExtLink && FB_FEED_CONFIG.pageUrl) {
+    fbExtLink.href = FB_FEED_CONFIG.pageUrl;
   }
 
-  // 4. تبديل مشاهد البانر الرئيسي (Hero Scene Switcher)
+  // 4. تبديل مشاهد البانر الرئيسي (الأزرار السفلية + الأسهم الجانبية يمين/يسار)
   const heroMainImg = document.getElementById("heroMainImg");
-  const scenePills = document.querySelectorAll(".scene-pill");
-  scenePills.forEach((pill) => {
-    pill.addEventListener("click", () => {
-      scenePills.forEach((p) => p.classList.remove("active"));
-      pill.classList.add("active");
-      if (heroMainImg && pill.dataset.img) {
-        heroMainImg.style.opacity = "0.35";
-        setTimeout(() => {
-          heroMainImg.src = pill.dataset.img;
-          heroMainImg.alt = pill.dataset.alt || "";
-          heroMainImg.style.opacity = "1";
-        }, 180);
-      }
-    });
+  const scenePills = Array.from(document.querySelectorAll(".scene-pill"));
+  let currentHeroIdx = 0;
+
+  function setHeroScene(index) {
+    currentHeroIdx = ((index % HERO_SCENES.length) + HERO_SCENES.length) % HERO_SCENES.length;
+    const scene = HERO_SCENES[currentHeroIdx];
+    scenePills.forEach((p, idx) => p.classList.toggle("active", idx === currentHeroIdx));
+    if (heroMainImg && scene) {
+      heroMainImg.style.opacity = "0.35";
+      setTimeout(() => {
+        heroMainImg.src = scene.src;
+        heroMainImg.alt = scene.alt;
+        heroMainImg.style.opacity = "1";
+      }, 160);
+    }
+  }
+
+  scenePills.forEach((pill, idx) => {
+    pill.addEventListener("click", () => setHeroScene(idx));
+  });
+
+  document.getElementById("heroPrevBtn")?.addEventListener("click", () => {
+    setHeroScene(currentHeroIdx - 1);
+  });
+
+  document.getElementById("heroNextBtn")?.addEventListener("click", () => {
+    setHeroScene(currentHeroIdx + 1);
   });
 
   // 5. فلترة أقسام المعلمين
@@ -696,27 +735,34 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  const navLinks = document.querySelectorAll(".primary-nav .nav-link[data-section]");
-  const observedSections = Array.from(navLinks)
-    .map((l) => document.getElementById(l.dataset.section))
+  const navLinks = Array.from(
+    document.querySelectorAll(".primary-nav .nav-link[data-section]")
+  );
+  const trackedSections = navLinks
+    .map((link) => document.getElementById(link.dataset.section))
     .filter(Boolean);
 
-  if ("IntersectionObserver" in window && observedSections.length > 0) {
-    const spyObserver = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            const id = entry.target.id;
-            navLinks.forEach((l) => {
-              l.classList.toggle("active", l.dataset.section === id);
-            });
-          }
-        });
-      },
-      { rootMargin: "-30% 0px -55% 0px" }
-    );
-    observedSections.forEach((sec) => spyObserver.observe(sec));
+  function updateActiveNavOnScroll() {
+    if (window.scrollY < 240) {
+      navLinks.forEach((l) => l.classList.toggle("active", l.dataset.section === "home"));
+      return;
+    }
+
+    let currentId = "home";
+    const offsetTrigger = window.scrollY + 150;
+    for (const sec of trackedSections) {
+      if (sec.offsetTop <= offsetTrigger) {
+        currentId = sec.id;
+      }
+    }
+
+    navLinks.forEach((l) => {
+      l.classList.toggle("active", l.dataset.section === currentId);
+    });
   }
+
+  window.addEventListener("scroll", updateActiveNavOnScroll, { passive: true });
+  updateActiveNavOnScroll();
 
   // 10. نموذج مراسلة شؤون الطلاب وإدارة المدرسة
   // TODO [COLLEAGUE TASK #4]: ربط هذا النموذج بإرسال مباشر لواتساب المدرسة أو البريد الرسمي
