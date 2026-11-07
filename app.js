@@ -209,101 +209,107 @@ const PORTAL_MODALS_CONTENT = {
     title: "نظام التقييمات الأسبوعية والشهرية",
     html: `
       <p>تُعقد التقييمات الدورية لطلاب الصفين الأول والثاني الثانوي ومتابعة الصف الثالث الثانوي وفق الضوابط الوزارية المعتمدة:</p>
-      <table class="modal-table">
-        <thead>
-          <tr>
-            <th>نوع التقييم</th>
-            <th>الموعد الدوري</th>
-            <th>جهة المتابعة</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>التقييمات الأسبوعية والواجبات</td>
-            <td>أسبوعياً داخل الحصص الدراسية</td>
-            <td>معلم المادة ومشرف القسم</td>
-          </tr>
-          <tr>
-            <td>الاختبارات الشهرية</td>
-            <td>نهاية كل شهر دراسي</td>
-            <td>وكيل شؤون الطلاب والامتحانات</td>
-          </tr>
-          <tr>
-            <td>إعلان النتائج والإشعارات</td>
-            <td>فور اعتمادها رسمياً بالمدرسة وجروب الفيسبوك</td>
-            <td>إدارة المدرسة</td>
-          </tr>
-        </tbody>
-      </table>
+      <div tabindex="0" role="region" aria-label="جدول نظام التقييمات الأسبوعية والشهرية" class="table-wrapper">
+        <table class="modal-table" style="--label-2: 'الموعد الدوري'; --label-3: 'جهة المتابعة';">
+          <thead>
+            <tr>
+              <th scope="col">نوع التقييم</th>
+              <th scope="col">الموعد الدوري</th>
+              <th scope="col">جهة المتابعة</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">التقييمات الأسبوعية والواجبات</th>
+              <td>أسبوعياً داخل الحصص الدراسية</td>
+              <td>معلم المادة ومشرف القسم</td>
+            </tr>
+            <tr>
+              <th scope="row">الاختبارات الشهرية</th>
+              <td>نهاية كل شهر دراسي</td>
+              <td>وكيل شؤون الطلاب والامتحانات</td>
+            </tr>
+            <tr>
+              <th scope="row">إعلان النتائج والإشعارات</th>
+              <td>فور اعتمادها رسمياً بالمدرسة وجروب الفيسبوك</td>
+              <td>إدارة المدرسة</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     `,
   },
   scheduleModal: {
     title: "المواعيد الزمنية لليوم الدراسي وطابور الصباح",
     html: `
       <p>مواعيد العمل الرسمية بمدرسة بني مزار الثانوية الجديدة بنين (شرق المحطة) من الأحد إلى الخميس:</p>
-      <table class="modal-table">
-        <thead>
-          <tr>
-            <th>الفترة</th>
-            <th>التوقيت</th>
-            <th>ملاحظات الانضباط</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>اصطفاف طابور الصباح والإذاعة</td>
-            <td>7:30 صباحاً</td>
-            <td>حضور إلزامي وتحية العلم</td>
-          </tr>
-          <tr>
-            <td>الحصص الدراسية الأولى — الرابعة</td>
-            <td>8:00 ص — 11:15 ص</td>
-            <td>شرح أكاديمي وتطبيق معملي</td>
-          </tr>
-          <tr>
-            <td>الفسحة والنشاط الرياضي والثقافي</td>
-            <td>11:15 ص — 11:45 ص</td>
-            <td>إشراف كامل في الفناء والملعب</td>
-          </tr>
-          <tr>
-            <td>الحصص الخامسة — السابعة</td>
-            <td>11:45 ص — نهاية اليوم</td>
-            <td>استكمال الجدول والتقييمات</td>
-          </tr>
-        </tbody>
-      </table>
+      <div tabindex="0" role="region" aria-label="جدول المواعيد الزمنية لليوم الدراسي" class="table-wrapper">
+        <table class="modal-table" style="--label-2: 'التوقيت'; --label-3: 'ملاحظات الانضباط';">
+          <thead>
+            <tr>
+              <th scope="col">الفترة</th>
+              <th scope="col">التوقيت</th>
+              <th scope="col">ملاحظات الانضباط</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">اصطفاف طابور الصباح والإذاعة</th>
+              <td>7:30 صباحاً</td>
+              <td>حضور إلزامي وتحية العلم</td>
+            </tr>
+            <tr>
+              <th scope="row">الحصص الدراسية الأولى — الرابعة</th>
+              <td>8:00 ص — 11:15 ص</td>
+              <td>شرح أكاديمي وتطبيق معملي</td>
+            </tr>
+            <tr>
+              <th scope="row">الفسحة والنشاط الرياضي والثقافي</th>
+              <td>11:15 ص — 11:45 ص</td>
+              <td>إشراف كامل في الفناء والملعب</td>
+            </tr>
+            <tr>
+              <th scope="row">الحصص الخامسة — السابعة</th>
+              <td>11:45 ص — نهاية اليوم</td>
+              <td>استكمال الجدول والتقييمات</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     `,
   },
   honorModal: {
     title: "لوحة شرف أوائل المدرسة والمتميزين",
     html: `
       <p>تفخر مدرسة بني مزار الثانوية الجديدة بنين بتكريم أبنائها المتفوقين علمياً وأخلاقياً ورياضياً على مدار العام الدراسي:</p>
-      <table class="modal-table">
-        <thead>
-          <tr>
-            <th>فئة التكريم</th>
-            <th>مجال التميز</th>
-            <th>وسام التقدير</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>أوائل الشهادة الثانوية العامة</td>
-            <td>الشعبتان العلمية والأدبية</td>
-            <td>درع التفوق وشهادة تقدير الإدارة</td>
-          </tr>
-          <tr>
-            <td>أوائل الصفين الأول والثاني الثانوي</td>
-            <td>التفوق في الاختبارات الشهرية</td>
-            <td>شهادات شرف بطابور الصباح</td>
-          </tr>
-          <tr>
-            <td>أبطال الأنشطة والمسابقات</td>
-            <td>الإذاعة • الثقافة • الدوري الرياضي</td>
-            <td>ميداليات وكأس المدرسة</td>
-          </tr>
-        </tbody>
-      </table>
+      <div tabindex="0" role="region" aria-label="جدول لوحة شرف أوائل المدرسة" class="table-wrapper">
+        <table class="modal-table" style="--label-2: 'مجال التميز'; --label-3: 'وسام التقدير';">
+          <thead>
+            <tr>
+              <th scope="col">فئة التكريم</th>
+              <th scope="col">مجال التميز</th>
+              <th scope="col">وسام التقدير</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">أوائل الشهادة الثانوية العامة</th>
+              <td>الشعبتان العلمية والأدبية</td>
+              <td>درع التفوق وشهادة تقدير الإدارة</td>
+            </tr>
+            <tr>
+              <th scope="row">أوائل الصفين الأول والثاني الثانوي</th>
+              <td>التفوق في الاختبارات الشهرية</td>
+              <td>شهادات شرف بطابور الصباح</td>
+            </tr>
+            <tr>
+              <th scope="row">أبطال الأنشطة والمسابقات</th>
+              <td>الإذاعة • الثقافة • الدوري الرياضي</td>
+              <td>ميداليات وكأس المدرسة</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     `,
   },
 };
@@ -718,21 +724,110 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // 9. قائمة الموبايل + Scroll-Spy لتحديد القسم النشط في الهيدر
+  // مساعد السحب باللمس (Touch Swipe) لشاشات الموبايل والتابلت
+  function attachHorizontalSwipe(element, onSwipeNext, onSwipePrev) {
+    if (!element) return;
+    let touchStartX = 0;
+    let touchStartY = 0;
+
+    element.addEventListener(
+      "touchstart",
+      (e) => {
+        if (e.touches.length !== 1) return;
+        touchStartX = e.touches[0].clientX;
+        touchStartY = e.touches[0].clientY;
+      },
+      { passive: true }
+    );
+
+    element.addEventListener(
+      "touchend",
+      (e) => {
+        if (e.changedTouches.length !== 1) return;
+        const dx = e.changedTouches[0].clientX - touchStartX;
+        const dy = e.changedTouches[0].clientY - touchStartY;
+        if (Math.abs(dx) > 45 && Math.abs(dx) > Math.abs(dy) * 1.4) {
+          if (dx > 0) {
+            onSwipeNext();
+          } else {
+            onSwipePrev();
+          }
+        }
+      },
+      { passive: true }
+    );
+  }
+
+  attachHorizontalSwipe(
+    document.getElementById("home"),
+    () => setHeroScene(currentHeroIdx + 1),
+    () => setHeroScene(currentHeroIdx - 1)
+  );
+
+  attachHorizontalSwipe(
+    document.querySelector(".fb-showcase-frame"),
+    () => {
+      renderFacebookShowcase(activePostIndex + 1);
+      renderNewsStack();
+    },
+    () => {
+      renderFacebookShowcase(activePostIndex - 1);
+      renderNewsStack();
+    }
+  );
+
+  attachHorizontalSwipe(
+    document.querySelector(".lightbox-stage"),
+    () => updateLightboxView(activeLightboxIndex + 1),
+    () => updateLightboxView(activeLightboxIndex - 1)
+  );
+
+  // 9. قائمة الموبايل والتابلت + Scroll-Spy لتحديد القسم النشط في الهيدر
   const menuToggleBtn = document.getElementById("menuToggleBtn");
   const primaryNav = document.getElementById("primaryNav");
+  const topHeader = document.getElementById("topHeader");
+
+  function closeMobileMenu() {
+    if (!menuToggleBtn || !primaryNav) return;
+    primaryNav.classList.remove("open");
+    menuToggleBtn.classList.remove("is-open");
+    menuToggleBtn.setAttribute("aria-expanded", "false");
+  }
+
   if (menuToggleBtn && primaryNav) {
     menuToggleBtn.addEventListener("click", () => {
       const isOpen = primaryNav.classList.toggle("open");
+      menuToggleBtn.classList.toggle("is-open", isOpen);
       menuToggleBtn.setAttribute("aria-expanded", String(isOpen));
     });
 
     primaryNav.querySelectorAll("a").forEach((link) => {
-      link.addEventListener("click", () => {
-        primaryNav.classList.remove("open");
-        menuToggleBtn.setAttribute("aria-expanded", "false");
-      });
+      link.addEventListener("click", closeMobileMenu);
     });
+
+    document.addEventListener("click", (e) => {
+      if (!primaryNav.classList.contains("open")) return;
+      if (topHeader && !topHeader.contains(e.target)) {
+        closeMobileMenu();
+      }
+    });
+
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && primaryNav.classList.contains("open")) {
+        closeMobileMenu();
+        menuToggleBtn.focus();
+      }
+    });
+
+    window.addEventListener(
+      "resize",
+      () => {
+        if (window.innerWidth > 1024 && primaryNav.classList.contains("open")) {
+          closeMobileMenu();
+        }
+      },
+      { passive: true }
+    );
   }
 
   const navLinks = Array.from(
