@@ -1,26 +1,42 @@
 /* ==========================================================================
-   الموقع الرسمي — مدرسة بني مزار الثانوية الجديدة بنين (شرق المحطة)
-   تصميم مؤسسي كلاسيكي متزن ومطابق للنموذج المعتمد
+   البوابة الرسمية — مدرسة بني مزار الثانوية الجديدة بنين (شرق المحطة)
+   نظام التصميم المؤسسي المعماري الفاخر (Architectural Institutional Design)
    ========================================================================== */
 
 :root {
-  --navy-dark: #112538;
-  --navy-primary: #163048;
-  --maroon-primary: #6b191e;
-  --maroon-dark: #541216;
-  --ochre-gold: #b87d2e;
-  --ochre-gold-light: #d69842;
+  /* الهوية اللونية الرسمية المعتمدة */
+  --navy-950: #081523;
+  --navy-900: #0f2336;
+  --navy-800: #17344f;
+  --navy-700: #214769;
 
-  --page-bg: #f6f4ef;
-  --card-white: #ffffff;
-  --card-border: #e3ded5;
+  --maroon-800: #4c1014;
+  --maroon-700: #6b191e;
+  --maroon-600: #822026;
 
-  --text-dark: #182432;
-  --text-body: #3d4a59;
-  --text-muted: #6c7886;
+  --gold-600: #a36b20;
+  --gold-500: #b87d2e;
+  --gold-400: #d49a47;
+  --gold-200: #f3deb8;
+  --gold-100: #fbf3e4;
 
-  --shadow-soft: 0 8px 24px rgba(17, 37, 56, 0.08);
-  --shadow-card: 0 4px 14px rgba(17, 37, 56, 0.06);
+  --ivory-bg: #f7f4ee;
+  --sandstone-bg: rgba(233, 227, 214, 0.62);
+  --surface-card: rgba(255, 255, 255, 0.9);
+  --surface-solid: #ffffff;
+
+  --border-subtle: #e2dcd0;
+  --border-gold: rgba(184, 125, 46, 0.38);
+
+  --ink-900: #122130;
+  --ink-700: #334354;
+  --ink-500: #5f6f81;
+
+  --shadow-sm: 0 4px 14px rgba(15, 35, 54, 0.05);
+  --shadow-md: 0 12px 32px rgba(15, 35, 54, 0.09);
+  --shadow-lg: 0 22px 50px rgba(15, 35, 54, 0.16);
+
+  --radius-lg: 16px;
   --radius-md: 12px;
   --radius-sm: 8px;
 }
@@ -36,23 +52,24 @@
 html {
   scroll-behavior: smooth;
   font-family: "Tajawal", "Cairo", sans-serif;
-  background-color: var(--page-bg);
-  color: var(--text-dark);
+  background-color: var(--ivory-bg);
+  color: var(--ink-900);
 }
 
 body {
   min-height: 100vh;
-  background-color: var(--page-bg);
-  line-height: 1.65;
-  position: relative;
+  background-color: var(--ivory-bg);
+  line-height: 1.7;
   overflow-x: hidden;
+  position: relative;
 }
 
 h1,
 h2,
 h3,
 h4,
-strong {
+strong,
+button {
   font-family: "Cairo", sans-serif;
 }
 
@@ -62,738 +79,1293 @@ img {
 }
 
 a {
-  text-decoration: none;
   color: inherit;
+  text-decoration: none;
 }
 
 .container {
-  width: min(1200px, 92%);
+  width: min(1220px, 92%);
   margin-inline: auto;
 }
 
 /* ==========================================================================
-   1. خلفية شعار المدرسة المائية الهادئة خلف المربعات
+   1. طبقة شعار المدرسة المائية المحفورة خلف المربعات (mix-blend-mode: multiply)
    ========================================================================== */
-.watermark-bg {
+.stationery-watermark-layer {
   position: fixed;
   inset: 0;
   z-index: 0;
   pointer-events: none;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  overflow: hidden;
 }
 
-.watermark-bg img {
-  width: clamp(320px, 42vw, 540px);
-  height: clamp(320px, 42vw, 540px);
+.wm-seal {
+  position: absolute;
   object-fit: contain;
-  opacity: 0.045;
-  filter: grayscale(15%);
+  /* mix-blend-mode: multiply يخفي الخلفية البيضاء لملف JPG بنسبة 100% فوق العاجي */
+  mix-blend-mode: multiply;
+  opacity: 0.065;
+  filter: contrast(1.08) saturate(0.9);
+  user-select: none;
 }
 
-/* البطاقات البيضاء التي يظهر خلفها الشعار بنعومة */
-.content-card {
-  background: rgba(255, 255, 255, 0.94);
-  border: 1px solid var(--card-border);
-  border-radius: var(--radius-md);
-  box-shadow: var(--shadow-card);
+.wm-center {
+  width: clamp(320px, 40vw, 540px);
+  height: clamp(320px, 40vw, 540px);
+  top: 52%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.wm-top-left {
+  width: clamp(200px, 22vw, 300px);
+  height: clamp(200px, 22vw, 300px);
+  top: 14%;
+  left: -4%;
+  opacity: 0.04;
+}
+
+.wm-bottom-right {
+  width: clamp(220px, 24vw, 320px);
+  height: clamp(220px, 24vw, 320px);
+  bottom: 6%;
+  right: -4%;
+  opacity: 0.04;
+}
+
+.crest-blend {
+  mix-blend-mode: multiply;
+}
+
+/* البطاقات المؤسسية نصف الشفافة ليظهر ختم الشعار خلفها بنعومة فائقة */
+.surface-card {
+  position: relative;
+  z-index: 1;
+  background: var(--surface-card);
+  backdrop-filter: blur(6px);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
 }
 
 /* ==========================================================================
-   2. الهيدر الكحلي العلوي (بدون زر تسجيل دخول)
+   2. الشريط السيادي العلوي والهيدر الكحلي الرسمي
    ========================================================================== */
-.top-navbar {
-  position: sticky;
-  top: 0;
-  z-index: 100;
-  background-color: var(--navy-dark);
-  color: #ffffff;
-  border-bottom: 3px solid var(--ochre-gold);
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.18);
+.official-topbar {
+  position: relative;
+  z-index: 90;
+  background-color: var(--navy-950);
+  color: #cbd5e1;
+  font-size: 0.78rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 0.38rem 0;
 }
 
-.navbar-inner {
+.topbar-inner {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0.7rem 0;
-  gap: 1.5rem;
+  gap: 1rem;
+  flex-wrap: wrap;
 }
 
-.school-brand {
+.topbar-right {
   display: flex;
   align-items: center;
-  gap: 0.85rem;
+  gap: 0.55rem;
+  font-weight: 500;
 }
 
-.brand-crest {
-  width: 52px;
-  height: 52px;
+.egypt-mini-flag {
+  width: 18px;
+  height: 12px;
+  border-radius: 2px;
+  background: linear-gradient(
+    to bottom,
+    #ce1126 0%,
+    #ce1126 33.3%,
+    #ffffff 33.3%,
+    #ffffff 66.6%,
+    #000000 66.6%,
+    #000000 100%
+  );
+  display: inline-block;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+}
+
+.topbar-left {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--gold-200);
+  font-weight: 600;
+}
+
+.topbar-dot {
+  opacity: 0.5;
+}
+
+.site-navbar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background-color: var(--navy-900);
+  color: #ffffff;
+  border-bottom: 3px solid var(--gold-500);
+  box-shadow: 0 6px 22px rgba(8, 21, 35, 0.24);
+}
+
+.navbar-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.68rem 0;
+  gap: 1.25rem;
+}
+
+.brand-lockup {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+}
+
+.brand-crest-frame {
+  width: 56px;
+  height: 56px;
   border-radius: 50%;
-  object-fit: cover;
-  background: #fff;
-  padding: 2px;
-  border: 2px solid var(--ochre-gold);
+  background: #ffffff;
+  padding: 3px;
+  border: 2px solid var(--gold-400);
+  box-shadow: 0 0 0 3px rgba(212, 154, 71, 0.18);
   flex-shrink: 0;
+  overflow: hidden;
 }
 
-.brand-titles h1 {
-  font-size: clamp(1rem, 1.4vw, 1.22rem);
+.brand-crest-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 50%;
+}
+
+.brand-copy h1 {
+  font-size: clamp(1.02rem, 1.45vw, 1.24rem);
   font-weight: 800;
   color: #ffffff;
   line-height: 1.25;
 }
 
-.brand-titles span {
+.brand-copy span {
   display: block;
   font-size: 0.78rem;
-  color: #cbd5e1;
+  color: var(--gold-200);
   font-weight: 500;
 }
 
-.nav-menu {
+.primary-nav {
   display: flex;
   align-items: center;
-  gap: 0.55rem;
+  gap: 0.45rem;
   flex-wrap: wrap;
 }
 
-.nav-item {
+.nav-link {
   font-family: "Cairo", sans-serif;
-  font-size: 0.93rem;
+  font-size: 0.92rem;
   font-weight: 700;
   color: #f1f5f9;
-  padding: 0.35rem 0.5rem;
-  transition: color 0.2s ease;
+  padding: 0.38rem 0.62rem;
+  border-radius: 6px;
+  transition: color 0.2s ease, background-color 0.2s ease;
 }
 
-.nav-item:hover,
-.nav-item.active {
-  color: var(--ochre-gold-light);
+.nav-link:hover {
+  color: var(--gold-400);
+  background: rgba(255, 255, 255, 0.05);
 }
 
-.nav-sep {
-  color: rgba(255, 255, 255, 0.35);
+.nav-link.active {
+  color: var(--gold-400);
+  background: rgba(184, 125, 46, 0.14);
+}
+
+.nav-divider {
+  color: rgba(255, 255, 255, 0.28);
   font-size: 0.85rem;
+  user-select: none;
 }
 
-.burger-btn {
+.menu-toggle-btn {
   display: none;
   flex-direction: column;
-  gap: 4px;
-  background: transparent;
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  padding: 0.45rem;
-  border-radius: 6px;
+  gap: 5px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  padding: 0.5rem;
+  border-radius: 8px;
   cursor: pointer;
 }
 
-.burger-btn span {
+.menu-toggle-btn span {
   width: 22px;
   height: 2px;
   background: #ffffff;
 }
 
 /* ==========================================================================
-   3. البانر الرئيسي العريض (Hero Banner)
+   3. البانر المعماري العريض (Hero Stage) + شريط الإحصائيات المتداخل
    ========================================================================== */
-.hero-banner {
+.hero-stage {
   position: relative;
   z-index: 1;
-  min-height: 440px;
+  min-height: 500px;
   display: flex;
-  align-items: flex-end;
+  align-items: center;
   justify-content: center;
+  background-color: var(--navy-950);
   overflow: hidden;
-  background-color: var(--navy-dark);
+  padding: 4rem 0 6rem;
 }
 
-.hero-bg-image {
+.hero-media-wrapper {
   position: absolute;
   inset: 0;
 }
 
-.hero-bg-image img {
+.hero-slide-img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   object-position: center 35%;
+  transition: opacity 0.45s ease, transform 6s ease;
+  transform: scale(1.02);
 }
 
-.hero-gradient-overlay {
+.hero-scrim {
   position: absolute;
   inset: 0;
   background: linear-gradient(
-    to bottom,
-    rgba(17, 37, 56, 0.22) 0%,
-    rgba(17, 37, 56, 0.62) 48%,
-    rgba(17, 37, 56, 0.96) 92%,
-    #112538 100%
+    180deg,
+    rgba(8, 21, 35, 0.36) 0%,
+    rgba(15, 35, 54, 0.68) 52%,
+    rgba(15, 35, 54, 0.95) 100%
   );
 }
 
-.hero-center-content {
+.hero-content-wrap {
   position: relative;
   z-index: 2;
   text-align: center;
   color: #ffffff;
-  padding: 3.5rem 1rem 3rem;
-  max-width: 820px;
+  max-width: 860px;
 }
 
-.hero-mobile-crest {
+.hero-emblem-mobile {
   display: none;
-  width: 68px;
-  height: 68px;
-  margin: 0 auto 0.75rem;
+  width: 74px;
+  height: 74px;
+  margin: 0 auto 0.85rem;
   border-radius: 50%;
+  background: #ffffff;
+  padding: 3px;
+  border: 2px solid var(--gold-400);
   overflow: hidden;
-  border: 2px solid var(--ochre-gold);
-  background: #fff;
 }
 
-.hero-center-content h2 {
-  font-size: clamp(1.65rem, 3.2vw, 2.55rem);
-  font-weight: 800;
-  margin-bottom: 0.45rem;
-  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.45);
+.hero-kicker {
+  display: inline-block;
+  font-family: "Cairo", sans-serif;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--gold-200);
+  background: rgba(184, 125, 46, 0.22);
+  border: 1px solid rgba(212, 154, 71, 0.45);
+  padding: 0.28rem 1rem;
+  border-radius: 999px;
+  margin-bottom: 0.9rem;
 }
 
-.hero-center-content p {
-  font-size: clamp(1rem, 1.5vw, 1.22rem);
+.hero-title {
+  font-size: clamp(1.75rem, 3.4vw, 2.75rem);
+  font-weight: 900;
+  line-height: 1.3;
+  margin-bottom: 0.5rem;
+  text-shadow: 0 3px 14px rgba(0, 0, 0, 0.45);
+}
+
+.hero-subtitle {
+  font-size: clamp(1.05rem, 1.6vw, 1.28rem);
   color: #e2e8f0;
-  margin-bottom: 1.55rem;
   font-weight: 500;
+  margin-bottom: 1.75rem;
 }
 
-.hero-buttons {
+.hero-cta-row {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 1rem;
   flex-wrap: wrap;
+  margin-bottom: 2rem;
 }
 
-.hero-btn {
+.btn-institutional {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-width: 165px;
-  padding: 0.72rem 1.65rem;
+  min-width: 175px;
+  padding: 0.78rem 1.75rem;
   border-radius: var(--radius-sm);
   font-family: "Cairo", sans-serif;
-  font-weight: 700;
+  font-weight: 800;
   font-size: 0.96rem;
   color: #ffffff;
-  transition: transform 0.2s ease, filter 0.2s ease;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.28);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  cursor: pointer;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.28);
+  transition: transform 0.2s ease, filter 0.2s ease, box-shadow 0.2s ease;
 }
 
-.hero-btn:hover {
+.btn-institutional:hover {
   transform: translateY(-2px);
   filter: brightness(1.08);
+  box-shadow: 0 12px 26px rgba(0, 0, 0, 0.34);
 }
 
-.btn-ochre {
-  background-color: var(--ochre-gold);
+.btn-gold {
+  background: linear-gradient(135deg, var(--gold-500), var(--gold-600));
 }
 
 .btn-maroon {
-  background-color: var(--maroon-primary);
+  background: linear-gradient(135deg, var(--maroon-600), var(--maroon-700));
 }
 
-/* ==========================================================================
-   4. الحاوية الرئيسية والأقسام
-   ========================================================================== */
-.main-wrapper {
-  position: relative;
-  z-index: 2;
-  padding: 2.5rem 0 3.5rem;
-}
-
-.section-block {
-  margin-bottom: 3rem;
-}
-
-.section-heading {
-  font-size: clamp(1.35rem, 2vw, 1.65rem);
-  font-weight: 800;
-  color: var(--navy-dark);
-  margin-bottom: 1.15rem;
-  position: relative;
-  display: inline-block;
-}
-
-.section-heading::after {
-  content: "";
-  display: block;
-  width: 55%;
-  height: 3px;
-  background-color: var(--ochre-gold);
-  margin-top: 4px;
-  border-radius: 2px;
-}
-
-/* ==========================================================================
-   5. بطاقة كلمة مدير المدرسة (العنابية الفخمة كما في التصميم)
-   ========================================================================== */
-.principal-card {
-  display: grid;
-  grid-template-columns: 1fr 270px;
-  background: linear-gradient(135deg, var(--maroon-primary) 0%, var(--maroon-dark) 100%);
-  color: #ffffff;
-  border-radius: var(--radius-md);
-  overflow: hidden;
-  box-shadow: var(--shadow-soft);
-  border: 1px solid rgba(184, 125, 46, 0.35);
-}
-
-.principal-text-side {
-  padding: 2rem 2.25rem;
-  display: flex;
-  flex-direction: column;
+.hero-scene-switcher {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  background: rgba(8, 21, 35, 0.58);
+  backdrop-filter: blur(8px);
+  padding: 0.35rem;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  flex-wrap: wrap;
   justify-content: center;
 }
 
-.principal-text-side h3 {
-  font-size: 1.35rem;
-  color: #fde68a;
-  margin-bottom: 0.75rem;
+.scene-pill {
+  background: transparent;
+  border: 0;
+  color: #cbd5e1;
+  font-size: 0.78rem;
+  font-weight: 700;
+  padding: 0.35rem 0.9rem;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: all 0.2s ease;
 }
 
-.principal-text-side p {
-  font-size: 1.02rem;
-  color: #f8fafc;
-  line-height: 1.8;
-  margin-bottom: 1.25rem;
+.scene-pill.active,
+.scene-pill:hover {
+  background: rgba(212, 154, 71, 0.25);
+  color: #ffffff;
 }
 
-.principal-sign {
-  align-self: flex-start;
-  border-right: 3px solid var(--ochre-gold-light);
-  padding-right: 0.75rem;
-}
-
-.principal-sign strong {
-  display: block;
-  font-size: 1rem;
-  color: #fde68a;
-}
-
-.principal-sign span {
-  font-size: 0.82rem;
-  color: #e2e8f0;
-}
-
-.principal-image-side {
-  background-color: var(--navy-dark);
+/* شريط البطاقات الإحصائية المتداخل مع البانر */
+.floating-metrics-wrap {
   position: relative;
-  min-height: 250px;
-  border-right: 4px solid var(--ochre-gold);
+  z-index: 10;
+  margin-top: -3.1rem;
+  margin-bottom: 1rem;
 }
 
-.principal-image-side img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: top center;
+.metrics-ribbon {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  background: var(--surface-solid);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-gold);
+  box-shadow: var(--shadow-md);
+  overflow: hidden;
+}
+
+.metric-item {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  padding: 1.25rem 1.15rem;
+  border-left: 1px solid var(--border-subtle);
+}
+
+.metric-item:last-child {
+  border-left: 0;
+}
+
+.metric-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  background: var(--gold-100);
+  color: var(--gold-600);
+  border: 1px solid rgba(184, 125, 46, 0.28);
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+}
+
+.metric-icon svg {
+  width: 22px;
+  height: 22px;
+}
+
+.metric-item strong {
+  display: block;
+  font-size: 0.94rem;
+  color: var(--navy-900);
+  line-height: 1.3;
+}
+
+.metric-item span {
+  font-size: 0.78rem;
+  color: var(--ink-500);
 }
 
 /* ==========================================================================
-   6. قسم ماذا عن المدرسة (About Section)
+   4. تناوب خلفيات الأقسام ورؤوس الأقسام المعمارية
    ========================================================================== */
-.about-grid {
+.section-band {
+  position: relative;
+  z-index: 2;
+  padding: 4.25rem 0;
+}
+
+.band-ivory {
+  background: transparent;
+}
+
+.band-sandstone {
+  background: var(--sandstone-bg);
+  border-top: 1px solid rgba(184, 125, 46, 0.16);
+  border-bottom: 1px solid rgba(184, 125, 46, 0.16);
+}
+
+.section-header-arch {
+  margin-bottom: 2.25rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.arch-eyebrow {
+  font-family: "Cairo", sans-serif;
+  font-size: 0.8rem;
+  font-weight: 800;
+  color: var(--gold-600);
+  letter-spacing: 0.02em;
+  margin-bottom: 0.2rem;
+}
+
+.arch-title {
+  font-size: clamp(1.45rem, 2.3vw, 1.9rem);
+  font-weight: 900;
+  color: var(--navy-900);
+  line-height: 1.3;
+}
+
+.arch-rule {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  margin-top: 0.55rem;
+}
+
+.arch-rule::before {
+  content: "";
+  width: 58px;
+  height: 3px;
+  background: var(--gold-500);
+  border-radius: 2px;
+}
+
+.arch-rule span {
+  width: 8px;
+  height: 8px;
+  background: var(--maroon-700);
+  transform: rotate(45deg);
+}
+
+.arch-rule::after {
+  content: "";
+  width: 28px;
+  height: 2px;
+  background: rgba(184, 125, 46, 0.4);
+}
+
+/* ==========================================================================
+   5. قسم كلمة مدير المدرسة (البطاقة العنابية بصورة غير مقصوصة 3:4)
+   ========================================================================== */
+.principal-executive-card {
   display: grid;
-  grid-template-columns: 1.2fr 0.8fr;
-  gap: 1.35rem;
+  grid-template-columns: 1fr 310px;
+  background: linear-gradient(135deg, var(--maroon-700) 0%, var(--maroon-800) 100%);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  border: 1px solid rgba(212, 154, 71, 0.42);
+  overflow: hidden;
+  position: relative;
+}
+
+.principal-velvet-body {
+  padding: clamp(1.75rem, 3.5vw, 2.75rem);
+  color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+}
+
+.quote-ornament {
+  position: absolute;
+  top: 0.5rem;
+  left: 1.5rem;
+  font-size: 6.5rem;
+  line-height: 1;
+  color: rgba(243, 222, 184, 0.1);
+  font-family: Georgia, serif;
+  pointer-events: none;
+}
+
+.principal-kicker-row {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  margin-bottom: 0.85rem;
+  font-size: 0.82rem;
+  color: var(--gold-200);
+}
+
+.gold-tag {
+  background: rgba(212, 154, 71, 0.22);
+  border: 1px solid rgba(212, 154, 71, 0.5);
+  color: #fde68a;
+  padding: 0.18rem 0.7rem;
+  border-radius: 999px;
+  font-weight: 700;
+}
+
+.principal-velvet-body h3 {
+  font-size: clamp(1.35rem, 2vw, 1.65rem);
+  color: #fde68a;
+  margin-bottom: 0.85rem;
+}
+
+.principal-lead {
+  font-size: 1.05rem;
+  line-height: 1.85;
+  color: #f8fafc;
+  margin-bottom: 0.85rem;
+}
+
+.principal-sub {
+  font-size: 0.95rem;
+  line-height: 1.8;
+  color: #e2e8f0;
+  margin-bottom: 1.5rem;
+}
+
+.principal-footer-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 1.15rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.14);
+}
+
+.principal-signature {
+  border-right: 3px solid var(--gold-400);
+  padding-right: 0.85rem;
+}
+
+.principal-signature strong {
+  display: block;
+  font-size: 1.04rem;
+  color: #fde68a;
+}
+
+.principal-signature span {
+  font-size: 0.82rem;
+  color: #cbd5e1;
+}
+
+.principal-seal-stamp {
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  background: #ffffff;
+  padding: 3px;
+  opacity: 0.92;
+  border: 2px solid var(--gold-400);
+}
+
+.principal-seal-stamp img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: contain;
+}
+
+.principal-portrait-box {
+  background: var(--navy-900);
+  padding: 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-right: 4px solid var(--gold-500);
+}
+
+.portrait-gold-bezel {
+  width: 100%;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  border: 2px solid var(--gold-400);
+  background: var(--navy-950);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.38);
+}
+
+.portrait-gold-bezel img {
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+  object-position: center 12%;
+}
+
+.portrait-caption-strip {
+  padding: 0.65rem 0.85rem;
+  background: var(--navy-950);
+  text-align: center;
+  border-top: 1px solid rgba(212, 154, 71, 0.35);
+}
+
+.portrait-caption-strip strong {
+  display: block;
+  font-size: 0.86rem;
+  color: var(--gold-400);
+}
+
+.portrait-caption-strip span {
+  font-size: 0.74rem;
+  color: #cbd5e1;
+}
+
+/* ==========================================================================
+   6. قسم ماذا عن المدرسة (Editorial Split + Collage)
+   ========================================================================== */
+.about-editorial-grid {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 1.75rem;
   align-items: stretch;
 }
 
-.about-info-box {
-  padding: 1.65rem;
+.about-narrative-card {
+  padding: clamp(1.5rem, 3vw, 2.25rem);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 }
 
-.about-header-line {
+.narrative-crest-head {
   display: flex;
   align-items: center;
-  gap: 0.9rem;
-  margin-bottom: 1rem;
-  padding-bottom: 0.9rem;
-  border-bottom: 1px solid var(--card-border);
+  gap: 1rem;
+  padding-bottom: 1.1rem;
+  margin-bottom: 1.1rem;
+  border-bottom: 1px solid var(--border-subtle);
 }
 
-.small-crest {
-  width: 54px;
-  height: 54px;
-  border-radius: 50%;
-  object-fit: cover;
+.narrative-crest-head img {
+  width: 62px;
+  height: 62px;
+  object-fit: contain;
   flex-shrink: 0;
 }
 
-.about-header-line h3 {
-  font-size: 1.15rem;
-  color: var(--navy-dark);
+.narrative-crest-head h3 {
+  font-size: 1.2rem;
+  color: var(--navy-900);
 }
 
-.about-header-line span {
-  font-size: 0.84rem;
-  color: var(--ochre-gold);
+.narrative-crest-head span {
+  font-size: 0.83rem;
+  color: var(--gold-600);
   font-weight: 700;
 }
 
-.about-info-box p {
-  color: var(--text-body);
+.about-narrative-card > p {
+  color: var(--ink-700);
   font-size: 0.98rem;
-  margin-bottom: 1.25rem;
+  margin-bottom: 1.4rem;
 }
 
-.about-stats-row {
+.vision-pillars-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+}
+
+.v-pillar {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.9rem;
+  padding: 0.9rem 1rem;
+  border-radius: var(--radius-md);
+  background: var(--ivory-bg);
+  border: 1px solid var(--border-subtle);
+}
+
+.v-pillar-num {
+  font-family: "Cairo", sans-serif;
+  font-weight: 900;
+  font-size: 0.9rem;
+  color: #ffffff;
+  background: var(--navy-900);
+  border-bottom: 2px solid var(--gold-500);
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 0.85rem;
+  place-items: center;
+  flex-shrink: 0;
 }
 
-.about-stat-item {
-  background: var(--page-bg);
-  border: 1px solid var(--card-border);
-  border-radius: var(--radius-sm);
-  padding: 0.75rem;
-  text-align: center;
+.v-pillar h4 {
+  font-size: 0.98rem;
+  color: var(--navy-900);
+  margin-bottom: 0.15rem;
 }
 
-.about-stat-item strong {
-  display: block;
-  color: var(--maroon-primary);
-  font-size: 1.05rem;
+.v-pillar p {
+  font-size: 0.86rem;
+  color: var(--ink-500);
 }
 
-.about-stat-item span {
-  font-size: 0.78rem;
-  color: var(--text-muted);
+.about-collage {
+  display: flex;
+  flex-direction: column;
+  gap: 1.15rem;
 }
 
-.about-photos-box {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1rem;
-}
-
-.about-photo-card {
+.collage-primary,
+.collage-secondary {
   overflow: hidden;
+  flex: 1;
   display: flex;
   flex-direction: column;
 }
 
-.about-photo-card img {
+.collage-primary img,
+.collage-secondary img {
   width: 100%;
-  height: 195px;
+  height: 215px;
   object-fit: cover;
   flex: 1;
 }
 
-.about-photo-card span {
-  padding: 0.6rem 0.75rem;
-  font-size: 0.82rem;
+.collage-primary figcaption,
+.collage-secondary figcaption {
+  padding: 0.68rem 1rem;
+  font-family: "Cairo", sans-serif;
+  font-size: 0.84rem;
   font-weight: 700;
+  color: var(--navy-900);
+  background: #ffffff;
+  border-top: 2px solid var(--gold-500);
   text-align: center;
-  color: var(--navy-dark);
-  background: #fff;
-  border-top: 1px solid var(--card-border);
 }
 
 /* ==========================================================================
-   7. القسم المزدوج: (هيئة التدريس يميناً + إطار فيسبوك العنابي يساراً)
+   7. التدرج الوظيفي وهيئة التدريس (3-Tier Academic Hierarchy)
    ========================================================================== */
-.two-column-showcase {
-  display: grid;
-  grid-template-columns: 1.55fr 1fr;
-  gap: 1.75rem;
-  align-items: start;
+.org-hierarchy-box {
+  padding: 1.65rem;
+  margin-bottom: 1.75rem;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.95), rgba(247, 244, 238, 0.92));
+  border-color: var(--border-gold);
 }
 
-.section-title-row {
+.org-tier-top {
+  display: flex;
+  justify-content: center;
+}
+
+.org-leader-pill {
+  background: var(--navy-900);
+  color: #ffffff;
+  padding: 0.9rem 2.2rem;
+  border-radius: var(--radius-md);
+  text-align: center;
+  border: 2px solid var(--gold-500);
+  box-shadow: var(--shadow-sm);
+}
+
+.org-badge-gold {
+  display: inline-block;
+  font-size: 0.72rem;
+  color: var(--gold-400);
+  font-weight: 700;
+}
+
+.org-leader-pill strong {
+  display: block;
+  font-size: 1.08rem;
+}
+
+.org-leader-pill span:last-child {
+  font-size: 0.8rem;
+  color: #cbd5e1;
+}
+
+.org-stem {
+  width: 2px;
+  height: 24px;
+  background: var(--gold-500);
+  margin: 0 auto;
+}
+
+.org-tier-deputies {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  position: relative;
+}
+
+.org-deputy-card {
+  background: #ffffff;
+  border: 1px solid var(--border-subtle);
+  border-top: 3px solid var(--maroon-700);
+  border-radius: var(--radius-sm);
+  padding: 0.85rem 1rem;
+  text-align: center;
+}
+
+.org-deputy-card strong {
+  display: block;
+  font-size: 0.95rem;
+  color: var(--navy-900);
+}
+
+.org-deputy-card span {
+  font-size: 0.78rem;
+  color: var(--ink-500);
+}
+
+.teachers-toolbar {
   display: flex;
   align-items: center;
   justify-content: space-between;
   flex-wrap: wrap;
-  gap: 0.75rem;
-  margin-bottom: 1rem;
+  gap: 1rem;
+  margin-bottom: 1.35rem;
 }
 
-.section-title-row .section-heading {
-  margin-bottom: 0;
+.toolbar-note {
+  font-weight: 700;
+  color: var(--ink-700);
+  font-size: 0.92rem;
 }
 
-.dept-tabs {
+.dept-filter-pills {
   display: flex;
-  gap: 0.4rem;
   flex-wrap: wrap;
+  gap: 0.45rem;
 }
 
-.dept-tab {
-  padding: 0.35rem 0.8rem;
-  border-radius: 6px;
-  border: 1px solid var(--card-border);
+.dept-pill {
+  padding: 0.44rem 0.95rem;
+  border-radius: 999px;
+  border: 1px solid var(--border-subtle);
   background: #ffffff;
-  color: var(--text-body);
-  font-family: "Cairo", sans-serif;
-  font-size: 0.8rem;
+  color: var(--ink-700);
+  font-size: 0.82rem;
   font-weight: 700;
   cursor: pointer;
   transition: all 0.2s ease;
 }
 
-.dept-tab.active,
-.dept-tab:hover {
-  background: var(--navy-dark);
+.dept-pill.active,
+.dept-pill:hover {
+  background: var(--navy-900);
   color: #ffffff;
-  border-color: var(--navy-dark);
+  border-color: var(--navy-900);
 }
 
-/* شريط التدرج الوظيفي */
-.hierarchy-bar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0.75rem 1.1rem;
-  margin-bottom: 1.15rem;
-  background: #ffffff;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-}
-
-.h-step {
-  display: flex;
-  align-items: center;
-  gap: 0.45rem;
-  font-size: 0.85rem;
-  color: var(--navy-dark);
-}
-
-.h-num {
-  width: 24px;
-  height: 24px;
-  border-radius: 50%;
-  background: var(--ochre-gold);
-  color: #fff;
-  font-weight: 800;
-  font-size: 0.78rem;
-  display: grid;
-  place-items: center;
-}
-
-.h-arrow {
-  color: var(--ochre-gold);
-  font-weight: 800;
-}
-
-/* شبكة كروت المعلمين (3 أعمدة متناسقة تماماً كما في الصورة) */
-.teachers-grid {
+.faculty-cards-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 1rem;
+  gap: 1.25rem;
 }
 
-.teacher-item-card {
-  background: #ffffff;
-  border: 1px solid var(--card-border);
-  border-radius: var(--radius-md);
-  padding: 1.2rem 0.9rem;
+.faculty-card {
+  padding: 1.5rem 1.25rem;
   text-align: center;
-  box-shadow: var(--shadow-card);
-  transition: transform 0.2s ease, border-color 0.2s ease;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.teacher-item-card:hover {
-  transform: translateY(-3px);
-  border-color: var(--ochre-gold);
+.faculty-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--gold-500);
 }
 
-.teacher-circle-avatar {
-  width: 78px;
-  height: 78px;
+.faculty-avatar-ring {
+  width: 86px;
+  height: 86px;
   border-radius: 50%;
-  margin-bottom: 0.75rem;
-  border: 3px solid var(--navy-dark);
-  background: linear-gradient(135deg, #163048, #0f2336);
-  color: #ffffff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: "Cairo", sans-serif;
-  font-weight: 800;
-  font-size: 1.35rem;
-  overflow: hidden;
-  box-shadow: 0 4px 10px rgba(17, 37, 56, 0.15);
+  padding: 4px;
+  border: 2px solid var(--gold-500);
+  background: #ffffff;
+  margin-bottom: 0.9rem;
+  box-shadow: 0 6px 16px rgba(15, 35, 54, 0.12);
 }
 
-.teacher-circle-avatar img {
+.faculty-avatar-inner {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--navy-800), var(--navy-950));
+  color: var(--gold-200);
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+}
+
+.faculty-avatar-inner img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   object-position: top center;
 }
 
-.teacher-item-card h4 {
-  font-size: 0.98rem;
-  font-weight: 800;
-  color: var(--navy-dark);
-  margin-bottom: 0.2rem;
+.faculty-avatar-inner svg {
+  width: 34px;
+  height: 34px;
 }
 
-.teacher-item-card .t-role {
+.faculty-rank-pill {
+  font-size: 0.74rem;
+  font-weight: 800;
+  color: var(--maroon-700);
+  background: rgba(107, 25, 30, 0.08);
+  padding: 0.18rem 0.7rem;
+  border-radius: 999px;
+  margin-bottom: 0.45rem;
+}
+
+.faculty-card h3 {
+  font-size: 1.06rem;
+  color: var(--navy-900);
+  margin-bottom: 0.25rem;
+}
+
+.faculty-subject {
+  font-size: 0.85rem;
+  color: var(--ink-500);
+  margin-bottom: 1rem;
+}
+
+.faculty-more-btn {
+  margin-top: auto;
+  width: 100%;
+  padding: 0.5rem 0.85rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-subtle);
+  background: var(--ivory-bg);
+  color: var(--navy-900);
   font-size: 0.8rem;
-  color: var(--maroon-primary);
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.faculty-more-btn:hover {
+  background: var(--navy-900);
+  color: #ffffff;
+}
+
+/* ==========================================================================
+   8. غرفة الأخبار والإطار العنابي لمنشورات فيسبوك
+   ========================================================================== */
+.newsroom-dual-grid {
+  display: grid;
+  grid-template-columns: 1.35fr 1fr;
+  gap: 1.75rem;
+  align-items: start;
+}
+
+.news-list-panel {
+  padding: 1.5rem;
+}
+
+.news-panel-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--border-subtle);
+  margin-bottom: 1rem;
+}
+
+.news-panel-top h3 {
+  font-size: 1.12rem;
+  color: var(--navy-900);
+}
+
+.news-panel-top span {
+  font-size: 0.8rem;
+  color: var(--ink-500);
+}
+
+.news-search-wrap input {
+  padding: 0.5rem 0.9rem;
+  border-radius: 999px;
+  border: 1px solid var(--border-subtle);
+  background: var(--ivory-bg);
+  font-family: inherit;
+  font-size: 0.84rem;
+  min-width: 220px;
+}
+
+.news-cat-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin-bottom: 1.1rem;
+}
+
+.news-cat-btn {
+  padding: 0.36rem 0.85rem;
+  border-radius: 6px;
+  border: 1px solid var(--border-subtle);
+  background: #ffffff;
+  color: var(--ink-700);
+  font-size: 0.8rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.news-cat-btn.active,
+.news-cat-btn:hover {
+  background: var(--maroon-700);
+  color: #ffffff;
+  border-color: var(--maroon-700);
+}
+
+.news-feed-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.news-row-item {
+  display: grid;
+  grid-template-columns: 96px 1fr;
+  gap: 0.95rem;
+  padding: 0.85rem;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-subtle);
+  background: #ffffff;
+  cursor: pointer;
+  text-align: right;
+  transition: border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.news-row-item:hover,
+.news-row-item.active {
+  border-color: var(--maroon-700);
+  background: #fffaf5;
+}
+
+.news-row-item img {
+  width: 96px;
+  height: 76px;
+  object-fit: cover;
+  border-radius: var(--radius-sm);
+}
+
+.news-row-meta {
+  font-size: 0.74rem;
+  color: var(--gold-600);
   font-weight: 700;
   margin-bottom: 0.2rem;
 }
 
-.teacher-item-card .t-subject {
-  font-size: 0.78rem;
-  color: var(--text-muted);
+.news-row-item h4 {
+  font-size: 0.94rem;
+  color: var(--navy-900);
+  margin-bottom: 0.25rem;
+  line-height: 1.35;
 }
 
-/* ==========================================================================
-   8. الإطار العنابي لأحدث منشورات فيسبوك (مطابق للصورة)
-   ========================================================================== */
-.fb-maroon-frame {
-  background: linear-gradient(180deg, var(--maroon-primary) 0%, var(--maroon-dark) 100%);
-  border-radius: var(--radius-md);
-  padding: 1.15rem;
+.news-row-item p {
+  font-size: 0.82rem;
+  color: var(--ink-500);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* الإطار العنابي الشهير لكارت فيسبوك المدرسة */
+.fb-showcase-frame {
+  background: linear-gradient(180deg, var(--maroon-700) 0%, var(--maroon-800) 100%);
+  border-radius: var(--radius-lg);
+  padding: 1.25rem;
   color: #ffffff;
-  box-shadow: var(--shadow-soft);
-  border: 1px solid rgba(184, 125, 46, 0.4);
+  box-shadow: var(--shadow-lg);
+  border: 1px solid rgba(212, 154, 71, 0.45);
+  position: sticky;
+  top: 5.5rem;
 }
 
-.fb-maroon-header {
+.fb-frame-top {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 0.9rem;
+  margin-bottom: 0.95rem;
 }
 
-.fb-maroon-header h3 {
-  font-size: 1.1rem;
-  font-weight: 800;
+.fb-frame-top h3 {
+  font-size: 1.12rem;
   color: #ffffff;
 }
 
-.fb-auto-pill {
-  font-size: 0.72rem;
-  background: rgba(255, 255, 255, 0.16);
-  padding: 0.2rem 0.6rem;
-  border-radius: 999px;
+.fb-sync-status {
+  font-size: 0.74rem;
   color: #fde68a;
 }
 
-/* الكارت الأبيض الداخلي لمنشور الفيسبوك */
-.fb-white-card {
-  background: #ffffff;
-  color: var(--text-dark);
-  border-radius: var(--radius-sm);
-  overflow: hidden;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+.fb-nav-arrows {
+  display: flex;
+  gap: 0.35rem;
 }
 
-.fb-card-top {
-  padding: 0.75rem 0.9rem;
+.fb-arrow-btn {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  background: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+  font-size: 1.1rem;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+}
+
+.fb-arrow-btn:hover {
+  background: var(--gold-500);
+}
+
+.fb-embed-card {
+  background: #ffffff;
+  color: var(--ink-900);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+}
+
+.fb-embed-head {
+  padding: 0.85rem 1rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
   border-bottom: 1px solid #f1f5f9;
 }
 
-.fb-page-info {
+.fb-author-box {
   display: flex;
   align-items: center;
-  gap: 0.6rem;
+  gap: 0.65rem;
 }
 
-.fb-page-info img {
-  width: 38px;
-  height: 38px;
+.fb-author-box img {
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
-  object-fit: cover;
-  border: 1px solid var(--card-border);
+  object-fit: contain;
+  border: 1px solid var(--border-subtle);
 }
 
-.fb-page-info strong {
+.fb-author-box strong {
   display: block;
-  font-size: 0.86rem;
-  color: #182432;
+  font-size: 0.88rem;
+  color: var(--navy-900);
   line-height: 1.2;
 }
 
-.fb-page-info span {
-  font-size: 0.72rem;
+.fb-author-box span {
+  font-size: 0.73rem;
   color: #64748b;
 }
 
-.fb-blue-badge {
-  width: 28px;
-  height: 28px;
+.fb-badge-circle {
+  width: 30px;
+  height: 30px;
   border-radius: 50%;
   background: #1877f2;
   color: #ffffff;
   font-family: "Cairo", sans-serif;
   font-weight: 900;
-  font-size: 1.05rem;
+  font-size: 1.1rem;
   display: grid;
   place-items: center;
 }
 
-.fb-card-text {
-  padding: 0.75rem 0.9rem;
-  font-size: 0.86rem;
-  color: #334155;
-  line-height: 1.55;
+.fb-embed-body {
+  padding: 0.85rem 1rem;
+  font-size: 0.88rem;
+  color: var(--ink-700);
+  line-height: 1.65;
 }
 
-.fb-card-photo {
-  height: 205px;
+.fb-embed-media {
+  aspect-ratio: 16 / 10;
   background: #e2e8f0;
   overflow: hidden;
 }
 
-.fb-card-photo img {
+.fb-embed-media img {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
 
-.fb-card-Reactions {
-  padding: 0.55rem 0.9rem;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  font-size: 0.76rem;
-  color: #64748b;
-  border-top: 1px solid #f1f5f9;
+.fb-embed-footer {
+  padding: 0.65rem 1rem;
   background: #f8fafc;
-}
-
-.fb-action-btns {
+  border-top: 1px solid #e2e8f0;
   display: flex;
-  gap: 0.85rem;
-  font-weight: 700;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.78rem;
   color: #475569;
+  font-weight: 700;
 }
 
-.fb-frame-controls {
-  margin-top: 0.85rem;
+.fb-frame-bottom {
+  margin-top: 0.95rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
 
-.fb-dots {
+.fb-Indicator-dots {
   display: flex;
   gap: 0.4rem;
 }
@@ -802,343 +1374,627 @@ a {
   width: 9px;
   height: 9px;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.35);
   border: 0;
+  background: rgba(255, 255, 255, 0.35);
   cursor: pointer;
 }
 
 .fb-dot.active {
   background: #fde68a;
-  transform: scale(1.2);
+  transform: scale(1.25);
 }
 
-.fb-visit-link {
-  font-size: 0.8rem;
+.fb-direct-btn {
+  font-size: 0.82rem;
   font-weight: 700;
   color: #fde68a;
 }
 
-.fb-visit-link:hover {
+.fb-direct-btn:hover {
   text-decoration: underline;
 }
 
 /* ==========================================================================
-   9. قسم أعظم اللحظات البارزة (Highlights Grid)
+   9. معرض أعظم اللحظات البارزة (5-Photo Bento Gallery)
    ========================================================================== */
-.highlights-grid {
+.moments-bento-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1.25rem;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 1.15rem;
 }
 
-.moment-card {
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-}
-
-.moment-img-box {
+.bento-moment {
   position: relative;
-  height: 210px;
+  border-radius: var(--radius-lg);
   overflow: hidden;
+  min-height: 270px;
+  cursor: pointer;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--border-subtle);
+  background: var(--navy-950);
 }
 
-.moment-img-box img {
+.bento-moment.span-8 {
+  grid-column: span 8;
+  min-height: 350px;
+}
+
+.bento-moment.span-4 {
+  grid-column: span 4;
+}
+
+.bento-moment img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.35s ease;
+  object-position: center 22%;
+  transition: transform 0.45s ease;
 }
 
-.moment-card:hover .moment-img-box img {
-  transform: scale(1.04);
+.bento-moment:hover img {
+  transform: scale(1.05);
 }
 
-.moment-tag {
+.moment-ribbon {
   position: absolute;
-  top: 0.75rem;
-  right: 0.75rem;
-  padding: 0.25rem 0.75rem;
+  top: 0.9rem;
+  right: 0.9rem;
+  padding: 0.25rem 0.8rem;
   border-radius: 6px;
-  font-size: 0.76rem;
-  font-weight: 700;
+  font-family: "Cairo", sans-serif;
+  font-size: 0.75rem;
+  font-weight: 800;
+  color: #ffffff;
+  z-index: 2;
+}
+
+.ribbon-navy {
+  background: rgba(15, 35, 54, 0.9);
+}
+
+.ribbon-maroon {
+  background: rgba(107, 25, 30, 0.9);
+}
+
+.ribbon-gold {
+  background: rgba(163, 107, 32, 0.92);
+}
+
+.bento-moment figcaption {
+  position: absolute;
+  inset: auto 0 0 0;
+  padding: 2.2rem 1.25rem 1.1rem;
+  background: linear-gradient(to top, rgba(8, 21, 35, 0.95) 0%, rgba(8, 21, 35, 0.55) 60%, transparent 100%);
   color: #ffffff;
 }
 
-.tag-navy {
-  background: var(--navy-dark);
-}
-
-.tag-gold {
-  background: var(--ochre-gold);
-}
-
-.tag-maroon {
-  background: var(--maroon-primary);
-}
-
-.moment-body {
-  padding: 1.15rem;
-}
-
-.moment-body h3 {
+.bento-moment h3 {
   font-size: 1.05rem;
-  color: var(--navy-dark);
-  margin-bottom: 0.4rem;
+  margin-bottom: 0.2rem;
 }
 
-.moment-body p {
-  font-size: 0.88rem;
-  color: var(--text-body);
+.bento-moment p {
+  font-size: 0.82rem;
+  color: #cbd5e1;
 }
 
 /* ==========================================================================
-   10. قسم روابط سريعة (مطابق للصورة: 3 كحلي في الأعلى + 3 ذهبي في الأسفل)
+   10. روابط سريعة للطلاب (3 كحلي في الأعلى + 3 ذهبي في الأسفل)
    ========================================================================== */
-.quick-links-grid {
+.quick-portals-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 0.9rem;
+  gap: 1rem;
 }
 
-.q-link-box {
+.portal-tile {
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   text-align: center;
-  padding: 1rem 1.2rem;
-  border-radius: var(--radius-sm);
-  font-family: "Cairo", sans-serif;
-  font-weight: 800;
-  font-size: 1rem;
+  padding: 1.25rem 1.1rem;
+  border-radius: var(--radius-md);
+  border: 1px solid rgba(255, 255, 255, 0.16);
   color: #ffffff;
-  box-shadow: var(--shadow-card);
-  transition: transform 0.2s ease, filter 0.2s ease;
+  cursor: pointer;
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.2s ease, filter 0.2s ease, box-shadow 0.2s ease;
 }
 
-.q-link-box:hover {
-  transform: translateY(-2px);
+.portal-tile:hover {
+  transform: translateY(-3px);
   filter: brightness(1.08);
+  box-shadow: var(--shadow-md);
 }
 
-.q-navy {
-  background-color: var(--navy-dark);
+.tile-navy {
+  background: linear-gradient(135deg, var(--navy-800), var(--navy-900));
+  border-bottom: 3px solid var(--gold-500);
 }
 
-.q-gold {
-  background-color: var(--ochre-gold);
+.tile-gold {
+  background: linear-gradient(135deg, var(--gold-500), var(--gold-600));
+  border-bottom: 3px solid var(--navy-900);
+}
+
+.tile-label {
+  font-family: "Cairo", sans-serif;
+  font-size: 1.05rem;
+  font-weight: 800;
+  margin-bottom: 0.2rem;
+}
+
+.tile-sub {
+  font-size: 0.78rem;
+  color: rgba(255, 255, 255, 0.86);
 }
 
 /* ==========================================================================
-   11. قسم موقع المدرسة والتواصل
+   11. موقع المدرسة بشرق المحطة وتواصل معنا
    ========================================================================== */
-.location-split {
+.location-master-card {
   display: grid;
-  grid-template-columns: 1fr 1.1fr;
-  gap: 1.5rem;
-  padding: 1.5rem;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: 1.75rem;
+  padding: clamp(1.4rem, 3vw, 2.2rem);
 }
 
-.loc-brand-row {
+.loc-header-box {
   display: flex;
   align-items: center;
-  gap: 0.85rem;
-  padding-bottom: 0.9rem;
-  margin-bottom: 1rem;
-  border-bottom: 1px solid var(--card-border);
+  gap: 0.9rem;
+  padding-bottom: 1rem;
+  margin-bottom: 1.15rem;
+  border-bottom: 1px solid var(--border-subtle);
 }
 
-.loc-brand-row img {
-  width: 52px;
-  height: 52px;
-  border-radius: 50%;
+.loc-header-box img {
+  width: 56px;
+  height: 56px;
+  object-fit: contain;
 }
 
-.loc-brand-row h3 {
-  font-size: 1.1rem;
-  color: var(--navy-dark);
+.loc-header-box h3 {
+  font-size: 1.14rem;
+  color: var(--navy-900);
 }
 
-.loc-brand-row span {
+.loc-header-box span {
   font-size: 0.82rem;
-  color: var(--ochre-gold);
+  color: var(--gold-600);
   font-weight: 700;
 }
 
-.loc-items {
+.loc-specs-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  margin-bottom: 1.35rem;
+}
+
+.loc-spec strong {
+  display: block;
+  font-size: 0.92rem;
+  color: var(--navy-900);
+}
+
+.loc-spec p {
+  font-size: 0.88rem;
+  color: var(--ink-700);
+}
+
+.institutional-form {
+  background: var(--ivory-bg);
+  padding: 1.15rem;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-subtle);
+}
+
+.institutional-form h4 {
+  font-size: 0.95rem;
+  color: var(--navy-900);
+  margin-bottom: 0.75rem;
+}
+
+.form-split-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.65rem;
+  margin-bottom: 0.65rem;
+}
+
+.form-submit-row {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 0.65rem;
+}
+
+.institutional-form input,
+.institutional-form select {
+  width: 100%;
+  padding: 0.65rem 0.85rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-subtle);
+  background: #ffffff;
+  font-family: inherit;
+  font-size: 0.86rem;
+  color: var(--ink-900);
+}
+
+.form-status-msg {
+  margin-top: 0.65rem;
+  font-size: 0.84rem;
+  font-weight: 700;
+  color: #15803d;
+}
+
+.location-map-col {
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
-  margin-bottom: 1.15rem;
 }
 
-.loc-item strong {
-  font-size: 0.9rem;
-  color: var(--navy-dark);
-}
-
-.loc-item p {
-  font-size: 0.88rem;
-  color: var(--text-body);
-}
-
-.clean-contact-form {
-  display: grid;
-  grid-template-columns: 1fr 1.3fr auto;
-  gap: 0.6rem;
-}
-
-.clean-contact-form input {
-  padding: 0.65rem 0.85rem;
-  border: 1px solid var(--card-border);
-  border-radius: 6px;
-  font-family: inherit;
-  font-size: 0.86rem;
-}
-
-.btn-submit-maroon {
-  background: var(--maroon-primary);
-  color: #ffffff;
-  border: 0;
-  padding: 0.65rem 1.2rem;
-  border-radius: 6px;
-  font-family: "Cairo", sans-serif;
-  font-weight: 700;
-  cursor: pointer;
-}
-
-.contact-success {
-  margin-top: 0.6rem;
-  font-size: 0.85rem;
-  color: #15803d;
-  font-weight: 700;
-}
-
-.location-map-box {
-  min-height: 290px;
-  border-radius: var(--radius-sm);
+.map-frame {
+  flex: 1;
+  min-height: 310px;
+  border-radius: var(--radius-md);
   overflow: hidden;
-  border: 1px solid var(--card-border);
+  border: 1px solid var(--border-subtle);
 }
 
-.location-map-box iframe {
+.map-frame iframe {
   width: 100%;
   height: 100%;
   border: 0;
 }
 
-/* ==========================================================================
-   12. الفوتر الكحلي الرسمي
-   ========================================================================== */
-.main-footer {
-  position: relative;
-  z-index: 2;
-  background-color: var(--navy-dark);
-  color: #ffffff;
-  border-top: 3px solid var(--ochre-gold);
-  padding: 1.5rem 0;
-}
-
-.footer-inner {
+.map-caption-bar {
   display: flex;
   align-items: center;
   justify-content: space-between;
   flex-wrap: wrap;
-  gap: 1rem;
-}
-
-.footer-right {
-  display: flex;
-  align-items: center;
-  gap: 0.85rem;
-}
-
-.footer-right img {
-  width: 46px;
-  height: 46px;
-  border-radius: 50%;
-  background: #fff;
-  padding: 2px;
-}
-
-.footer-right strong {
-  display: block;
-  font-size: 0.96rem;
-}
-
-.footer-right span {
-  font-size: 0.8rem;
-  color: #cbd5e1;
-}
-
-.footer-left p {
+  gap: 0.5rem;
   font-size: 0.84rem;
-  color: #cbd5e1;
+  font-weight: 700;
+  color: var(--navy-900);
+}
+
+.map-gmaps-btn {
+  color: var(--maroon-700);
+}
+
+.map-gmaps-btn:hover {
+  text-decoration: underline;
 }
 
 /* ==========================================================================
-   13. التوافق مع الهاتف والتابلت (كما يظهر في شاشة الموبايل بالصورة)
+   12. الفوتر المؤسسي الرسمي
    ========================================================================== */
-@media (max-width: 992px) {
-  .two-column-showcase,
-  .about-grid,
-  .location-split {
+.institutional-footer {
+  position: relative;
+  z-index: 2;
+  background-color: var(--navy-950);
+  color: #cbd5e1;
+  border-top: 4px solid var(--gold-500);
+  padding: 3rem 0 1.4rem;
+}
+
+.footer-top-grid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr;
+  gap: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.footer-crest-lockup {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  margin-bottom: 0.85rem;
+}
+
+.footer-crest-lockup img {
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  background: #ffffff;
+  padding: 3px;
+  border: 2px solid var(--gold-400);
+}
+
+.footer-crest-lockup h3 {
+  font-size: 1.08rem;
+  color: #ffffff;
+}
+
+.footer-crest-lockup span {
+  font-size: 0.78rem;
+  color: var(--gold-400);
+}
+
+.footer-col-brand p {
+  font-size: 0.88rem;
+  line-height: 1.75;
+}
+
+.footer-col-links h4,
+.footer-col-card h4 {
+  color: #ffffff;
+  font-size: 0.98rem;
+  margin-bottom: 0.85rem;
+}
+
+.footer-col-links ul {
+  list-style: none;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5rem;
+  font-size: 0.86rem;
+}
+
+.footer-col-links a:hover {
+  color: var(--gold-400);
+}
+
+.footer-col-card p {
+  font-size: 0.86rem;
+  margin-bottom: 0.35rem;
+}
+
+.footer-bottom-strip {
+  padding-top: 1.2rem;
+  text-align: center;
+  font-size: 0.82rem;
+  color: #94a3b8;
+}
+
+/* ==========================================================================
+   13. النوافذ المنبثقة القياسية (<dialog>) مع منع تمرير الصفحة الخلفية
+   ========================================================================== */
+dialog:modal {
+  overscroll-behavior: contain;
+}
+
+dialog::backdrop {
+  overflow: hidden;
+  overscroll-behavior: contain;
+  background-color: rgba(8, 21, 35, 0.76);
+  backdrop-filter: blur(4px);
+}
+
+.institutional-dialog {
+  margin: auto;
+  border: 1px solid var(--border-gold);
+  border-radius: var(--radius-lg);
+  padding: 0;
+  max-width: min(760px, 92vw);
+  width: 100%;
+  background: #ffffff;
+  color: var(--ink-900);
+  box-shadow: var(--shadow-lg);
+}
+
+.lightbox-dialog {
+  max-width: min(940px, 94vw);
+  background: var(--navy-950);
+  color: #ffffff;
+}
+
+.dialog-inner {
+  position: relative;
+  padding: 1.5rem;
+}
+
+.lightbox-inner {
+  padding: 1rem;
+}
+
+.dialog-close-btn {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: 1px solid var(--border-subtle);
+  background: rgba(255, 255, 255, 0.14);
+  color: inherit;
+  font-size: 1rem;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+}
+
+.lightbox-inner .dialog-close-btn {
+  position: absolute;
+  top: 1.25rem;
+  left: 1.25rem;
+  z-index: 5;
+  background: rgba(8, 21, 35, 0.8);
+  color: #ffffff;
+}
+
+.lightbox-stage {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #040b14;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  min-height: 320px;
+  max-height: 72vh;
+}
+
+.lightbox-stage img {
+  max-height: 72vh;
+  width: auto;
+  max-width: 100%;
+  object-fit: contain;
+}
+
+.lb-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  background: rgba(8, 21, 35, 0.72);
+  color: #ffffff;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.lb-prev {
+  right: 0.85rem;
+}
+
+.lb-next {
+  left: 0.85rem;
+}
+
+.lightbox-caption-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.9rem 0.5rem 0.25rem;
+}
+
+.lightbox-caption-bar strong {
+  display: block;
+  color: var(--gold-400);
+}
+
+.lightbox-caption-bar p {
+  font-size: 0.85rem;
+  color: #cbd5e1;
+}
+
+.lb-counter {
+  font-size: 0.82rem;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 0.25rem 0.7rem;
+  border-radius: 999px;
+}
+
+.info-dialog-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 0.9rem;
+  margin-bottom: 1.1rem;
+  border-bottom: 2px solid var(--gold-500);
+}
+
+.info-dialog-header h3 {
+  font-size: 1.22rem;
+  color: var(--navy-900);
+}
+
+.modal-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.88rem;
+  margin-top: 0.75rem;
+}
+
+.modal-table th,
+.modal-table td {
+  padding: 0.65rem 0.75rem;
+  border: 1px solid var(--border-subtle);
+  text-align: right;
+}
+
+.modal-table th {
+  background: var(--navy-900);
+  color: #ffffff;
+}
+
+/* ==========================================================================
+   14. استجابة الشاشات (Responsive Layout)
+   ========================================================================== */
+@media (max-width: 1024px) {
+  .metrics-ribbon {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .metric-item {
+    border-bottom: 1px solid var(--border-subtle);
+  }
+
+  .principal-executive-card,
+  .about-editorial-grid,
+  .newsroom-dual-grid,
+  .location-master-card {
     grid-template-columns: 1fr;
   }
 
-  .principal-card {
-    grid-template-columns: 1fr;
-  }
-
-  .principal-image-side {
-    height: 320px;
+  .principal-portrait-box {
     border-right: 0;
-    border-top: 4px solid var(--ochre-gold);
+    border-top: 4px solid var(--gold-500);
   }
 
-  .highlights-grid {
-    grid-template-columns: 1fr 1fr;
+  .portrait-gold-bezel {
+    max-width: 340px;
+  }
+
+  .fb-showcase-frame {
+    position: static;
+  }
+
+  .bento-moment.span-8,
+  .bento-moment.span-4 {
+    grid-column: span 6;
   }
 }
 
 @media (max-width: 768px) {
-  .nav-menu {
+  .official-topbar {
+    display: none;
+  }
+
+  .primary-nav {
     display: none;
     position: absolute;
     top: 100%;
-    right: 0;
-    left: 0;
-    background: var(--navy-dark);
+    inset-inline: 0;
+    background: var(--navy-950);
     flex-direction: column;
     padding: 1rem;
-    border-bottom: 2px solid var(--ochre-gold);
+    border-bottom: 3px solid var(--gold-500);
   }
 
-  .nav-menu.open {
+  .primary-nav.open {
     display: flex;
   }
 
-  .nav-sep {
+  .nav-divider {
     display: none;
   }
 
-  .burger-btn {
+  .menu-toggle-btn {
     display: flex;
   }
 
-  .hero-mobile-crest {
+  .hero-emblem-mobile {
     display: block;
   }
 
-  .teachers-grid {
-    grid-template-columns: repeat(2, 1fr);
+  .metrics-ribbon,
+  .org-tier-deputies,
+  .faculty-cards-grid,
+  .quick-portals-grid,
+  .form-split-row,
+  .form-submit-row,
+  .footer-top-grid {
+    grid-template-columns: 1fr;
   }
 
-  .highlights-grid,
-  .quick-links-grid,
-  .about-photos-box,
-  .about-stats-row,
-  .clean-contact-form {
-    grid-template-columns: 1fr;
+  .bento-moment.span-8,
+  .bento-moment.span-4 {
+    grid-column: span 12;
+    min-height: 250px;
   }
 }
