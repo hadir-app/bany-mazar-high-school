@@ -203,7 +203,7 @@
           <span class="nav-divider" aria-hidden="true">•</span>
           <a href="#highlights" class="nav-link" data-section="highlights">أعظم اللحظات</a>
           <span class="nav-divider" aria-hidden="true">•</span>
-          <a href="#quick-links" class="nav-link" data-section="quick-links">روابط هامة</a>
+          <a href="#quick-links" class="nav-link" data-section="quick-links">الخدمات والروابط</a>
           <span class="nav-divider" aria-hidden="true">•</span>
           <a href="#location" class="nav-link" data-section="location">موقع المدرسة</a>
           <span class="nav-divider" aria-hidden="true">•</span>
@@ -547,6 +547,17 @@
 
           <!-- شبكة كروت هيئة التدريس (3 أعمدة متناسقة بأيقونات أكاديمية وصور دائرية) -->
           <div class="faculty-cards-grid" id="teachersGrid"></div>
+
+          <!-- شريط توجيه مباشر لبوابات المعلمين والترقيات والأكاديمية -->
+          <div class="teachers-portals-callout surface-card" style="margin-top: 1.5rem; padding: 1.15rem 1.4rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; border-right: 4px solid var(--gold-500);">
+            <div>
+              <h3 style="font-size: 1.05rem; color: var(--navy-900); margin-bottom: 0.25rem;">بوابات وخدمات السادة المعلمين (الكادر والترقيات وبيان الحالة)</h3>
+              <p style="font-size: 0.85rem; color: var(--ink-700);">منصة الأكاديمية المهنية للمعلمين، استخراج صحيفة أحوال معلم، والبريد الموحد للمعلمين.</p>
+            </div>
+            <a href="#teacher-portals" class="btn-institutional btn-maroon" style="padding: 0.45rem 1.15rem; font-size: 0.84rem;">
+              استعراض بوابات المعلمين ↗
+            </a>
+          </div>
         </div>
       </section>
 
@@ -703,13 +714,81 @@
         </div>
       </section>
 
-      <!-- 6. قسم روابط هامة للطلاب وبوابات الوزارة والذكاء الاصطناعي -->
+      <!-- 6. قسم روابط وخدمات المعلمين والطلاب وبوابات الوزارة والذكاء الاصطناعي -->
       <section class="section-band band-sandstone" id="quick-links">
         <div class="container">
           <div class="section-header-arch">
             <span class="arch-eyebrow">منظومة الخدمات والمنصات التعليمية</span>
-            <h2 class="arch-title">روابط هامة للطلاب ومنصات الوزارة</h2>
+            <h2 class="arch-title">روابط وخدمات المعلمين والطلاب ومنصات الوزارة</h2>
             <div class="arch-rule"><span></span></div>
+          </div>
+
+          <!-- بوابات السادة المعلمين (الكادر والترقيات وصحيفة الأحوال والحساب الموحد) -->
+          <div class="portals-category-header" id="teacher-portals">
+            <h3 class="portals-group-title">بوابات وخدمات السادة المعلمين (كادر المعلم، الترقيات، وبيان الحالة)</h3>
+          </div>
+
+          <div class="quick-portals-grid" style="margin-bottom: 2rem;">
+            <!-- 1. منصة ترقيات كادر المعلم - الأكاديمية المهنية للمعلمين -->
+            <a
+              href="https://academy.emis.gov.eg/"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="portal-tile tile-maroon"
+            >
+              <div>
+                <span class="portal-badge">ترقيات الكادر 🎖️</span>
+                <span class="tile-label">منصة ترقيات كادر المعلم (الأكاديمية المهنية)</span>
+              </div>
+              <span class="tile-sub">منصة التدريب والترقي عن بُعد واختبارات كادر المعلمين ↗</span>
+            </a>
+
+            <!-- 2. صحيفة أحوال المعلم الإلكترونية -->
+            <a
+              href="https://teacher.emis.gov.eg/login"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="portal-tile tile-navy"
+            >
+              <div>
+                <span class="portal-badge">بيان حالة إلكتروني 📄</span>
+                <span class="tile-label">صحيفة أحوال المعلم (بيان حالة موظف)</span>
+              </div>
+              <span class="tile-sub">طباعة واستخراج بيان الحالة الوظيفية المعتمد من الوزارة ↗</span>
+            </a>
+
+            <!-- 3. البريد الإلكتروني الموحد للمعلم -->
+            <a
+              href="https://office365.emis.gov.eg/"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="portal-tile tile-gold"
+            >
+              <div>
+                <span class="portal-badge">حساب المعلم 📧</span>
+                <span class="tile-label">الحساب الإلكتروني الموحد للمعلم (Office 365)</span>
+              </div>
+              <span class="tile-sub">تفعيل البريد الموحد للمعلمين وتحميل تطبيقات مايكروسوفت ↗</span>
+            </a>
+
+            <!-- 4. بوابة تسجيل وتدريب المعلمين والكوادر -->
+            <a
+              href="https://moe-register.emis.gov.eg/login"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="portal-tile tile-gold"
+            >
+              <div>
+                <span class="portal-badge">تدريب إلكتروني 💻</span>
+                <span class="tile-label">بوابة تدريب المعلمين والشهادات العامة</span>
+              </div>
+              <span class="tile-sub">تسجيل ومتابعة الدورات التدريبية والتطوير التكنولوجي ↗</span>
+            </a>
+          </div>
+
+          <!-- بوابات الطلاب والمنصات الوزارية والذكاء الاصطناعي -->
+          <div class="portals-category-header">
+            <h3 class="portals-group-title">بوابات الطلاب والمنصات الوزارية والذكاء الاصطناعي</h3>
           </div>
 
           <div class="quick-portals-grid">
@@ -1030,7 +1109,7 @@
             <li><a href="#teachers">تدرج هيئة التدريس</a></li>
             <li><a href="#newsroom">أحدث منشورات فيسبوك</a></li>
             <li><a href="#highlights">أعظم اللحظات البارزة</a></li>
-            <li><a href="#quick-links">روابط هامة للطلاب</a></li>
+            <li><a href="#quick-links">خدمات المعلمين والطلاب</a></li>
             <li><a href="#location">موقع المدرسة</a></li>
             <li><a href="#faq">الأسئلة الشائعة</a></li>
           </ul>

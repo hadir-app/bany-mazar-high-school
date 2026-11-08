@@ -1740,8 +1740,28 @@ section[id] {
 }
 
 /* ==========================================================================
-   10. روابط سريعة للطلاب ومنصات الوزارة وكيريو وسبريكس
+   10. روابط سريعة للطلاب ومنصات الوزارة وكيريو وسبريكس وبوابات المعلمين
    ========================================================================== */
+.portals-group-title {
+  font-family: "Cairo", sans-serif;
+  font-size: 1.12rem;
+  font-weight: 800;
+  color: var(--navy-900);
+  margin: 1.25rem 0 0.95rem;
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+}
+
+.portals-group-title::before {
+  content: "";
+  display: inline-block;
+  width: 5px;
+  height: 22px;
+  background: var(--gold-500);
+  border-radius: 3px;
+}
+
 .quick-portals-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
