@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  <url>
+    <loc>https://bany-mazar-high-school.vercel.app/</loc>
+    <lastmod>2026-11-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://bany-mazar-high-school.vercel.app/assets/images/logo.jpg</image:loc>
+      <image:title>شعار مدرسة بني مزار الثانوية الجديدة بنين</image:title>
+      <image:caption>الشعار الرسمي لمدرسة بني مزار الثانوية الجديدة بنين شرق المحطة</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://bany-mazar-high-school.vercel.app/assets/images/school-facade.jpg</image:loc>
+      <image:title>واجهة مدرسة بني مزار الثانوية الجديدة بنين</image:title>
+      <image:caption>المبنى الرئيسي وعلم جمهورية مصر العربية</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://bany-mazar-high-school.vercel.app/assets/images/morning-assembly.jpg</image:loc>
+      <image:title>طابور الصباح بمدرسة بني مزار الثانوية الجديدة بنين</image:title>
+      <image:caption>الاصطفاف الصباحي وتحية العلم في فناء المدرسة</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://bany-mazar-high-school.vercel.app/assets/images/sports-field.jpg</image:loc>
+      <image:title>الملعب الخماسي بالنجيل الصناعي</image:title>
+      <image:caption>الملعب الرياضي المطور بالمدرسة</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://bany-mazar-high-school.vercel.app/assets/images/principal.jpg</image:loc>
+      <image:title>مدير مدرسة بني مزار الثانوية الجديدة بنين</image:title>
+      <image:caption>القيادة المدرسية في طابور الصباح</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://bany-mazar-high-school.vercel.app/assets/images/school-campus.jpg</image:loc>
+      <image:title>فناء وأجنحة مدرسة بني مزار الثانوية الجديدة بنين</image:title>
+      <image:caption>الأجنحة الدراسية والفناء الواسع</image:caption>
+    </image:image>
+  </url>
+</urlset>

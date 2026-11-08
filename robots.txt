@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://bany-mazar-high-school.vercel.app/sitemap.xml

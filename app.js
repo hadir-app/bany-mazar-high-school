@@ -3,41 +3,43 @@
  * البوابة الرسمية — مدرسة بني مزار الثانوية الجديدة بنين (شرق المحطة)
  * المحرك التفاعلي المعماري (app.js)
  * ============================================================================
- * مهام التعاون المشترك المخصصة للزميل (Colleague Assigned Data & Features):
- * - TODO [COLLEAGUE TASK #1]: إدخال رابط جروب الفيسبوك الفعلي ورابط RSS/JSON في FB_FEED_CONFIG
- * - TODO [COLLEAGUE TASK #2]: إدخال الأسماء الكاملة للسادة المعلمين في FACULTY_DEPARTMENTS
- * - TODO [COLLEAGUE TASK #3]: تحديث أسماء أوائل الصفوف الثلاثة والجدول الفعلي في PORTAL_MODALS_CONTENT
- * - TODO [COLLEAGUE TASK #4]: ربط نموذج تواصل أولياء الأمور (#contactForm) بواتساب أو بريد المدرسة
+ * التحديث النهائي:
+ * 1. ربط مباشر بجروب فيسبوك المدرسة الرسمي: https://facebook.com/groups/alsanay2014/
+ * 2. حصر أحدث المنشورات في 3 منشورات نصية إخبارية دون تكرار صور الموقع.
+ * 3. تفعيل النوافذ المنبثقة التفاعلية للبوابات التعليمية (دليل كيريو وسبريكس والثقافة المالية).
+ * 4. ضبط التمرير والتجاوب والقوائم لجميع الأجهزة.
  */
 
 // ============================================================================
-// 1. إعدادات الربط التلقائي مع صفحة المدرسة على فيسبوك (مهمة الزميل الرئيسية)
+// 1. إعدادات جروب فيسبوك الرسمي والمشاهد
 // ============================================================================
-// TODO [COLLEAGUE TASK #1]: اربط صفحة المدرسة الرسمية على فيسبوك هنا (RSS JSON أو Graph API)
 const FB_FEED_CONFIG = {
-  pageUrl: "https://www.facebook.com", // ضع رابط صفحة المدرسة الرسمية على فيسبوك هنا
-  rssJsonEndpoint: "", // ضع رابط التغذية التلقائية (JSON Feed / Graph API) لسحب منشورات الصفحة تلقائياً
-  rotateIntervalMs: 7000,
+  groupUrl: "https://facebook.com/groups/alsanay2014/",
+  groupName: "جروب مدرسة بني مزار الثانوية بنين (alsanay2014)",
+  rotateIntervalMs: 8000,
 };
 
-// مكتبة صور المدرسة المركزية (مهيأة لاستقبال كافة الصور الإضافية القادمة بسهولة)
+// مكتبة مشاهد البانر
 const HERO_SCENES = [
   {
     src: "assets/images/morning-assembly.jpg",
-    alt: "اصطفاف طلاب ومعلمي مدرسة بني مزار الثانوية الجديدة بنين",
+    alt: "اصطفاف طلاب ومعلمي مدرسة بني مزار الثانوية الجديدة بنين في طابور الصباح",
+    label: "طابور الصباح والفناء",
   },
   {
     src: "assets/images/school-facade.jpg",
     alt: "واجهة مدرسة بني مزار الثانوية الجديدة بنين وعلم مصر",
+    label: "واجهة المبنى الرئيسي",
   },
   {
     src: "assets/images/sports-field.jpg",
     alt: "الملعب الخماسي النجيل الصناعي بالمدرسة",
+    label: "الملعب الرياضي المطور",
   },
 ];
 
 // ============================================================================
-// 2. أيقونات أكاديمية متجهة (SVG) لأقسام هيئة التدريس
+// 2. أيقونات أقسام هيئة التدريس (SVG)
 // ============================================================================
 const DEPT_ICONS = {
   arabic: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>`,
@@ -48,7 +50,7 @@ const DEPT_ICONS = {
   sports: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/></svg>`,
 };
 
-// TODO [COLLEAGUE TASK #2]: استكمال أسماء السادة المعلمين الأفاضل داخل كل قسم
+// تدرج هيئة التدريس
 const FACULTY_DEPARTMENTS = [
   {
     id: "fac-1",
@@ -56,7 +58,6 @@ const FACULTY_DEPARTMENTS = [
     rank: "كبير معلمي اللغة العربية",
     name: "أسرة اللغة العربية والتربية الدينية",
     subject: "النحو • البلاغة • الأدب • التربية الإسلامية",
-    photo: "",
     icon: DEPT_ICONS.arabic,
     grades: "الصفوف الأول والثاني والثالث الثانوي",
     details:
@@ -68,7 +69,6 @@ const FACULTY_DEPARTMENTS = [
     rank: "كبير معلمي الرياضيات",
     name: "أسرة الرياضيات البحتة والتطبيقية",
     subject: "الجبر • التفاضل والتكامل • الاستاتيكا والديناميكا",
-    photo: "",
     icon: DEPT_ICONS.math,
     grades: "الصفوف الثلاثة وشعبة علمي رياضة",
     details:
@@ -80,7 +80,6 @@ const FACULTY_DEPARTMENTS = [
     rank: "معلمو الخبراء ومشرفو المعامل",
     name: "أسرة الفيزياء والكيمياء والأحياء",
     subject: "العلوم الطبيعية والمعامل المركزية",
-    photo: "",
     icon: DEPT_ICONS.science,
     grades: "الشعبة العلمية (علوم ورياضة)",
     details:
@@ -92,7 +91,6 @@ const FACULTY_DEPARTMENTS = [
     rank: "كبير معلمي اللغات الأجنبية",
     name: "أسرة اللغة الإنجليزية والفرنسية",
     subject: "اللغة الأجنبية الأولى والثانية",
-    photo: "",
     icon: DEPT_ICONS.languages,
     grades: "جميع الصفوف والشعب الدراسية",
     details:
@@ -104,7 +102,6 @@ const FACULTY_DEPARTMENTS = [
     rank: "مشرفو الشعبة الأدبية",
     name: "أسرة التاريخ والجغرافيا والفلسفة",
     subject: "التاريخ • الجغرافيا • الفلسفة وعلم النفس",
-    photo: "",
     icon: DEPT_ICONS.humanities,
     grades: "الصف الأول الثانوي والشعبة الأدبية",
     details:
@@ -116,7 +113,6 @@ const FACULTY_DEPARTMENTS = [
     rank: "الإشراف الرياضي والتربوي",
     name: "أسرة التربية الرياضية والأنشطة",
     subject: "طابور الصباح • الملعب الخماسي • الكشافة",
-    photo: "",
     icon: DEPT_ICONS.sports,
     grades: "جميع طلاب المدرسة والفرق الرياضية",
     details:
@@ -125,56 +121,39 @@ const FACULTY_DEPARTMENTS = [
 ];
 
 // ============================================================================
-// 3. بيانات الأخبار ومنشورات جروب الفيسبوك المتزامنة
+// 3. أحدث 3 منشورات إخبارية من جروب فيسبوك (بدون تكرار صور الموقع)
 // ============================================================================
 const INITIAL_FB_POSTS = [
   {
     id: "news-1",
-    category: "activities",
-    catLabel: "الطابور والانضباط",
-    date: "منذ ساعتين • صفحة المدرسة الرسمية",
-    title: "انتظام الطابور الصباحي وتحية العلم في مدرسة بني مزار الثانوية الجديدة بنين",
-    text: "جانب من الاصطفاف الصباحي المهيب لطلاب مدرسة بني مزار الثانوية الجديدة بنين (شرق المحطة) بحضور السيد مدير المدرسة والسادة المعلمين، وسط أجواء من الجدية والانتماء الوطني.",
-    image: "assets/images/morning-assembly.jpg",
-    likes: "264",
-    comments: "48 تعليق",
+    tag: "تنبيه تدريب الوزارة",
+    date: "منشور مثبت • جروب المدرسة الرسمي",
+    title: "بدء التدريب على منصة كيريو (Qureo) للبرمجة والذكاء الاصطناعي لطلاب أولى ثانوي",
+    text: "تُهيب إدارة المدرسة بأبنائها طلاب الصف الأول الثانوي الدخول على منصة الشهادات العامة لاستلام اسم المستخدم وكلمة المرور الخاصة بمنصة كيريو اليابانية، والبدء في حل التقييمات التفاعلية وفق توجيهات وزارة التربية والتعليم.",
+    likes: "348",
+    comments: "54 تعليق",
   },
   {
     id: "news-2",
-    category: "announcements",
-    catLabel: "بيان إدارة المدرسة",
+    tag: "شؤون التعليم والانضباط",
     date: "أمس • إدارة المدرسة",
-    title: "توجيهات هامة من إدارة المدرسة بشأن الانضباط اليومي والتقييمات الأسبوعية",
-    text: "تؤكد إدارة مدرسة بني مزار الثانوية الجديدة بنين على أبنائها الطلاب ضرورة الالتزام بمواعيد طابور الصباح الساعة 7:30 صباحاً والحرص على أداء التقييمات الأسبوعية بانتظام.",
-    image: "assets/images/principal.jpg",
-    likes: "319",
-    comments: "63 تعليق",
+    title: "التشديد على انتظام طابور الصباح الساعة 7:30 صباحاً وأداء التقييمات الأسبوعية",
+    text: "تؤكد إدارة المدرسة على جميع الطلاب الالتزام التام بالزي المدرسي والحضور في الموعد المحدد لطابور الصباح، ومتابعة تسليم كراسات الحصة والواجبات الدورية لمعلمي المواد أولاً بأول.",
+    likes: "292",
+    comments: "41 تعليق",
   },
   {
     id: "news-3",
-    category: "activities",
-    catLabel: "النشاط الرياضي",
+    tag: "النشاط الرياضي",
     date: "منذ يومين • التربية الرياضية",
-    title: "انطلاق منافسات دوري الفصول على الملعب الخماسي بالنجيل الصناعي",
-    text: "في إطار رعاية المواهب الرياضية وبناء الشخصية المتكاملة، شهد ملعب المدرسة المطور بالنجيل الصناعي مباريات متميزة بين فصول الصفوف الثلاثة.",
-    image: "assets/images/sports-field.jpg",
-    likes: "210",
-    comments: "39 تعليق",
-  },
-  {
-    id: "news-4",
-    category: "exams",
-    catLabel: "شؤون الطلاب والجداول",
-    date: "منذ 3 أيام • شؤون الطلاب",
-    title: "انتظام الدراسة والمراجعات العلمية والأدبية بجميع أجنحة المدرسة",
-    text: "متابعة يومية لسير الحصص الدراسية والمعامل العلمية للصفوف الأول والثاني والثالث الثانوي بمقر المدرسة بشرق المحطة ببني مزار.",
-    image: "assets/images/school-facade.jpg",
-    likes: "285",
-    comments: "52 تعليق",
+    title: "جدول مباريات دوري الفصول لكرة القدم على الملعب الخماسي بالنجيل الصناعي",
+    text: "انطلاق فعاليات دوري الفصول للفصل الدراسي الحالي بين فصول الصفوف الأول والثاني والثالث الثانوي في حصص التربية الرياضية والفسحة، تحت إشراف أسرة التربية الرياضية بالمدرسة.",
+    likes: "215",
+    comments: "28 تعليق",
   },
 ];
 
-// بيانات معرض الصور المكبر (Lightbox)
+// معرض الصور المكبر (Lightbox)
 const GALLERY_MOMENTS = [
   {
     src: "assets/images/morning-assembly.jpg",
@@ -203,14 +182,47 @@ const GALLERY_MOMENTS = [
   },
 ];
 
-// TODO [COLLEAGUE TASK #3]: تحديث الجداول الفعلية وأسماء أوائل الطلاب هنا
+// محتويات النوافذ المنبثقة للخدمات ودليل المنصات
 const PORTAL_MODALS_CONTENT = {
+  qureoGuideModal: {
+    title: "دليل الدخول لمنصات كيريو، سبريكس، والثقافة المالية",
+    html: `
+      <div class="guide-modal-content">
+        <p class="modal-lead">خطوات ميسرة لأبنائنا الطلاب للوصول المباشر إلى المنصات المعتمدة من وزارة التربية والتعليم:</p>
+        
+        <div class="guide-step-card">
+          <h4>1️⃣ استلام بيانات منصة كيريو (Qureo) لطلاب الصف الأول الثانوي:</h4>
+          <ol>
+            <li>ادخل أولاً على <strong>منصة الشهادات العامة</strong> التابعة للوزارة: <a href="https://moe-register.emis.gov.eg/login" target="_blank" rel="noopener noreferrer">moe-register.emis.gov.eg/login ↗</a></li>
+            <li>سجّل الدخول باستخدام <strong>البريد الإلكتروني المدرسي الموحد</strong> وكلمة المرور الخاصة بك.</li>
+            <li>اضغط على خيار <strong>«التدريب على الذكاء الاصطناعي»</strong> واضغط على زر استلام بيانات التدريب.</li>
+            <li>انسخ اسم المستخدم (Username) وكلمة المرور (Password).</li>
+            <li>توجّه إلى <strong>منصة كيريو الرسمية</strong>: <a href="https://me-portal.qureo.education/login" target="_blank" rel="noopener noreferrer">me-portal.qureo.education/login ↗</a> وسجل الدخول وابدأ التدريب.</li>
+          </ol>
+        </div>
+
+        <div class="guide-step-card">
+          <h4>2️⃣ الدخول لمنصة الثقافة المالية (SPRIX Learning Square):</h4>
+          <ol>
+            <li>افتح الرابط المباشر للمنصة في مصر: <a href="https://egy.app.spx-learning-square.com/login" target="_blank" rel="noopener noreferrer">egy.app.spx-learning-square.com/login ↗</a></li>
+            <li>أدخل كود الطالب الموحد أو البريد المدرسي الموحد المسلم لك من مسؤول التطوير التكنولوجي بالمدرسة.</li>
+            <li>تابع الفصول الرقمية لمقرر الثقافة المالية والتقييمات المعتمدة.</li>
+          </ol>
+        </div>
+
+        <div class="guide-step-card">
+          <h4>3️⃣ بوابة سبريكس التعليمية العامة (SPRIX Portal):</h4>
+          <p>تُستخدم لمتابعة مشروعات التقييم اليابانية المشتركة واختبارات TOFAS لمادة الرياضيات: <a href="https://sprixportal.jp/" target="_blank" rel="noopener noreferrer">sprixportal.jp ↗</a></p>
+        </div>
+      </div>
+    `,
+  },
   examsModal: {
     title: "نظام التقييمات الأسبوعية والشهرية",
     html: `
       <p>تُعقد التقييمات الدورية لطلاب الصفين الأول والثاني الثانوي ومتابعة الصف الثالث الثانوي وفق الضوابط الوزارية المعتمدة:</p>
       <div tabindex="0" role="region" aria-label="جدول نظام التقييمات الأسبوعية والشهرية" class="table-wrapper">
-        <table class="modal-table" style="--label-2: 'الموعد الدوري'; --label-3: 'جهة المتابعة';">
+        <table class="modal-table">
           <thead>
             <tr>
               <th scope="col">نوع التقييم</th>
@@ -244,7 +256,7 @@ const PORTAL_MODALS_CONTENT = {
     html: `
       <p>مواعيد العمل الرسمية بمدرسة بني مزار الثانوية الجديدة بنين (شرق المحطة) من الأحد إلى الخميس:</p>
       <div tabindex="0" role="region" aria-label="جدول المواعيد الزمنية لليوم الدراسي" class="table-wrapper">
-        <table class="modal-table" style="--label-2: 'التوقيت'; --label-3: 'ملاحظات الانضباط';">
+        <table class="modal-table">
           <thead>
             <tr>
               <th scope="col">الفترة</th>
@@ -256,7 +268,7 @@ const PORTAL_MODALS_CONTENT = {
             <tr>
               <th scope="row">اصطفاف طابور الصباح والإذاعة</th>
               <td>7:30 صباحاً</td>
-              <td>حضور إلزامي وتحية العلم</td>
+              <td>حضور إلزامي وتحية علم مصر</td>
             </tr>
             <tr>
               <th scope="row">الحصص الدراسية الأولى — الرابعة</th>
@@ -283,7 +295,7 @@ const PORTAL_MODALS_CONTENT = {
     html: `
       <p>تفخر مدرسة بني مزار الثانوية الجديدة بنين بتكريم أبنائها المتفوقين علمياً وأخلاقياً ورياضياً على مدار العام الدراسي:</p>
       <div tabindex="0" role="region" aria-label="جدول لوحة شرف أوائل المدرسة" class="table-wrapper">
-        <table class="modal-table" style="--label-2: 'مجال التميز'; --label-3: 'وسام التقدير';">
+        <table class="modal-table">
           <thead>
             <tr>
               <th scope="col">فئة التكريم</th>
@@ -315,16 +327,14 @@ const PORTAL_MODALS_CONTENT = {
 };
 
 // ============================================================================
-// 4. الحالة العامة ودوال العرض (State & Renderers)
+// 4. حالة العرض ودوال الرسم
 // ============================================================================
-let postsData = [...INITIAL_FB_POSTS];
+let postsData = INITIAL_FB_POSTS.slice(0, 3);
 let activePostIndex = 0;
-let activeNewsCategory = "all";
-let activeNewsQuery = "";
 let activeLightboxIndex = 0;
 let fbAutoTimer = null;
 
-// بديل إلزامي لدعم الإغلاق بالنقر خارج النافذة (Light-Dismiss) في المتصفحات التي لا تدعم closedby
+// دعم الإغلاق بالنقر خارج المودال
 function installDialogLightDismissFallback(dialogEl) {
   if (!dialogEl || "closedBy" in HTMLDialogElement.prototype) return;
   dialogEl.addEventListener("click", (event) => {
@@ -350,7 +360,7 @@ function openInfoModal(title, bodyHtml) {
   dialog.showModal();
 }
 
-// عرض شبكة هيئة التدريس
+// رسم كروت المعلمين
 function renderFacultyCards(selectedDept = "all") {
   const grid = document.getElementById("teachersGrid");
   if (!grid) return;
@@ -361,27 +371,21 @@ function renderFacultyCards(selectedDept = "all") {
       : FACULTY_DEPARTMENTS.filter((item) => item.dept === selectedDept);
 
   grid.innerHTML = list
-    .map((item) => {
-      const visual = item.photo
-        ? `<img src="${item.photo}" alt="${item.name}" loading="lazy" />`
-        : item.icon;
-
-      return `
-        <article class="faculty-card surface-card">
-          <div class="faculty-avatar-ring">
-            <div class="faculty-avatar-inner" aria-hidden="true">
-              ${visual}
-            </div>
+    .map((item) => `
+      <article class="faculty-card surface-card">
+        <div class="faculty-avatar-ring">
+          <div class="faculty-avatar-inner" aria-hidden="true">
+            ${item.icon}
           </div>
-          <span class="faculty-rank-pill">${item.rank}</span>
-          <h3>${item.name}</h3>
-          <p class="faculty-subject">${item.subject}</p>
-          <button type="button" class="faculty-more-btn" data-faculty-id="${item.id}">
-            عرض بطاقة القسم والتفاصيل
-          </button>
-        </article>
-      `;
-    })
+        </div>
+        <span class="faculty-rank-pill">${item.rank}</span>
+        <h3>${item.name}</h3>
+        <p class="faculty-subject">${item.subject}</p>
+        <button type="button" class="faculty-more-btn" data-faculty-id="${item.id}">
+          عرض بطاقة القسم والتفاصيل
+        </button>
+      </article>
+    `)
     .join("");
 
   grid.querySelectorAll("[data-faculty-id]").forEach((btn) => {
@@ -402,7 +406,7 @@ function renderFacultyCards(selectedDept = "all") {
   });
 }
 
-// عرض الكارت الأبيض داخل إطار فيسبوك العنابي
+// رسم كارت منشور فيسبوك المعروض
 function renderFacebookShowcase(index = 0) {
   const cardEl = document.getElementById("fbActivePostCard");
   const dotsEl = document.getElementById("fbDotsContainer");
@@ -414,26 +418,28 @@ function renderFacebookShowcase(index = 0) {
   cardEl.innerHTML = `
     <div class="fb-embed-head">
       <div class="fb-author-box">
-        <img src="assets/images/logo.jpg" alt="شعار المدرسة" width="40" height="40" />
+        <div class="fb-crest-tiny">
+          <img src="assets/images/logo.jpg" alt="شعار المدرسة" width="38" height="38" />
+        </div>
         <div>
-          <strong>فيسبوك المدرسة — بني مزار ث بنين الجديدة</strong>
+          <strong>جروب مدرسة بني مزار ث بنين الرسمى</strong>
           <span>${post.date}</span>
         </div>
       </div>
       <div class="fb-badge-circle" aria-hidden="true">f</div>
     </div>
 
-    <div class="fb-embed-body">
-      ${post.text}
-    </div>
-
-    <div class="fb-embed-media">
-      <img src="${post.image}" alt="${post.title}" loading="lazy" />
+    <div class="fb-embed-body fb-text-post">
+      <span class="fb-post-tag">${post.tag}</span>
+      <h4 class="fb-post-headline">${post.title}</h4>
+      <p>${post.text}</p>
     </div>
 
     <div class="fb-embed-footer">
-      <span>❤️ 👍 ${post.likes}</span>
-      <span>👍 أعجبني • 💬 ${post.comments}</span>
+      <span>👍 ❤️ ${post.likes} تفاعل</span>
+      <a href="${FB_FEED_CONFIG.groupUrl}" target="_blank" rel="noopener noreferrer" class="fb-post-direct-link">
+        عرض المنشور على فيسبوك ↗
+      </a>
     </div>
   `;
 
@@ -454,36 +460,19 @@ function renderFacebookShowcase(index = 0) {
   }
 }
 
-// عرض قائمة البيانات والأخبار على اليمين
+// رسم قائمة المنشورات الثلاثة في اليمين
 function renderNewsStack() {
   const stackEl = document.getElementById("newsFeedStack");
   if (!stackEl) return;
 
-  const q = activeNewsQuery.trim().toLowerCase();
-  const filtered = postsData.filter((item) => {
-    const matchesCat = activeNewsCategory === "all" || item.category === activeNewsCategory;
-    const matchesQuery =
-      !q ||
-      item.title.toLowerCase().includes(q) ||
-      item.text.toLowerCase().includes(q) ||
-      item.catLabel.toLowerCase().includes(q);
-    return matchesCat && matchesQuery;
-  });
-
-  if (filtered.length === 0) {
-    stackEl.innerHTML = `<p style="padding:1rem;color:#5f6f81;">لا توجد أخبار مطابقة لعبارة البحث الحالية.</p>`;
-    return;
-  }
-
-  stackEl.innerHTML = filtered
-    .map((item) => {
-      const realIdx = postsData.findIndex((p) => p.id === item.id);
-      const isCurrent = realIdx === activePostIndex;
+  stackEl.innerHTML = postsData
+    .map((item, idx) => {
+      const isCurrent = idx === activePostIndex;
       return `
-        <button type="button" class="news-row-item ${isCurrent ? "active" : ""}" data-post-idx="${realIdx}">
-          <img src="${item.image}" alt="${item.title}" loading="lazy" />
-          <div>
-            <div class="news-row-meta">${item.catLabel} • ${item.date}</div>
+        <button type="button" class="news-row-item news-text-row ${isCurrent ? "active" : ""}" data-post-idx="${idx}">
+          <div class="news-bulletin-badge" aria-hidden="true">${idx + 1}</div>
+          <div class="news-row-body">
+            <div class="news-row-meta">${item.tag} • ${item.date}</div>
             <h4>${item.title}</h4>
             <p>${item.text}</p>
           </div>
@@ -499,35 +488,6 @@ function renderNewsStack() {
       renderNewsStack();
     });
   });
-}
-
-// الجلب التلقائي من RSS JSON عند وضع الرابط في FB_FEED_CONFIG
-async function syncLiveFacebookRss() {
-  if (!FB_FEED_CONFIG.rssJsonEndpoint) return;
-  try {
-    const res = await fetch(FB_FEED_CONFIG.rssJsonEndpoint);
-    if (!res.ok) return;
-    const data = await res.json();
-    if (Array.isArray(data.items) && data.items.length > 0) {
-      postsData = data.items.slice(0, 6).map((item, idx) => ({
-        id: `rss-${idx}`,
-        category: "announcements",
-        catLabel: "صفحة المدرسة الرسمية",
-        date: item.pubDate || "تحديث تلقائي من صفحة فيسبوك",
-        title: item.title || "منشور جديد من صفحة المدرسة",
-        text: item.content_text || item.description || item.title || "",
-        image: item.image || "assets/images/morning-assembly.jpg",
-        likes: "صفحة المدرسة",
-        comments: "تزامن تلقائي",
-      }));
-      const syncBadge = document.getElementById("fbSyncStatus");
-      if (syncBadge) syncBadge.textContent = "● متزامن تلقائياً مع صفحة المدرسة";
-      renderFacebookShowcase(0);
-      renderNewsStack();
-    }
-  } catch (err) {
-    console.warn("Facebook RSS feed fallback active:", err);
-  }
 }
 
 // عارض الصور المكبر (Lightbox)
@@ -550,10 +510,10 @@ function updateLightboxView(index) {
 }
 
 // ============================================================================
-// 5. التهيئة وربط الأحداث عند تحميل الصفحة
+// 5. التهيئة وربط الأحداث
 // ============================================================================
 document.addEventListener("DOMContentLoaded", () => {
-  // 1. تحديث التاريخ العربي الحي في الشريط العلوي
+  // 1. التاريخ الحي
   const dateEl = document.getElementById("liveCurrentDate");
   if (dateEl) {
     try {
@@ -569,7 +529,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  // 2. تفعيل النوافذ المنبثقة (<dialog>) مع دعم Light-Dismiss
+  // 2. تفعيل المودال
   const lightboxDialog = document.getElementById("lightboxDialog");
   const portalInfoDialog = document.getElementById("portalInfoDialog");
   installDialogLightDismissFallback(lightboxDialog);
@@ -581,26 +541,22 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // 3. عرض الأقسام الديناميكية
+  // 3. عرض الأقسام
   renderFacultyCards("all");
   renderFacebookShowcase(0);
   renderNewsStack();
-  syncLiveFacebookRss();
 
+  // ضبط الروابط الخارجية للجروب
   const fbExtLink = document.getElementById("fbGroupExternalLink");
   const headerFbBtn = document.getElementById("headerFbPageBtn");
-  if (FB_FEED_CONFIG.pageUrl && FB_FEED_CONFIG.pageUrl !== "https://www.facebook.com") {
-    if (fbExtLink) fbExtLink.href = FB_FEED_CONFIG.pageUrl;
-    if (headerFbBtn) {
-      headerFbBtn.href = FB_FEED_CONFIG.pageUrl;
-      headerFbBtn.target = "_blank";
-      headerFbBtn.rel = "noopener noreferrer";
-    }
-  } else if (fbExtLink && FB_FEED_CONFIG.pageUrl) {
-    fbExtLink.href = FB_FEED_CONFIG.pageUrl;
+  if (fbExtLink) fbExtLink.href = FB_FEED_CONFIG.groupUrl;
+  if (headerFbBtn) {
+    headerFbBtn.href = FB_FEED_CONFIG.groupUrl;
+    headerFbBtn.target = "_blank";
+    headerFbBtn.rel = "noopener noreferrer";
   }
 
-  // 4. تبديل مشاهد البانر الرئيسي (الأزرار السفلية + الأسهم الجانبية يمين/يسار)
+  // 4. تبديل مشاهد البانر
   const heroMainImg = document.getElementById("heroMainImg");
   const scenePills = Array.from(document.querySelectorAll(".scene-pill"));
   let currentHeroIdx = 0;
@@ -610,12 +566,12 @@ document.addEventListener("DOMContentLoaded", () => {
     const scene = HERO_SCENES[currentHeroIdx];
     scenePills.forEach((p, idx) => p.classList.toggle("active", idx === currentHeroIdx));
     if (heroMainImg && scene) {
-      heroMainImg.style.opacity = "0.35";
+      heroMainImg.style.opacity = "0.4";
       setTimeout(() => {
         heroMainImg.src = scene.src;
         heroMainImg.alt = scene.alt;
         heroMainImg.style.opacity = "1";
-      }, 160);
+      }, 150);
     }
   }
 
@@ -623,6 +579,7 @@ document.addEventListener("DOMContentLoaded", () => {
     pill.addEventListener("click", () => setHeroScene(idx));
   });
 
+  // في اتجاه RTL: السابق (يميناً) والتالي (يساراً)
   document.getElementById("heroPrevBtn")?.addEventListener("click", () => {
     setHeroScene(currentHeroIdx - 1);
   });
@@ -631,7 +588,7 @@ document.addEventListener("DOMContentLoaded", () => {
     setHeroScene(currentHeroIdx + 1);
   });
 
-  // 5. فلترة أقسام المعلمين
+  // 5. فلترة المعلمين
   const deptPills = document.querySelectorAll("#deptTabs .dept-pill");
   deptPills.forEach((pill) => {
     pill.addEventListener("click", () => {
@@ -641,25 +598,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // 6. فلترة وبحث غرفة الأخبار + أسهم إطار فيسبوك
-  const newsCatBtns = document.querySelectorAll("#newsCatTabs .news-cat-btn");
-  newsCatBtns.forEach((btn) => {
-    btn.addEventListener("click", () => {
-      newsCatBtns.forEach((b) => b.classList.remove("active"));
-      btn.classList.add("active");
-      activeNewsCategory = btn.dataset.cat || "all";
-      renderNewsStack();
-    });
-  });
-
-  const newsSearchInput = document.getElementById("newsSearchInput");
-  if (newsSearchInput) {
-    newsSearchInput.addEventListener("input", () => {
-      activeNewsQuery = newsSearchInput.value || "";
-      renderNewsStack();
-    });
-  }
-
+  // 6. أسهم المنشورات والدوران التلقائي
   document.getElementById("fbPrevBtn")?.addEventListener("click", () => {
     renderFacebookShowcase(activePostIndex - 1);
     renderNewsStack();
@@ -683,7 +622,7 @@ document.addEventListener("DOMContentLoaded", () => {
   fbFrameEl?.addEventListener("mouseenter", () => clearInterval(fbAutoTimer));
   fbFrameEl?.addEventListener("mouseleave", startFbRotation);
 
-  // 7. معرض الصور المكبر (Lightbox)
+  // 7. Lightbox
   document.querySelectorAll("[data-lightbox-index]").forEach((card) => {
     const openCardLightbox = () => {
       const idx = Number(card.dataset.lightboxIndex || 0);
@@ -713,7 +652,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (e.key === "ArrowLeft") updateLightboxView(activeLightboxIndex + 1);
   });
 
-  // 8. أزرار الروابط السريعة التفاعلية
+  // 8. أزرار المودال للخدمات ودليل كيريو
   document.querySelectorAll("[data-open-modal]").forEach((tile) => {
     tile.addEventListener("click", () => {
       const key = tile.dataset.openModal;
@@ -724,74 +663,18 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // مساعد السحب باللمس (Touch Swipe) لشاشات الموبايل والتابلت
-  function attachHorizontalSwipe(element, onSwipeNext, onSwipePrev) {
-    if (!element) return;
-    let touchStartX = 0;
-    let touchStartY = 0;
-
-    element.addEventListener(
-      "touchstart",
-      (e) => {
-        if (e.touches.length !== 1) return;
-        touchStartX = e.touches[0].clientX;
-        touchStartY = e.touches[0].clientY;
-      },
-      { passive: true }
-    );
-
-    element.addEventListener(
-      "touchend",
-      (e) => {
-        if (e.changedTouches.length !== 1) return;
-        const dx = e.changedTouches[0].clientX - touchStartX;
-        const dy = e.changedTouches[0].clientY - touchStartY;
-        if (Math.abs(dx) > 45 && Math.abs(dx) > Math.abs(dy) * 1.4) {
-          if (dx > 0) {
-            onSwipeNext();
-          } else {
-            onSwipePrev();
-          }
-        }
-      },
-      { passive: true }
-    );
-  }
-
-  attachHorizontalSwipe(
-    document.getElementById("home"),
-    () => setHeroScene(currentHeroIdx + 1),
-    () => setHeroScene(currentHeroIdx - 1)
-  );
-
-  attachHorizontalSwipe(
-    document.querySelector(".fb-showcase-frame"),
-    () => {
-      renderFacebookShowcase(activePostIndex + 1);
-      renderNewsStack();
-    },
-    () => {
-      renderFacebookShowcase(activePostIndex - 1);
-      renderNewsStack();
-    }
-  );
-
-  attachHorizontalSwipe(
-    document.querySelector(".lightbox-stage"),
-    () => updateLightboxView(activeLightboxIndex + 1),
-    () => updateLightboxView(activeLightboxIndex - 1)
-  );
-
-  // 9. قائمة الموبايل والتابلت + Scroll-Spy لتحديد القسم النشط في الهيدر
+  // 9. قائمة الموبايل والتابلت
   const menuToggleBtn = document.getElementById("menuToggleBtn");
   const primaryNav = document.getElementById("primaryNav");
   const topHeader = document.getElementById("topHeader");
+  const mainEl = document.querySelector("main");
 
   function closeMobileMenu() {
     if (!menuToggleBtn || !primaryNav) return;
     primaryNav.classList.remove("open");
     menuToggleBtn.classList.remove("is-open");
     menuToggleBtn.setAttribute("aria-expanded", "false");
+    if (mainEl) mainEl.removeAttribute("inert");
   }
 
   if (menuToggleBtn && primaryNav) {
@@ -799,6 +682,13 @@ document.addEventListener("DOMContentLoaded", () => {
       const isOpen = primaryNav.classList.toggle("open");
       menuToggleBtn.classList.toggle("is-open", isOpen);
       menuToggleBtn.setAttribute("aria-expanded", String(isOpen));
+      if (mainEl) {
+        if (isOpen) {
+          mainEl.setAttribute("inert", "");
+        } else {
+          mainEl.removeAttribute("inert");
+        }
+      }
     });
 
     primaryNav.querySelectorAll("a").forEach((link) => {
@@ -822,7 +712,7 @@ document.addEventListener("DOMContentLoaded", () => {
     window.addEventListener(
       "resize",
       () => {
-        if (window.innerWidth > 1024 && primaryNav.classList.contains("open")) {
+        if (window.innerWidth > 1140 && primaryNav.classList.contains("open")) {
           closeMobileMenu();
         }
       },
@@ -830,21 +720,37 @@ document.addEventListener("DOMContentLoaded", () => {
     );
   }
 
-  const navLinks = Array.from(
-    document.querySelectorAll(".primary-nav .nav-link[data-section]")
-  );
+  // 10. Scroll-Spy الدقيق وتحديد القسم النشط
+  const navLinks = Array.from(document.querySelectorAll(".primary-nav .nav-link[data-section]"));
   const trackedSections = navLinks
     .map((link) => document.getElementById(link.dataset.section))
     .filter(Boolean);
 
   function updateActiveNavOnScroll() {
-    if (window.scrollY < 240) {
-      navLinks.forEach((l) => l.classList.toggle("active", l.dataset.section === "home"));
+    if (window.scrollY < 200) {
+      navLinks.forEach((l) => {
+        const isActive = l.dataset.section === "home";
+        l.classList.toggle("active", isActive);
+        l.setAttribute("aria-current", isActive ? "true" : "false");
+      });
+      return;
+    }
+
+    // فحص نهاية الصفحة
+    const isAtBottom =
+      window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 50;
+
+    if (isAtBottom) {
+      navLinks.forEach((l) => {
+        const isActive = l.dataset.section === "location";
+        l.classList.toggle("active", isActive);
+        l.setAttribute("aria-current", isActive ? "true" : "false");
+      });
       return;
     }
 
     let currentId = "home";
-    const offsetTrigger = window.scrollY + 150;
+    const offsetTrigger = window.scrollY + 130;
     for (const sec of trackedSections) {
       if (sec.offsetTop <= offsetTrigger) {
         currentId = sec.id;
@@ -852,24 +758,12 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     navLinks.forEach((l) => {
-      l.classList.toggle("active", l.dataset.section === currentId);
+      const isActive = l.dataset.section === currentId;
+      l.classList.toggle("active", isActive);
+      l.setAttribute("aria-current", isActive ? "true" : "false");
     });
   }
 
   window.addEventListener("scroll", updateActiveNavOnScroll, { passive: true });
   updateActiveNavOnScroll();
-
-  // 10. نموذج مراسلة شؤون الطلاب وإدارة المدرسة
-  // TODO [COLLEAGUE TASK #4]: ربط هذا النموذج بإرسال مباشر لواتساب المدرسة أو البريد الرسمي
-  const contactForm = document.getElementById("contactForm");
-  const contactSuccessMsg = document.getElementById("contactSuccessMsg");
-  if (contactForm && contactSuccessMsg) {
-    contactForm.addEventListener("submit", (e) => {
-      e.preventDefault();
-      const sender = document.getElementById("visitorName")?.value || "ولي الأمر";
-      contactSuccessMsg.hidden = false;
-      contactSuccessMsg.textContent = `شكراً لك (${sender}) — تم تسجيل رسالتك بنجاح لدى مكتب شؤون الطلاب بمدرسة بني مزار الثانوية الجديدة بنين.`;
-      contactForm.reset();
-    });
-  }
 });

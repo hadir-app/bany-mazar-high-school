@@ -1,0 +1,19 @@
+{
+  "name": "مدرسة بني مزار الثانوية الجديدة بنين — شرق المحطة",
+  "short_name": "ثانوية بني مزار بنين",
+  "description": "البوابة الرسمية لمدرسة بني مزار الثانوية الجديدة بنين (شرق المحطة) — إدارة بني مزار التعليمية بمحافظة المنيا",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#081523",
+  "theme_color": "#0f2336",
+  "lang": "ar",
+  "dir": "rtl",
+  "icons": [
+    {
+      "src": "assets/images/favicon.png?v=2",
+      "sizes": "256x256",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

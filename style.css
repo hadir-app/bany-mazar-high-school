@@ -456,23 +456,29 @@ section[id] {
   top: 46%;
   transform: translateY(-50%);
   z-index: 5;
-  width: 46px;
-  height: 46px;
+  width: 48px;
+  height: 48px;
   border-radius: 50%;
   border: 1px solid rgba(212, 154, 71, 0.55);
-  background: rgba(8, 21, 35, 0.62);
+  background: rgba(8, 21, 35, 0.72);
   backdrop-filter: blur(6px);
   color: #ffffff;
-  font-size: 1.65rem;
-  line-height: 1;
   cursor: pointer;
   display: grid;
   place-items: center;
-  transition: background-color 0.2s ease, transform 0.2s ease;
+  transition: background-color 0.2s ease, transform 0.2s ease, border-color 0.2s ease;
+}
+
+.hero-arrow svg {
+  width: 22px;
+  height: 22px;
+  stroke: currentColor;
+  stroke-width: 2.2;
 }
 
 .hero-arrow:hover {
   background: var(--gold-500);
+  border-color: var(--gold-400);
   transform: translateY(-50%) scale(1.06);
 }
 
@@ -1699,63 +1705,85 @@ section[id] {
 }
 
 /* ==========================================================================
-   10. روابط سريعة للطلاب (3 كحلي في الأعلى + 3 ذهبي في الأسفل)
+   10. روابط سريعة للطلاب ومنصات الوزارة وكيريو وسبريكس
    ========================================================================== */
 .quick-portals-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.15rem;
 }
 
 .portal-tile {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  padding: 1.25rem 1.1rem;
+  align-items: flex-start;
+  justify-content: space-between;
+  text-align: right;
+  padding: 1.35rem 1.25rem;
   border-radius: var(--radius-md);
   border: 1px solid rgba(255, 255, 255, 0.16);
   color: #ffffff;
   cursor: pointer;
+  min-height: 120px;
   box-shadow: var(--shadow-sm);
-  transition: transform 0.2s ease, filter 0.2s ease, box-shadow 0.2s ease;
+  transition: transform 0.22s ease, filter 0.22s ease, box-shadow 0.22s ease;
+  position: relative;
+  overflow: clip;
 }
 
 .portal-tile:hover {
-  transform: translateY(-3px);
+  transform: translateY(-4px);
   filter: brightness(1.08);
   box-shadow: var(--shadow-md);
 }
 
 .tile-navy {
-  background: linear-gradient(135deg, var(--navy-800), var(--navy-900));
-  border-bottom: 3px solid var(--gold-500);
+  background: linear-gradient(135deg, var(--navy-800) 0%, var(--navy-900) 100%);
+  border-bottom: 3.5px solid var(--gold-500);
 }
 
 .tile-gold {
-  background: linear-gradient(135deg, var(--gold-500), var(--gold-600));
-  border-bottom: 3px solid var(--navy-900);
+  background: linear-gradient(135deg, var(--gold-500) 0%, var(--gold-600) 100%);
+  border-bottom: 3.5px solid var(--navy-900);
+}
+
+.tile-maroon {
+  background: linear-gradient(135deg, var(--maroon-700) 0%, var(--maroon-800) 100%);
+  border-bottom: 3.5px solid var(--gold-400);
+}
+
+.portal-badge {
+  display: inline-block;
+  font-size: 0.68rem;
+  font-weight: 800;
+  padding: 0.18rem 0.65rem;
+  border-radius: 999px;
+  margin-bottom: 0.5rem;
+  background: rgba(255, 255, 255, 0.18);
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.22);
 }
 
 .tile-label {
   font-family: "Cairo", sans-serif;
   font-size: 1.05rem;
   font-weight: 800;
-  margin-bottom: 0.2rem;
+  line-height: 1.35;
+  margin-bottom: 0.35rem;
 }
 
 .tile-sub {
-  font-size: 0.78rem;
-  color: rgba(255, 255, 255, 0.86);
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.9);
+  line-height: 1.45;
 }
 
 /* ==========================================================================
-   11. موقع المدرسة بشرق المحطة وتواصل معنا
+   11. موقع المدرسة بشرق المحطة وبطاقات الاعتماد والتواصل الرسمي
    ========================================================================== */
 .location-master-card {
   display: grid;
-  grid-template-columns: 1.05fr 0.95fr;
+  grid-template-columns: 1.1fr 0.9fr;
   gap: 1.75rem;
   padding: clamp(1.4rem, 3vw, 2.2rem);
 }
@@ -1789,7 +1817,7 @@ section[id] {
 .loc-specs-grid {
   display: flex;
   flex-direction: column;
-  gap: 0.8rem;
+  gap: 0.85rem;
   margin-bottom: 1.35rem;
 }
 
@@ -1804,49 +1832,49 @@ section[id] {
   color: var(--ink-700);
 }
 
-.institutional-form {
+/* بطاقات التوجيه والتواصل المؤسسي بديلة الفورم */
+.institutional-contact-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.inst-card {
   background: var(--ivory-bg);
-  padding: 1.15rem;
+  padding: 1.05rem 1.15rem;
   border-radius: var(--radius-md);
   border: 1px solid var(--border-subtle);
+  border-right: 4px solid var(--maroon-700);
 }
 
-.institutional-form h4 {
+.inst-card h4 {
   font-size: 0.95rem;
   color: var(--navy-900);
-  margin-bottom: 0.75rem;
+  margin-bottom: 0.35rem;
 }
 
-.form-split-row {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 0.65rem;
-  margin-bottom: 0.65rem;
+.inst-card p {
+  font-size: 0.85rem;
+  color: var(--ink-700);
+  line-height: 1.55;
 }
 
-.form-submit-row {
-  display: grid;
-  grid-template-columns: 1fr auto;
-  gap: 0.65rem;
-}
-
-.institutional-form input,
-.institutional-form select {
-  width: 100%;
-  padding: 0.65rem 0.85rem;
-  border-radius: var(--radius-sm);
-  border: 1px solid var(--border-subtle);
-  background: #ffffff;
-  font-family: inherit;
-  font-size: 0.86rem;
-  color: var(--ink-900);
-}
-
-.form-status-msg {
+.inst-card-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
   margin-top: 0.65rem;
-  font-size: 0.84rem;
+  padding: 0.45rem 1rem;
+  border-radius: var(--radius-sm);
+  background: var(--navy-900);
+  color: #ffffff;
+  font-size: 0.82rem;
   font-weight: 700;
-  color: #15803d;
+  transition: background 0.2s ease;
+}
+
+.inst-card-cta:hover {
+  background: var(--maroon-700);
 }
 
 .location-map-col {
@@ -2133,9 +2161,148 @@ dialog::backdrop {
 }
 
 /* ==========================================================================
-   14. استجابة الشاشات (Responsive Layout)
+   14. تصميم محتويات دليل المنصات (Qureo & SPRIX Guide)
    ========================================================================== */
-@media (max-width: 920px) {
+.guide-modal-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1.15rem;
+}
+
+.modal-lead {
+  font-size: 0.95rem;
+  color: var(--ink-700);
+  line-height: 1.6;
+}
+
+.guide-step-card {
+  background: var(--ivory-bg);
+  border: 1px solid var(--border-subtle);
+  border-right: 4px solid var(--gold-500);
+  border-radius: var(--radius-sm);
+  padding: 1rem 1.15rem;
+}
+
+.guide-step-card h4 {
+  font-size: 0.96rem;
+  color: var(--navy-900);
+  margin-bottom: 0.5rem;
+}
+
+.guide-step-card ol {
+  padding-right: 1.25rem;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  font-size: 0.88rem;
+  color: var(--ink-700);
+}
+
+.guide-step-card a {
+  color: var(--maroon-700);
+  font-weight: 700;
+  text-decoration: underline;
+}
+
+/* ==========================================================================
+   15. قسم الأسئلة الشائعة (FAQ Accordion مع Schema)
+   ========================================================================== */
+.faq-accordion-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.faq-item {
+  background: var(--surface-solid);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+  overflow: clip;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.faq-item[open] {
+  border-color: var(--gold-500);
+  box-shadow: var(--shadow-md);
+}
+
+.faq-summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.85rem;
+  padding: 1.1rem 1.35rem;
+  font-family: "Cairo", sans-serif;
+  font-size: 1.02rem;
+  font-weight: 700;
+  color: var(--navy-900);
+  cursor: pointer;
+  list-style: none;
+  background: #ffffff;
+  user-select: none;
+}
+
+.faq-summary::-webkit-details-marker {
+  display: none;
+}
+
+.faq-summary::after {
+  content: "+";
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--gold-600);
+  line-height: 1;
+  transition: transform 0.22s ease;
+}
+
+.faq-item[open] .faq-summary::after {
+  content: "−";
+  color: var(--maroon-700);
+}
+
+.faq-body {
+  padding: 0.5rem 1.35rem 1.25rem;
+  font-size: 0.92rem;
+  color: var(--ink-700);
+  line-height: 1.7;
+  border-top: 1px dashed var(--border-subtle);
+  background: var(--ivory-bg);
+}
+
+.faq-body a {
+  color: var(--maroon-700);
+  font-weight: 700;
+  text-decoration: underline;
+}
+
+/* ==========================================================================
+   16. فئات الحركة والانتقال الآمن (Motion Fallback)
+   ========================================================================== */
+.motion-ready {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 0.55s ease, transform 0.55s ease;
+  will-change: opacity, transform;
+}
+
+.motion-revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+:focus-visible {
+  outline: 2.5px solid var(--gold-400);
+  outline-offset: 3px;
+}
+
+/* ==========================================================================
+   17. استجابة الشاشات (Responsive Layout)
+   ========================================================================== */
+@media (max-width: 1140px) {
   .site-navbar .navbar-container {
     display: flex;
     justify-content: space-between;
@@ -2225,8 +2392,6 @@ dialog::backdrop {
   .org-tier-deputies,
   .faculty-cards-grid,
   .quick-portals-grid,
-  .form-split-row,
-  .form-submit-row,
   .footer-top-grid {
     grid-template-columns: 1fr;
   }

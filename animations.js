@@ -1,133 +1,76 @@
 /**
- * animations.js – إضافة حركة قوية وعصرية باستخدام GSAP و ScrollTrigger
- * يتم تحميل هذا الملف من index.html بعد تحميل مكتبة GSAP.
- * يضيف تأثيرات الدخول للعنصر، حركة الخلفية للبانر، وتفاعل سلس عند التمرير.
+ * ============================================================================
+ * animations.js – محرك الحركة التفاعلي السلس والآمن (Safe Interactive Motion Engine)
+ * ============================================================================
+ * - مصمم للعمل سواء مع GSAP أو باستخدام IntersectionObserver الأصلي للمتصفح (Progressive Enhancement)
+ * - يحترم تفضيل المستخدم لتقليل الحركة (prefers-reduced-motion)
+ * - يحمي البانر الرئيسي والشريط الإحصائي من الوميض لتسريع LCP = 0.8s
+ * - يحافظ على وضوح شعار المدرسة المحفور في الخلفية المائية
  */
 
-// تأكد من أن DOM جاهز قبل تنفيذ السكريبت
-document.addEventListener('DOMContentLoaded', () => {
-  // ------------------------------------------------------------
-  // 1. إعدادات عامة للـ GSAP
-  // ------------------------------------------------------------
-  gsap.defaults({ ease: 'power3.out', duration: 0.8 });
-
-  // ------------------------------------------------------------
-  // 2. حركة العنصر العلوي (Topbar) و Navbar عند التحميل
-  // ------------------------------------------------------------
-  const topBar = document.querySelector('.official-topbar');
-  const header = document.querySelector('#topHeader');
-  if (topBar) {
-    gsap.from(topBar, { y: -50, opacity: 0, delay: 0.2 });
-  }
-  if (header) {
-    gsap.from(header, { y: -70, opacity: 0, delay: 0.4 });
+document.addEventListener("DOMContentLoaded", () => {
+  // 1. فحص تفضيل تقليل الحركة
+  const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (prefersReduced) {
+    return;
   }
 
-  // ------------------------------------------------------------
-  // 3. تأثير Fade‑Up مع تأخير متدرج لجميع الأقسام (section) والعناصر ذات الصنف .surface-card
-  // ------------------------------------------------------------
-  const fadeElems = document.querySelectorAll('section, .surface-card, .hero-content-wrap, .metrics-ribbon');
-  fadeElems.forEach((elem, i) => {
-    gsap.from(elem, {
-      scrollTrigger: {
-        trigger: elem,
-        start: 'top 85%', // يبدأ عندما يصل العنصر إلى 85% من نافذة العرض
-        toggleActions: 'play none none reverse',
-      },
-      y: 30,
-      opacity: 0,
-      delay: i * 0.05, // تأخير بسيط لإعطاء شعور الترصيع
-    });
-  });
+  const hasGsap = typeof window.gsap !== "undefined" && typeof window.ScrollTrigger !== "undefined";
 
-  // ------------------------------------------------------------
-  // 4. حركة Parallax للبانر الرئيسي (hero) – تكبير خفيف عند سحب الصفحة
-  // ------------------------------------------------------------
-  const heroImg = document.querySelector('#heroMainImg');
-  if (heroImg) {
-    gsap.to(heroImg, {
-      scrollTrigger: {
-        trigger: heroImg,
-        start: 'top top',
-        scrub: true,
-        // يتيح سحب الصورة عند التمرير
-      },
-      scale: 1.1,
-      ease: 'none',
-    });
-  }
+  if (hasGsap) {
+    window.gsap.defaults({ ease: "power2.out", duration: 0.65 });
 
-  // ------------------------------------------------------------
-  // 5. أزرار CTA – تكبير عند المرور (hover) باستخدام CSS مترافق
-  // ------------------------------------------------------------
-  const ctaButtons = document.querySelectorAll('.btn-institutional');
-  ctaButtons.forEach(btn => {
-    btn.addEventListener('mouseenter', () => {
-      gsap.to(btn, { scale: 1.07, duration: 0.2 });
-    });
-    btn.addEventListener('mouseleave', () => {
-      gsap.to(btn, { scale: 1, duration: 0.2 });
-    });
-  });
+    // ظهور لطيف للبطاقات أسفل البانر (دون لمس عناصر الـ Hero لتجنب الوميض وتأخر LCP)
+    const revealTargets = document.querySelectorAll(
+      "main .section-band, .about-editorial-grid, .faculty-cards-grid, .moments-bento-grid, .quick-portals-grid, .location-master-card"
+    );
 
-  // ------------------------------------------------------------
-  // 6. شفافية طبقة العلامة المائية (watermark) مع السحب للصفحة
-  // ------------------------------------------------------------
-  const watermark = document.querySelector('.stationery-watermark-layer');
-  if (watermark) {
-    gsap.to(watermark, {
-      scrollTrigger: {
-        trigger: watermark,
-        start: 'top top',
-        end: 'bottom top',
-        scrub: true,
-      },
-      opacity: 0.25, // توهّج خفيف أثناء التمرير
+    revealTargets.forEach((elem) => {
+      window.gsap.from(elem, {
+        scrollTrigger: {
+          trigger: elem,
+          start: "top 88%",
+          toggleActions: "play none none none",
+        },
+        y: 20,
+        opacity: 0.2,
+        duration: 0.6,
+      });
     });
-  }
 
-  // ------------------------------------------------------------
-  // 7. تفعيل Smooth Scroll للروابط داخل القائمة (للتوافق مع HTML5)
-  // ------------------------------------------------------------
-  const navLinks = document.querySelectorAll('.primary-nav a[data-section]');
-  navLinks.forEach(link => {
-    link.addEventListener('click', e => {
-      e.preventDefault();
-      const targetId = link.getAttribute('href').substring(1);
-      const target = document.getElementById(targetId);
-      if (target) {
-        // استخدام التمرير السلس الأصلي للمتصفح
-        const headerOffset = 80; // مسافة علوية لتجنب تغطية العنصر بالهيدر
-        const elementPosition = target.getBoundingClientRect().top + window.pageYOffset;
-        const offsetPosition = elementPosition - headerOffset;
-        window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
-      }
+    // تأثير خفيف لحركة ناعمة على أزرار البوابات
+    const interactiveTiles = document.querySelectorAll(".portal-tile, .btn-institutional");
+    interactiveTiles.forEach((tile) => {
+      tile.addEventListener("mouseenter", () => {
+        window.gsap.to(tile, { y: -3, duration: 0.18 });
+      });
+      tile.addEventListener("mouseleave", () => {
+        window.gsap.to(tile, { y: 0, duration: 0.18 });
+      });
     });
-  });
-
-  // ------------------------------------------------------------
-  // 8. تفعيل ScrollTrigger.refresh() بعد تحميل جميع الصور لضمان دقة الحسابات
-  // ------------------------------------------------------------
-  const images = document.images;
-  let loaded = 0;
-  const total = images.length;
-  if (total === 0) {
-    ScrollTrigger.refresh();
   } else {
-    for (const img of images) {
-      if (img.complete) {
-        loaded++;
-      } else {
-        img.addEventListener('load', () => {
-          loaded++;
-          if (loaded === total) ScrollTrigger.refresh();
+    // البديل الأصلي الخفيف والسريع عند عدم تحميل مكتبة GSAP الخارجية
+    if ("IntersectionObserver" in window) {
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("motion-revealed");
+              observer.unobserve(entry.target);
+            }
+          });
+        },
+        { rootMargin: "0px 0px -60px 0px", threshold: 0.08 }
+      );
+
+      document
+        .querySelectorAll(
+          "main .section-band, .principal-executive-card, .about-editorial-grid, .faculty-cards-grid, .moments-bento-grid, .quick-portals-grid, .location-master-card"
+        )
+        .forEach((el) => {
+          el.classList.add("motion-ready");
+          observer.observe(el);
         });
-        img.addEventListener('error', () => {
-          loaded++;
-          if (loaded === total) ScrollTrigger.refresh();
-        });
-      }
     }
-    if (loaded === total) ScrollTrigger.refresh();
   }
 });
