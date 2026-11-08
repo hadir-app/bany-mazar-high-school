@@ -121,35 +121,41 @@ const FACULTY_DEPARTMENTS = [
 ];
 
 // ============================================================================
-// 3. أحدث 3 منشورات إخبارية من جروب فيسبوك (بدون تكرار صور الموقع)
+// 3. أحدث 3 منشورات حقيقية من جروب فيسبوك المدرسة الرسمي بنصوصها وصورها
 // ============================================================================
 const INITIAL_FB_POSTS = [
   {
-    id: "news-1",
-    tag: "تنبيه تدريب الوزارة",
-    date: "منشور مثبت • جروب المدرسة الرسمي",
-    title: "بدء التدريب على منصة كيريو (Qureo) للبرمجة والذكاء الاصطناعي لطلاب أولى ثانوي",
-    text: "تُهيب إدارة المدرسة بأبنائها طلاب الصف الأول الثانوي الدخول على منصة الشهادات العامة لاستلام اسم المستخدم وكلمة المرور الخاصة بمنصة كيريو اليابانية، والبدء في حل التقييمات التفاعلية وفق توجيهات وزارة التربية والتعليم.",
-    likes: "348",
-    comments: "54 تعليق",
+    id: "post-1",
+    tag: "تكريم ووفاء • إدارة المدرسة",
+    date: "منشور رسمي موثق • جروب المدرسة",
+    title: "حفل تكريم ووفاء لقائد ووكيل الصرح التعليمي الأستاذة / عفاف شعبان محمد",
+    text: "الثانوية بنين الجديدة صرح تعليمي.. منارة علم.. بل مصنع رجال.. أم المدارس لا تنسى ما يقدمه لها أبناؤها.. تجلت المقولتان بوضوح في حفل تقاعد وتكريم أستاذتنا الأستاذة/ عفاف شعبان محمد (قائد ووكيل ومدير صرحنا التعليمي).. شكراً أستاذنا أستاذ/ شقيري مدير التعليم الثانوي بإدارتنا، وشكراً لجميع العاملين والعاملات بصرحنا التعليمي بقيادة أستاذة/ منى غانم وكيل المدرسة.",
+    img: "assets/images/facebook/fb-post-afaf.jpg",
+    permalink: "https://www.facebook.com/groups/alsanay2014/permalink/6013748345330642/",
+    likes: "23 تفاعل (أعجبني وأحببته)",
+    comments: "8 تعليقات",
   },
   {
-    id: "news-2",
-    tag: "شؤون التعليم والانضباط",
-    date: "أمس • إدارة المدرسة",
-    title: "التشديد على انتظام طابور الصباح الساعة 7:30 صباحاً وأداء التقييمات الأسبوعية",
-    text: "تؤكد إدارة المدرسة على جميع الطلاب الالتزام التام بالزي المدرسي والحضور في الموعد المحدد لطابور الصباح، ومتابعة تسليم كراسات الحصة والواجبات الدورية لمعلمي المواد أولاً بأول.",
-    likes: "292",
-    comments: "41 تعليق",
+    id: "post-2",
+    tag: "دعاء ووفاء • التربية الرياضية",
+    date: "منشور مثبت • أسرة العاملين بالمدرسة",
+    title: "دعوات أسرة المدرسة بالشفاء العاجل للأستاذ الخلوق / علي عبد المجيد موجه التربية الرياضية",
+    text: "تتقدم إدارة مدرستنا مدرسة بني مزار الثانوية بنين الجديدة وجميع العاملين والعاملات بها بوفير الدعاء لابنها المخلص وموجهها المتفاني الأستاذ الخلوق المهذب/ علي عبد المجيد (موجه التربية الرياضية) والذي يجري عملية جراحية دقيقة.. نسأل الله العظيم رب العرش العظيم أن يمنّ عليه بالشفاء العاجل وأن يلبسه ثوب الصحة والعافية ويحفظه لأهله وتلاميذه.",
+    img: "assets/images/facebook/fb-post-coach.jpg",
+    permalink: "https://www.facebook.com/groups/alsanay2014/permalink/5419091751462974/",
+    likes: "45 تفاعل",
+    comments: "19 تعليق",
   },
   {
-    id: "news-3",
-    tag: "النشاط الرياضي",
-    date: "منذ يومين • التربية الرياضية",
-    title: "جدول مباريات دوري الفصول لكرة القدم على الملعب الخماسي بالنجيل الصناعي",
-    text: "انطلاق فعاليات دوري الفصول للفصل الدراسي الحالي بين فصول الصفوف الأول والثاني والثالث الثانوي في حصص التربية الرياضية والفسحة، تحت إشراف أسرة التربية الرياضية بالمدرسة.",
-    likes: "215",
-    comments: "28 تعليق",
+    id: "post-3",
+    tag: "التميز الثقافي • مسابقة المعلم المثقف",
+    date: "فوز مستحق • النشاط المكتبي والثقافي",
+    title: "تتويج الأستاذ / رضا أحمد أبو زيد والطالب / أحمد علي بالمركز الأول في مسابقة المثقف",
+    text: "صرحنا التعليمي الثانوية بنين الجديدة ببني مزار مصنع الرجال ومعقل الثقافة.. فوز مستحق لابننا الخلوق أستاذ العربية الأستاذ/ رضا أحمد أبو زيد بالمركز الأول في مسابقة المعلم المثقف على مستوى إدارة بني مزار التعليمية، وفوز الطالب أحمد علي بالمركز الأول على مستوى المديرية، بفضل جهود أخصائي المكتبة أستاذة/ هبة ممدوح وأستاذنا/ محمد مغربي.",
+    img: "assets/images/facebook/fb-post-award.jpg",
+    permalink: "https://www.facebook.com/groups/alsanay2014/permalink/5309741159064701/",
+    likes: "58 تفاعل",
+    comments: "24 تعليق",
   },
 ];
 
@@ -419,7 +425,7 @@ function renderFacebookShowcase(index = 0) {
     <div class="fb-embed-head">
       <div class="fb-author-box">
         <div class="fb-crest-tiny">
-          <img src="assets/images/logo.jpg" alt="شعار المدرسة" width="38" height="38" />
+          <img src="assets/images/logo.jpg" alt="شعار مدرسة بني مزار الثانوية بنين" width="38" height="38" />
         </div>
         <div>
           <strong>جروب مدرسة بني مزار ث بنين الرسمى</strong>
@@ -429,16 +435,26 @@ function renderFacebookShowcase(index = 0) {
       <div class="fb-badge-circle" aria-hidden="true">f</div>
     </div>
 
-    <div class="fb-embed-body fb-text-post">
+    <div class="fb-embed-body">
       <span class="fb-post-tag">${post.tag}</span>
       <h4 class="fb-post-headline">${post.title}</h4>
       <p>${post.text}</p>
     </div>
 
+    ${
+      post.img
+        ? `
+      <div class="fb-embed-media">
+        <img src="${post.img}" alt="${post.title}" loading="lazy" />
+      </div>
+    `
+        : ""
+    }
+
     <div class="fb-embed-footer">
-      <span>👍 ❤️ ${post.likes} تفاعل</span>
-      <a href="${FB_FEED_CONFIG.groupUrl}" target="_blank" rel="noopener noreferrer" class="fb-post-direct-link">
-        عرض المنشور على فيسبوك ↗
+      <span>👍 ❤️ ${post.likes}</span>
+      <a href="${post.permalink || FB_FEED_CONFIG.groupUrl}" target="_blank" rel="noopener noreferrer" class="fb-post-direct-link">
+        عرض المنشور الأصلي على فيسبوك ↗
       </a>
     </div>
   `;
@@ -460,7 +476,7 @@ function renderFacebookShowcase(index = 0) {
   }
 }
 
-// رسم قائمة المنشورات الثلاثة في اليمين
+// رسم قائمة المنشورات الثلاثة في اليمين بالصور والنصوص
 function renderNewsStack() {
   const stackEl = document.getElementById("newsFeedStack");
   if (!stackEl) return;
@@ -469,8 +485,8 @@ function renderNewsStack() {
     .map((item, idx) => {
       const isCurrent = idx === activePostIndex;
       return `
-        <button type="button" class="news-row-item news-text-row ${isCurrent ? "active" : ""}" data-post-idx="${idx}">
-          <div class="news-bulletin-badge" aria-hidden="true">${idx + 1}</div>
+        <button type="button" class="news-row-item ${isCurrent ? "active" : ""}" data-post-idx="${idx}">
+          <img src="${item.img}" alt="${item.title}" width="96" height="76" loading="lazy" />
           <div class="news-row-body">
             <div class="news-row-meta">${item.tag} • ${item.date}</div>
             <h4>${item.title}</h4>

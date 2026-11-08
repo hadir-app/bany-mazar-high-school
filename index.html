@@ -550,40 +550,39 @@
         </div>
       </section>
 
-      <!-- 4. قسم أحدث المنشورات تلقائياً من صفحة المدرسة على فيسبوك (مهيأ لربط الزميل التلقائي) -->
+      <!-- 4. قسم أحدث المنشورات تلقائياً من جروب المدرسة على فيسبوك بالصور والنصوص -->
       <section class="section-band band-sandstone" id="newsroom">
         <div class="container">
           <div class="section-header-arch">
-            <span class="arch-eyebrow">المتابعة الإعلامية التلقائية</span>
-            <h2 class="arch-title">أحدث المنشورات من صفحة المدرسة على فيسبوك</h2>
+            <span class="arch-eyebrow">المتابعة الإعلامية الحية</span>
+            <h2 class="arch-title">أحدث المنشورات من جروب المدرسة الرسمي على فيسبوك</h2>
             <div class="arch-rule"><span></span></div>
           </div>
 
-          <!-- حاوية الربط التلقائي بصفحة فيسبوك المدرسة (COLLEAGUE TASK: Facebook Page Auto-Sync) -->
           <div class="newsroom-dual-grid" id="fbPageSyncRoot">
-            <!-- العمود الأيمن: آخر المنشورات المسحوبة من الصفحة -->
+            <!-- العمود الأيمن: آخر المنشورات المسحوبة من الجروب -->
             <div class="news-list-panel surface-card">
               <div class="news-panel-top">
                 <div>
-                  <h3>آخر منشورات صفحة المدرسة الرسمية</h3>
-                  <span>يتم سحب الأخبار والبيانات تلقائياً من صفحة فيسبوك المعتمدة للمدرسة</span>
+                  <h3>آخر منشورات جروب المدرسة المعتمد</h3>
+                  <span>المنشورات الفعلية الموثقة بنصوصها وصورها المعتمدة من إدارة المدرسة</span>
                 </div>
                 <div class="news-cat-tabs" id="newsCatTabs">
                   <button type="button" class="news-cat-btn active" data-cat="all">الكل</button>
                   <button type="button" class="news-cat-btn" data-cat="announcements">البيانات الرسمية</button>
-                  <button type="button" class="news-cat-btn" data-cat="activities">الأنشطة والطابور</button>
+                  <button type="button" class="news-cat-btn" data-cat="activities">التكريم والأنشطة</button>
                 </div>
               </div>
 
               <div class="news-feed-stack" id="newsFeedStack"></div>
             </div>
 
-            <!-- العمود الأيسر: الإطار العنابي المميز لمعاينة منشور صفحة الفيسبوك -->
-            <aside class="fb-showcase-frame" aria-label="إطار صفحة فيسبوك المدرسة">
+            <!-- العمود الأيسر: الإطار العنابي المميز لمعاينة منشور فيسبوك بالصورة والنص -->
+            <aside class="fb-showcase-frame" aria-label="إطار جروب فيسبوك المدرسة">
               <div class="fb-frame-top">
                 <div>
-                  <h3>صفحة المدرسة على فيسبوك</h3>
-                  <span class="fb-sync-status" id="fbSyncStatus">● بانتظار ربط التغذية التلقائية للصفحة</span>
+                  <h3>جروب المدرسة على فيسبوك</h3>
+                  <span class="fb-sync-status" id="fbSyncStatus">● متصل بجروب المدرسة الرسمي (alsanay2014)</span>
                 </div>
                 <div class="fb-nav-arrows">
                   <button type="button" id="fbPrevBtn" class="fb-arrow-btn" aria-label="المنشور السابق">‹</button>
@@ -591,19 +590,19 @@
                 </div>
               </div>
 
-              <!-- الكارت الأبيض لمنشور صفحة الفيسبوك (أو Facebook Page Plugin Embed عند التفعيل) -->
+              <!-- الكارت الأبيض لمنشور الفيسبوك بالصورة والنص -->
               <div class="fb-embed-card" id="fbActivePostCard"></div>
 
               <div class="fb-frame-bottom">
                 <div class="fb-Indicator-dots" id="fbDotsContainer"></div>
                 <a
-                  href="https://www.facebook.com"
+                  href="https://facebook.com/groups/alsanay2014/"
                   target="_blank"
                   rel="noopener noreferrer"
                   id="fbGroupExternalLink"
                   class="fb-direct-btn"
                 >
-                  فتح صفحة المدرسة على فيسبوك ↗
+                  فتح جروب المدرسة على فيسبوك ↗
                 </a>
               </div>
             </aside>
