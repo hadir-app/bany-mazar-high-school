@@ -1,795 +1,699 @@
 <!doctype html>
 <html lang="ar" dir="rtl">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-    <title>مدرسة بني مزار الثانوية الجديدة بنين — شرق المحطة | البوابة الرسمية</title>
-    <meta
-      name="description"
-      content="البوابة الرسمية لمدرسة بني مزار الثانوية الجديدة بنين (شرق المحطة) — إدارة بني مزار التعليمية بمحافظة المنيا. منارة العلم والانضباط والتميز الأكاديمي والرياضي."
-    />
-    <link rel="icon" type="image/png" sizes="256x256" href="assets/images/favicon.png?v=2" />
-    <link rel="apple-touch-icon" href="assets/images/favicon.png?v=2" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Cairo:wght@500;600;700;800;900&family=Tajawal:wght@400;500;700;800&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="style.css?v=4" />
-    <!-- GSAP animation libraries -->
-    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
-    <script src="animations.js?v=1"></script>
-  </head>
-  <body>
-    <!-- طبقة شعار المدرسة المائية المحفورة خلف المربعات (تستخدم mix-blend-mode لإخفاء الخلفية البيضاء تماماً) -->
-    <div class="stationery-watermark-layer" aria-hidden="true">
-      <img src="assets/images/logo.jpg" alt="" class="wm-seal wm-center" />
-      <img src="assets/images/logo.jpg" alt="" class="wm-seal wm-top-left" />
-      <img src="assets/images/logo.jpg" alt="" class="wm-seal wm-bottom-right" />
-    </div>
 
-    <!-- الشريط السيادي العلوي الرفيع -->
-    <div class="official-topbar">
-      <div class="container topbar-inner">
-        <div class="topbar-right">
-          <svg
-            class="egypt-flag-svg"
-            viewBox="0 0 36 24"
-            width="24"
-            height="16"
-            role="img"
-            aria-label="علم جمهورية مصر العربية"
-          >
-            <rect width="36" height="8" y="0" fill="#CE1126" />
-            <rect width="36" height="8" y="8" fill="#FFFFFF" />
-            <rect width="36" height="8" y="16" fill="#000000" />
-            <!-- نسر صلاح الدين الذهبي في منتصف الشريط الأبيض -->
-            <g fill="#C09300">
-              <path d="M18 8.7c-.5 0-.9.3-.9.8 0 .3.1.5.3.6l-1.9.8c-.3.1-.5.4-.5.8v2.2c0 .5.3.9.8 1.1l1.2.4-.5.8h3l-.5-.8 1.2-.4c.5-.2.8-.6.8-1.1v-2.2c0-.4-.2-.7-.5-.8l-1.9-.8c.2-.1.3-.3.3-.6 0-.5-.4-.8-.9-.8z" />
-              <rect x="16.9" y="10.9" width="2.2" height="2.4" rx="0.3" fill="#FFF8DC" stroke="#C09300" stroke-width="0.35" />
-              <rect x="16" y="14.9" width="4" height="0.65" rx="0.2" fill="#C09300" />
-            </g>
-            <rect width="35.5" height="23.5" x="0.25" y="0.25" fill="none" stroke="rgba(255,255,255,0.32)" stroke-width="0.5" />
-          </svg>
-          <span>جمهورية مصر العربية • مديرية التربية والتعليم بالمنيا • إدارة بني مزار التعليمية</span>
-        </div>
-        <div class="topbar-left">
-          <span id="liveCurrentDate">بني مزار — شرق المحطة</span>
-          <span class="topbar-dot">•</span>
-          <span>طابور الصباح: 7:30 ص</span>
-        </div>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>مدرسة بني مزار الثانوية الجديدة بنين — شرق المحطة | البوابة الرسمية</title>
+  <meta name="description"
+    content="البوابة الرسمية لمدرسة بني مزار الثانوية الجديدة بنين (شرق المحطة) — إدارة بني مزار التعليمية بمحافظة المنيا. منارة العلم والانضباط والتميز الأكاديمي والرياضي." />
+  <link rel="icon" type="image/png" sizes="256x256" href="assets/images/favicon.png?v=2" />
+  <link rel="apple-touch-icon" href="assets/images/favicon.png?v=2" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cairo:wght@500;600;700;800;900&family=Tajawal:wght@400;500;700;800&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="style.css?v=4" />
+  <!-- GSAP animation libraries -->
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+  <script src="animations.js?v=1"></script>
+</head>
+
+<body>
+  <!-- طبقة شعار المدرسة المائية المحفورة خلف المربعات (تستخدم mix-blend-mode لإخفاء الخلفية البيضاء تماماً) -->
+  <div class="stationery-watermark-layer" aria-hidden="true">
+    <img src="assets/images/logo.jpg" alt="" class="wm-seal wm-center" />
+    <img src="assets/images/logo.jpg" alt="" class="wm-seal wm-top-left" />
+    <img src="assets/images/logo.jpg" alt="" class="wm-seal wm-bottom-right" />
+  </div>
+
+  <!-- الشريط السيادي العلوي الرفيع -->
+  <div class="official-topbar">
+    <div class="container topbar-inner">
+      <div class="topbar-right">
+        <svg class="egypt-flag-svg" viewBox="0 0 36 24" width="24" height="16" role="img"
+          aria-label="علم جمهورية مصر العربية">
+          <rect width="36" height="8" y="0" fill="#CE1126" />
+          <rect width="36" height="8" y="8" fill="#FFFFFF" />
+          <rect width="36" height="8" y="16" fill="#000000" />
+          <!-- نسر صلاح الدين الذهبي في منتصف الشريط الأبيض -->
+          <g fill="#C09300">
+            <path
+              d="M18 8.7c-.5 0-.9.3-.9.8 0 .3.1.5.3.6l-1.9.8c-.3.1-.5.4-.5.8v2.2c0 .5.3.9.8 1.1l1.2.4-.5.8h3l-.5-.8 1.2-.4c.5-.2.8-.6.8-1.1v-2.2c0-.4-.2-.7-.5-.8l-1.9-.8c.2-.1.3-.3.3-.6 0-.5-.4-.8-.9-.8z" />
+            <rect x="16.9" y="10.9" width="2.2" height="2.4" rx="0.3" fill="#FFF8DC" stroke="#C09300"
+              stroke-width="0.35" />
+            <rect x="16" y="14.9" width="4" height="0.65" rx="0.2" fill="#C09300" />
+          </g>
+          <rect width="35.5" height="23.5" x="0.25" y="0.25" fill="none" stroke="rgba(255,255,255,0.32)"
+            stroke-width="0.5" />
+        </svg>
+        <span>جمهورية مصر العربية • مديرية التربية والتعليم بالمنيا • إدارة بني مزار التعليمية</span>
+      </div>
+      <div class="topbar-left">
+        <span id="liveCurrentDate">بني مزار — شرق المحطة</span>
+        <span class="topbar-dot">•</span>
+        <span>طابور الصباح: 7:30 ص</span>
       </div>
     </div>
+  </div>
 
-    <!-- الهيدر الكحلي الرسمي الثابت (متوازن 3 مناطق بدون تسجيل دخول) -->
-    <header class="site-navbar" id="topHeader">
-      <div class="container navbar-container">
-        <a href="#home" class="brand-lockup">
-          <div class="brand-crest-frame">
-            <img
-              src="assets/images/logo.jpg"
-              alt="شعار مدرسة بني مزار الثانوية الجديدة بنين"
-              width="54"
-              height="54"
-            />
-          </div>
-          <div class="brand-copy">
-            <h1>مدرسة بني مزار الثانوية الجديدة بنين</h1>
-            <span>شرق المحطة — منارة العلم والتميز في بني مزار</span>
-          </div>
+  <!-- الهيدر الكحلي الرسمي الثابت (متوازن 3 مناطق بدون تسجيل دخول) -->
+  <header class="site-navbar" id="topHeader">
+    <div class="container navbar-container">
+      <a href="#home" class="brand-lockup">
+        <div class="brand-crest-frame">
+          <img src="assets/images/logo.jpg" alt="شعار مدرسة بني مزار الثانوية الجديدة بنين" width="54" height="54" />
+        </div>
+        <div class="brand-copy">
+          <h1>مدرسة بني مزار الثانوية الجديدة بنين</h1>
+          <span>شرق المحطة — منارة العلم والتميز في بني مزار</span>
+        </div>
+      </a>
+
+      <nav class="primary-nav" id="primaryNav" aria-label="التنقل الرئيسي">
+        <a href="#home" class="nav-link active" data-section="home">الرئيسية</a>
+        <span class="nav-divider" aria-hidden="true">•</span>
+        <a href="#principal" class="nav-link" data-section="principal">كلمة المدير</a>
+        <span class="nav-divider" aria-hidden="true">•</span>
+        <a href="#about" class="nav-link" data-section="about">عن المدرسة</a>
+        <span class="nav-divider" aria-hidden="true">•</span>
+        <a href="#teachers" class="nav-link" data-section="teachers">المعلمين</a>
+        <span class="nav-divider" aria-hidden="true">•</span>
+        <a href="#newsroom" class="nav-link" data-section="newsroom">أحدث المنشورات</a>
+        <span class="nav-divider" aria-hidden="true">•</span>
+        <a href="#highlights" class="nav-link" data-section="highlights">أعظم اللحظات</a>
+        <span class="nav-divider" aria-hidden="true">•</span>
+        <a href="#location" class="nav-link" data-section="location">موقع المدرسة</a>
+      </nav>
+
+      <div class="navbar-left-slot">
+        <a href="#newsroom" id="headerFbPageBtn" class="header-fb-cta" title="متابعة صفحة المدرسة الرسمية على فيسبوك">
+          <span class="header-fb-icon" aria-hidden="true">f</span>
+          <span>صفحة المدرسة</span>
         </a>
 
-        <nav class="primary-nav" id="primaryNav" aria-label="التنقل الرئيسي">
-          <a href="#home" class="nav-link active" data-section="home">الرئيسية</a>
-          <span class="nav-divider" aria-hidden="true">•</span>
-          <a href="#principal" class="nav-link" data-section="principal">كلمة المدير</a>
-          <span class="nav-divider" aria-hidden="true">•</span>
-          <a href="#about" class="nav-link" data-section="about">عن المدرسة</a>
-          <span class="nav-divider" aria-hidden="true">•</span>
-          <a href="#teachers" class="nav-link" data-section="teachers">المعلمين</a>
-          <span class="nav-divider" aria-hidden="true">•</span>
-          <a href="#newsroom" class="nav-link" data-section="newsroom">أحدث المنشورات</a>
-          <span class="nav-divider" aria-hidden="true">•</span>
-          <a href="#highlights" class="nav-link" data-section="highlights">أعظم اللحظات</a>
-          <span class="nav-divider" aria-hidden="true">•</span>
-          <a href="#location" class="nav-link" data-section="location">موقع المدرسة</a>
-        </nav>
+        <button class="menu-toggle-btn" id="menuToggleBtn" type="button" aria-expanded="false"
+          aria-controls="primaryNav" aria-label="فتح القائمة الرئيسية">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+  </header>
 
-        <div class="navbar-left-slot">
-          <a
-            href="#newsroom"
-            id="headerFbPageBtn"
-            class="header-fb-cta"
-            title="متابعة صفحة المدرسة الرسمية على فيسبوك"
-          >
-            <span class="header-fb-icon" aria-hidden="true">f</span>
-            <span>صفحة المدرسة</span>
+  <!-- البانر المعماري العريض (Hero Banner) مع أسهم تنقل سريعة -->
+  <section class="hero-stage" id="home" aria-label="الترحيب الرئيسي">
+    <div class="hero-media-wrapper">
+      <img src="assets/images/morning-assembly.jpg" alt="اصطفاف طلاب ومعلمي مدرسة بني مزار الثانوية الجديدة بنين"
+        class="hero-slide-img active" id="heroMainImg" fetchpriority="high" />
+      <div class="hero-scrim"></div>
+    </div>
+
+    <button type="button" class="hero-arrow hero-arrow-prev" id="heroPrevBtn" aria-label="المشهد السابق">‹</button>
+    <button type="button" class="hero-arrow hero-arrow-next" id="heroNextBtn" aria-label="المشهد التالي">›</button>
+
+    <div class="container hero-content-wrap">
+      <div class="hero-emblem-mobile">
+        <img src="assets/images/logo.jpg" alt="شعار المدرسة" width="72" height="72" />
+      </div>
+
+      <span class="hero-kicker">البوابة الرسمية للصرح التعليمي ببني مزار</span>
+      <h2 class="hero-title">مرحباً بكم في مدرسة بني مزار الثانوية الجديدة بنين</h2>
+      <p class="hero-subtitle">شرق المحطة - منارة العلم والتميز في بني مزار</p>
+
+      <div class="hero-cta-row">
+        <a href="#quick-links" class="btn-institutional btn-gold">روابط هامة للطلاب</a>
+        <a href="#newsroom" class="btn-institutional btn-maroon">أحدث الأخبار</a>
+      </div>
+
+      <!-- أزرار تبديل خلفية البانر بين الطابور وواجهة المدرسة والملعب -->
+      <div class="hero-scene-switcher" role="group" aria-label="مشاهد المدرسة">
+        <button type="button" class="scene-pill active" data-img="assets/images/morning-assembly.jpg"
+          data-alt="اصطفاف طلاب ومعلمي مدرسة بني مزار الثانوية الجديدة بنين">
+          طابور الصباح والفناء
+        </button>
+        <button type="button" class="scene-pill" data-img="assets/images/school-facade.jpg"
+          data-alt="واجهة مدرسة بني مزار الثانوية الجديدة بنين وعلم مصر">
+          واجهة المبنى الرئيسي
+        </button>
+        <button type="button" class="scene-pill" data-img="assets/images/sports-field.jpg"
+          data-alt="الملعب الخماسي النجيل الصناعي بالمدرسة">
+          الملعب الرياضي المطور
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- شريط البطاقات الإحصائية المتداخل مع البانر -->
+  <section class="floating-metrics-wrap" aria-label="بطاقة أرقام المدرسة">
+    <div class="container">
+      <div class="metrics-ribbon">
+        <div class="metric-item">
+          <div class="metric-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M22 10v6M2 10l10-5 10 5-10 5z" />
+              <path d="M6 12v5c0 2 3 3 6 3s6-1 6-3v-5" />
+            </svg>
+          </div>
+          <div>
+            <strong>المرحلة الثانوية العامة</strong>
+            <span>الصفوف الأول والثاني والثالث الثانوي</span>
+          </div>
+        </div>
+
+        <div class="metric-item">
+          <div class="metric-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+              <circle cx="9" cy="7" r="4" />
+              <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+              <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+            </svg>
+          </div>
+          <div>
+            <strong>نخبة هيئة التدريس</strong>
+            <span>كبار المعلمين والخبراء في كافة التخصصات</span>
+          </div>
+        </div>
+
+        <div class="metric-item">
+          <div class="metric-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10" />
+              <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20" />
+              <path d="M2 12h20" />
+            </svg>
+          </div>
+          <div>
+            <strong>منشآت وملاعب مطورة</strong>
+            <span>مبنيان دراسيان وملعب خماسي نجيل صناعي</span>
+          </div>
+        </div>
+
+        <div class="metric-item">
+          <div class="metric-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+              <circle cx="12" cy="10" r="3" />
+            </svg>
+          </div>
+          <div>
+            <strong>موقع مركزي متميز</strong>
+            <span>شرق المحطة — قلب مدينة بني مزار بالمنيا</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <main>
+    <!-- 1. قسم كلمة مدير المدرسة (بطاقة عنابية فخمة بصورة غير مقصوصة) -->
+    <section class="section-band band-ivory" id="principal">
+      <div class="container">
+        <div class="section-header-arch">
+          <span class="arch-eyebrow">القيادة التربوية</span>
+          <h2 class="arch-title">كلمة مدير المدرسة</h2>
+          <div class="arch-rule"><span></span></div>
+        </div>
+
+        <div class="principal-executive-card">
+          <div class="principal-velvet-body">
+            <span class="quote-ornament" aria-hidden="true">«</span>
+            <div class="principal-kicker-row">
+              <span class="gold-tag">رسالة الإدارة المدرسية</span>
+              <span>مدرسة بني مزار الثانوية الجديدة بنين — شرق المحطة</span>
+            </div>
+            <h3>كلمة إدارة المدرسة..</h3>
+            <p class="principal-lead">
+              نرحب بأبنائنا الطلاب، والسادة أولياء الأمور الكرام في رحاب <strong>مدرسة بني مزار الثانوية الجديدة بنين
+                (شرق المحطة)</strong>.. هذا الصرح التربوي الذي نفخر بانتمائنا إليه، ونسعى في كل يوم دراسي يبدأ بتحية علم
+              مصر أن نغرس في نفوس أبنائنا قيم الجدية، الانضباط، والتفوق العلمي والأخلاقي.
+            </p>
+            <p class="principal-sub">
+              تفتح إدارة المدرسة أبوابها دوماً للتواصل البناء مع الطلاب وأولياء الأمور، وتعمل بتكاتف كامل مع السادة
+              الوكلاء وكبار المعلمين لتوفير بيئة تعليمية ورياضية تليق بأبناء مركز بني مزار وتؤهلهم لكبرى الكليات
+              الجامعية.
+            </p>
+
+            <div class="principal-footer-bar">
+              <div class="principal-signature">
+                <strong>مدير المدرسة</strong>
+                <span>إدارة مدرسة بني مزار الثانوية الجديدة بنين</span>
+              </div>
+              <div class="principal-seal-stamp" aria-hidden="true">
+                <img src="assets/images/logo.jpg" alt="" />
+              </div>
+            </div>
+          </div>
+
+          <div class="principal-portrait-box">
+            <div class="portrait-gold-bezel">
+              <img src="assets/images/principal.jpg"
+                alt="السيد مدير مدرسة بني مزار الثانوية الجديدة بنين في طابور الصباح" loading="lazy" />
+              <div class="portrait-caption-strip">
+                <strong>قيادة ميدانية قدوة</strong>
+                <span>وسط أبنائه الطلاب في الطابور الصباحي</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. قسم ماذا عن المدرسة (About Section بخلفية رملية هادئة يظهر عليها ختم الشعار) -->
+    <section class="section-band band-sandstone" id="about">
+      <div class="container">
+        <div class="section-header-arch">
+          <span class="arch-eyebrow">تاريخ عريق وتطوير معاصر</span>
+          <h2 class="arch-title">ماذا عن مدرسة بني مزار الثانوية الجديدة بنين؟</h2>
+          <div class="arch-rule"><span></span></div>
+        </div>
+
+        <div class="about-editorial-grid">
+          <div class="about-narrative-card surface-card">
+            <div class="narrative-crest-head">
+              <img src="assets/images/logo.jpg" alt="شعار المدرسة" class="crest-blend" />
+              <div>
+                <h3>قلعة التعليم الثانوي العام للبنين بشرق المحطة</h3>
+                <span>تابعة لإدارة بني مزار التعليمية — مديرية التربية والتعليم بمحافظة المنيا</span>
+              </div>
+            </div>
+
+            <p>
+              تُعد <strong>مدرسة بني مزار الثانوية الجديدة بنين</strong> واحدة من أعرق وأهم المؤسسات التعليمية الثانوية
+              بشمال محافظة المنيا. وبفضل أعمال التطوير ورفع الكفاءة الحديثة، تجمع المدرسة اليوم بين الأصالة المعمارية
+              لمبانيها الدراسية وتكامل مرافقها التربوية والرياضية.
+            </p>
+
+            <div class="vision-pillars-grid">
+              <div class="v-pillar">
+                <span class="v-pillar-num">01</span>
+                <div>
+                  <h4>التفوق العلمي والأكاديمي</h4>
+                  <p>رعاية متكاملة لطلاب الشعبتين العلمية (علوم ورياضة) والأدبية ومعامل مجهزة للتطبيق العملي.</p>
+                </div>
+              </div>
+              <div class="v-pillar">
+                <span class="v-pillar-num">02</span>
+                <div>
+                  <h4>الانضباط والانتماء الوطني</h4>
+                  <p>اصطفاف صباحي منتظم، إذاعة مدرسية هادفة، وترسيخ قيم الاحترام المتبادل والقدوة الحسنة.</p>
+                </div>
+              </div>
+              <div class="v-pillar">
+                <span class="v-pillar-num">03</span>
+                <div>
+                  <h4>بناء الشخصية والنشاط الرياضي</h4>
+                  <p>ملعب خماسي حديث بالنجيل الصناعي وجداريات أولمبية لاحتضان البطولات المدرسية والمواهب.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="about-collage">
+            <figure class="collage-primary surface-card">
+              <img src="assets/images/school-facade.jpg" alt="واجهة مدرسة بني مزار الثانوية الجديدة بنين وعلم مصر"
+                loading="lazy" />
+              <figcaption>واجهة الصرح التعليمي ويتوسطها علم جمهورية مصر العربية</figcaption>
+            </figure>
+
+            <figure class="collage-secondary surface-card">
+              <img src="assets/images/school-campus.jpg" alt="الأجنحة الدراسية وفناء المدرسة" loading="lazy" />
+              <figcaption>تكامل المبنيين الدراسيين والفناء المركزي الفسيح</figcaption>
+            </figure>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. قسم التدرج الوظيفي وهيئة التدريس (3-Tier Academic Hierarchy) -->
+    <section class="section-band band-ivory" id="teachers">
+      <div class="container">
+        <div class="section-header-arch">
+          <span class="arch-eyebrow">الهيكل الإداري والأكاديمي</span>
+          <h2 class="arch-title">هيئة التدريس وتدرج المعلمين</h2>
+          <div class="arch-rule"><span></span></div>
+        </div>
+
+        <!-- المستوى القيادي والوكلاء (شجرة التدرج التنظيمي) -->
+        <div class="org-hierarchy-box surface-card">
+          <div class="org-tier-top">
+            <div class="org-leader-pill">
+              <span class="org-badge-gold">قمة الهرم الإداري</span>
+              <strong>مدير المدرسة</strong>
+              <span>الإشراف العام والقيادة التربوية</span>
+            </div>
+          </div>
+          <div class="org-stem" aria-hidden="true"></div>
+          <div class="org-tier-deputies">
+            <div class="org-deputy-card">
+              <strong>وكيل شؤون الطلاب</strong>
+              <span>انتظام الصفوف • السجلات • الامتحانات</span>
+            </div>
+            <div class="org-deputy-card">
+              <strong>وكيل شؤون المعلمين</strong>
+              <span>الجدول المدرسي • الإشراف الأكاديمي</span>
+            </div>
+            <div class="org-deputy-card">
+              <strong>وكيل الأنشطة الطلابية</strong>
+              <span>الإذاعة • الملعب الرياضي • المسابقات</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- شريط تصفية أقسام المعلمين -->
+        <div class="teachers-toolbar">
+          <p class="toolbar-note">اختر التخصص لاستعراض أسرة المادة والتدرج التدريسي:</p>
+          <div class="dept-filter-pills" id="deptTabs" role="tablist" aria-label="أقسام هيئة التدريس">
+            <button class="dept-pill active" data-dept="all" type="button">جميع التخصصات</button>
+            <button class="dept-pill" data-dept="arabic" type="button">اللغة العربية والدين</button>
+            <button class="dept-pill" data-dept="math" type="button">الرياضيات</button>
+            <button class="dept-pill" data-dept="science" type="button">العلوم والمعامل</button>
+            <button class="dept-pill" data-dept="languages" type="button">اللغات الأجنبية</button>
+            <button class="dept-pill" data-dept="humanities" type="button">المواد الأدبية والأنشطة</button>
+          </div>
+        </div>
+
+        <!-- شبكة كروت هيئة التدريس (3 أعمدة متناسقة بأيقونات أكاديمية وصور دائرية) -->
+        <div class="faculty-cards-grid" id="teachersGrid"></div>
+      </div>
+    </section>
+
+    <!-- 4. قسم أحدث المنشورات تلقائياً من صفحة المدرسة على فيسبوك (مهيأ لربط الزميل التلقائي) -->
+    <section class="section-band band-sandstone" id="newsroom">
+      <div class="container">
+        <div class="section-header-arch">
+          <span class="arch-eyebrow">المتابعة الإعلامية التلقائية</span>
+          <h2 class="arch-title">أحدث المنشورات من صفحة المدرسة على فيسبوك</h2>
+          <div class="arch-rule"><span></span></div>
+        </div>
+
+        <!-- حاوية الربط التلقائي بصفحة فيسبوك المدرسة (COLLEAGUE TASK: Facebook Page Auto-Sync) -->
+        <div class="newsroom-dual-grid" id="fbPageSyncRoot">
+          <!-- العمود الأيمن: آخر المنشورات المسحوبة من الصفحة -->
+          <div class="news-list-panel surface-card">
+            <div class="news-panel-top">
+              <div>
+                <h3>آخر منشورات صفحة المدرسة الرسمية</h3>
+                <span>يتم سحب الأخبار والبيانات تلقائياً من صفحة فيسبوك المعتمدة للمدرسة</span>
+              </div>
+              <div class="news-cat-tabs" id="newsCatTabs">
+                <button type="button" class="news-cat-btn active" data-cat="all">الكل</button>
+                <button type="button" class="news-cat-btn" data-cat="announcements">البيانات الرسمية</button>
+                <button type="button" class="news-cat-btn" data-cat="activities">الأنشطة والطابور</button>
+              </div>
+            </div>
+
+            <div class="news-feed-stack" id="newsFeedStack"></div>
+          </div>
+
+          <!-- العمود الأيسر: الإطار العنابي المميز لمعاينة منشور صفحة الفيسبوك -->
+          <aside class="fb-showcase-frame" aria-label="إطار صفحة فيسبوك المدرسة">
+            <div class="fb-frame-top">
+              <div>
+                <h3>صفحة المدرسة على فيسبوك</h3>
+                <span class="fb-sync-status" id="fbSyncStatus">● بانتظار ربط التغذية التلقائية للصفحة</span>
+              </div>
+              <div class="fb-nav-arrows">
+                <button type="button" id="fbPrevBtn" class="fb-arrow-btn" aria-label="المنشور السابق">‹</button>
+                <button type="button" id="fbNextBtn" class="fb-arrow-btn" aria-label="المنشور التالي">›</button>
+              </div>
+            </div>
+
+            <!-- الكارت الأبيض لمنشور صفحة الفيسبوك (أو Facebook Page Plugin Embed عند التفعيل) -->
+            <div class="fb-embed-card" id="fbActivePostCard"></div>
+
+            <div class="fb-frame-bottom">
+              <div class="fb-Indicator-dots" id="fbDotsContainer"></div>
+              <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer" id="fbGroupExternalLink"
+                class="fb-direct-btn">
+                فتح صفحة المدرسة على فيسبوك ↗
+              </a>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. قسم أعظم اللحظات البارزة في المدرسة (5-Photo Bento Gallery + Lightbox) -->
+    <section class="section-band band-ivory" id="highlights">
+      <div class="container">
+        <div class="section-header-arch">
+          <span class="arch-eyebrow">ذاكرة الصرح الموثقة</span>
+          <h2 class="arch-title">أعظم اللحظات البارزة في المدرسة</h2>
+          <div class="arch-rule"><span></span></div>
+        </div>
+
+        <div class="moments-bento-grid" id="momentsGalleryGrid">
+          <!-- صورة 1 بانورامية كبرى -->
+          <figure class="bento-moment span-8" data-lightbox-index="0" tabindex="0" role="button">
+            <img src="assets/images/morning-assembly.jpg" alt="الاصطفاف الصباحي المهيب وتحية العلم" loading="lazy" />
+            <span class="moment-ribbon ribbon-navy">طابور الصباح وتحية العلم</span>
+            <figcaption>
+              <h3>الاصطفاف الصباحي المهيب في فناء المدرسة</h3>
+              <p>مئات الطلاب في صفوف منتظمة كل صباح بحضور إدارة المدرسة وهيئة التدريس (اضغط للتكبير).</p>
+            </figcaption>
+          </figure>
+
+          <!-- صورة 2 طولية للقيادة -->
+          <figure class="bento-moment span-4" data-lightbox-index="1" tabindex="0" role="button">
+            <img src="assets/images/principal.jpg" alt="مدير المدرسة وسط أبنائه الطلاب وأمام علم مصر" loading="lazy" />
+            <span class="moment-ribbon ribbon-maroon">القدوة والانتماء</span>
+            <figcaption>
+              <h3>القيادة المدرسية وسط الطلاب</h3>
+              <p>تلاحم تربوي ووطني خلف علم جمهورية مصر العربية.</p>
+            </figcaption>
+          </figure>
+
+          <!-- صورة 3 الملعب الخماسي -->
+          <figure class="bento-moment span-4" data-lightbox-index="2" tabindex="0" role="button">
+            <img src="assets/images/sports-field.jpg" alt="الملعب الخماسي النجيل الصناعي والجدارية الرياضية"
+              loading="lazy" />
+            <span class="moment-ribbon ribbon-gold">الطفرة الرياضية</span>
+            <figcaption>
+              <h3>الملعب الخماسي النجيل الصناعي</h3>
+              <p>ملعب قانوني مطور تحيط به جدارية الألعاب الأولمبية بألوان علم مصر.</p>
+            </figcaption>
+          </figure>
+
+          <!-- صورة 4 واجهة المدرسة -->
+          <figure class="bento-moment span-4" data-lightbox-index="3" tabindex="0" role="button">
+            <img src="assets/images/school-facade.jpg" alt="واجهة مدرسة بني مزار الثانوية الجديدة بنين وعلم مصر"
+              loading="lazy" />
+            <span class="moment-ribbon ribbon-navy">شموخ معماري</span>
+            <figcaption>
+              <h3>واجهة المدرسة تتزين بعلم مصر</h3>
+              <p>المبنى الرئيسي للصرح التعليمي بمنطقة شرق المحطة ببني مزار.</p>
+            </figcaption>
+          </figure>
+
+          <!-- صورة 5 الحرم والمباني -->
+          <figure class="bento-moment span-4" data-lightbox-index="4" tabindex="0" role="button">
+            <img src="assets/images/school-campus.jpg" alt="المباني الدراسية والفناء الواسع للمدرسة" loading="lazy" />
+            <span class="moment-ribbon ribbon-gold">البيئة التعليمية</span>
+            <figcaption>
+              <h3>تكامل الأجنحة الدراسية والفناء</h3>
+              <p>مبانٍ فسيحة توفر التهوية والإضاءة المثالية للفصول والمعامل.</p>
+            </figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. قسم روابط سريعة للطلاب (مطابق للصورة: 3 كحلي في الأعلى + 3 ذهبي في الأسفل مع نوافذ تفاعلية) -->
+    <section class="section-band band-sandstone" id="quick-links">
+      <div class="container">
+        <div class="section-header-arch">
+          <span class="arch-eyebrow">خدمات الطلاب التعليمية</span>
+          <h2 class="arch-title">روابط سريعة</h2>
+          <div class="arch-rule"><span></span></div>
+        </div>
+
+        <div class="quick-portals-grid">
+          <button type="button" class="portal-tile tile-navy" data-open-modal="examsModal">
+            <span class="tile-label">نتائج الامتحانات والتقييمات</span>
+            <span class="tile-sub">متابعة التقييمات الأسبوعية والشهرية</span>
+          </button>
+
+          <button type="button" class="portal-tile tile-navy" data-open-modal="scheduleModal">
+            <span class="tile-label">جداول الحصص الدراسية</span>
+            <span class="tile-sub">مواعيد الطابور والحصص للصفوف الثلاثة</span>
+          </button>
+
+          <button type="button" class="portal-tile tile-navy" data-open-modal="honorModal">
+            <span class="tile-label">لوحة شرف أوائل المدرسة</span>
+            <span class="tile-sub">تكريم المتفوقين علمياً ورياضياً</span>
+          </button>
+
+          <a href="https://ekb.eg" target="_blank" rel="noopener noreferrer" class="portal-tile tile-gold">
+            <span class="tile-label">بنك المعرفة المصري</span>
+            <span class="tile-sub">المصادر الرقمية والمراجعات الوزارية ↗</span>
           </a>
 
-          <button
-            class="menu-toggle-btn"
-            id="menuToggleBtn"
-            type="button"
-            aria-expanded="false"
-            aria-controls="primaryNav"
-            aria-label="فتح القائمة الرئيسية"
-          >
-            <span></span>
-            <span></span>
-            <span></span>
-          </button>
-        </div>
-      </div>
-    </header>
+          <a href="https://moe.gov.eg" target="_blank" rel="noopener noreferrer" class="portal-tile tile-gold">
+            <span class="tile-label">بوابة وزارة التربية والتعليم</span>
+            <span class="tile-sub">المنصات التعليمية والنماذج الاسترشادية ↗</span>
+          </a>
 
-    <!-- البانر المعماري العريض (Hero Banner) مع أسهم تنقل سريعة -->
-    <section class="hero-stage" id="home" aria-label="الترحيب الرئيسي">
-      <div class="hero-media-wrapper">
-        <img
-          src="assets/images/morning-assembly.jpg"
-          alt="اصطفاف طلاب ومعلمي مدرسة بني مزار الثانوية الجديدة بنين"
-          class="hero-slide-img active"
-          id="heroMainImg"
-          fetchpriority="high"
-        />
-        <div class="hero-scrim"></div>
-      </div>
-
-      <button type="button" class="hero-arrow hero-arrow-prev" id="heroPrevBtn" aria-label="المشهد السابق">‹</button>
-      <button type="button" class="hero-arrow hero-arrow-next" id="heroNextBtn" aria-label="المشهد التالي">›</button>
-
-      <div class="container hero-content-wrap">
-        <div class="hero-emblem-mobile">
-          <img src="assets/images/logo.jpg" alt="شعار المدرسة" width="72" height="72" />
-        </div>
-
-        <span class="hero-kicker">البوابة الرسمية للصرح التعليمي ببني مزار</span>
-        <h2 class="hero-title">مرحباً بكم في مدرسة بني مزار الثانوية الجديدة بنين</h2>
-        <p class="hero-subtitle">شرق المحطة - منارة العلم والتميز في بني مزار</p>
-
-        <div class="hero-cta-row">
-          <a href="#quick-links" class="btn-institutional btn-gold">روابط هامة للطلاب</a>
-          <a href="#newsroom" class="btn-institutional btn-maroon">أحدث الأخبار</a>
-        </div>
-
-        <!-- أزرار تبديل خلفية البانر بين الطابور وواجهة المدرسة والملعب -->
-        <div class="hero-scene-switcher" role="group" aria-label="مشاهد المدرسة">
-          <button
-            type="button"
-            class="scene-pill active"
-            data-img="assets/images/morning-assembly.jpg"
-            data-alt="اصطفاف طلاب ومعلمي مدرسة بني مزار الثانوية الجديدة بنين"
-          >
-            طابور الصباح والفناء
-          </button>
-          <button
-            type="button"
-            class="scene-pill"
-            data-img="assets/images/school-facade.jpg"
-            data-alt="واجهة مدرسة بني مزار الثانوية الجديدة بنين وعلم مصر"
-          >
-            واجهة المبنى الرئيسي
-          </button>
-          <button
-            type="button"
-            class="scene-pill"
-            data-img="assets/images/sports-field.jpg"
-            data-alt="الملعب الخماسي النجيل الصناعي بالمدرسة"
-          >
-            الملعب الرياضي المطور
-          </button>
+          <a href="#location" class="portal-tile tile-gold">
+            <span class="tile-label">موقع المدرسة والتواصل</span>
+            <span class="tile-sub">شرق المحطة — إرشادات الوصول السريع</span>
+          </a>
         </div>
       </div>
     </section>
 
-    <!-- شريط البطاقات الإحصائية المتداخل مع البانر -->
-    <section class="floating-metrics-wrap" aria-label="بطاقة أرقام المدرسة">
+    <!-- 7. قسم موقع المدرسة بشرق المحطة وتواصل معنا -->
+    <section class="section-band band-ivory" id="location">
       <div class="container">
-        <div class="metrics-ribbon">
-          <div class="metric-item">
-            <div class="metric-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M22 10v6M2 10l10-5 10 5-10 5z" />
-                <path d="M6 12v5c0 2 3 3 6 3s6-1 6-3v-5" />
-              </svg>
+        <div class="section-header-arch">
+          <span class="arch-eyebrow">العنوان والتواصل المباشر</span>
+          <h2 class="arch-title">موقع المدرسة وتواصل معنا</h2>
+          <div class="arch-rule"><span></span></div>
+        </div>
+
+        <div class="location-master-card surface-card">
+          <div class="location-info-col">
+            <div class="loc-header-box">
+              <img src="assets/images/logo.jpg" alt="شعار المدرسة" class="crest-blend" />
+              <div>
+                <h3>مدرسة بني مزار الثانوية الجديدة بنين</h3>
+                <span>شرق المحطة — مركز ومدينة بني مزار — محافظة المنيا</span>
+              </div>
             </div>
-            <div>
-              <strong>المرحلة الثانوية العامة</strong>
-              <span>الصفوف الأول والثاني والثالث الثانوي</span>
+
+            <div class="loc-specs-grid">
+              <div class="loc-spec">
+                <strong>📍 العنوان الجغرافي الدقيق</strong>
+                <p>محافظة المنيا — مدينة بني مزار — منطقة شرق المحطة (بالقرب من محطة قطار بني مزار).</p>
+              </div>
+              <div class="loc-spec">
+                <strong>🕢 مواعيد اليوم الدراسي الرسمية</strong>
+                <p>الأحد إلى الخميس — يبدأ الاصطفاف الصباحي الساعة 7:30 صباحاً حتى نهاية اليوم الدراسي.</p>
+              </div>
+              <div class="loc-spec">
+                <strong>🏛️ الإشراف الإداري والتعليمي</strong>
+                <p>مديرية التربية والتعليم بالمنيا — إدارة بني مزار التعليمية — التعليم الثانوي العام.</p>
+              </div>
             </div>
+
+            <!-- نموذج مراسلة شؤون الطلاب وإدارة المدرسة -->
+            <form id="contactForm" class="institutional-form">
+              <h4>رسالة سريعة لمكتب شؤون الطلاب / الإدارة</h4>
+              <div class="form-split-row">
+                <input type="text" id="visitorName" placeholder="الاسم الرباعي (طالب / ولي أمر)" required />
+                <select id="visitorGrade" required aria-label="الصف الدراسي">
+                  <option value="">اختر الصف الدراسي</option>
+                  <option value="الصف الأول الثانوي">الصف الأول الثانوي</option>
+                  <option value="الصف الثاني الثانوي">الصف الثاني الثانوي</option>
+                  <option value="الصف الثالث الثانوي">الصف الثالث الثانوي</option>
+                  <option value="ولي أمر / زائر">ولي أمر / استفسار عام</option>
+                </select>
+              </div>
+              <div class="form-submit-row">
+                <input type="text" id="visitorMsg" placeholder="اكتب استفسارك أو مقترحك لإدارة المدرسة..." required />
+                <button type="submit" class="btn-institutional btn-maroon">إرسال الرسالة</button>
+              </div>
+              <p id="contactSuccessMsg" class="form-status-msg" hidden></p>
+            </form>
           </div>
 
-          <div class="metric-item">
-            <div class="metric-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
-                <circle cx="9" cy="7" r="4" />
-                <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
-                <path d="M16 3.13a4 4 0 0 1 0 7.75" />
-              </svg>
+          <div class="location-map-col">
+            <div class="map-frame">
+              <iframe title="خريطة موقع مدرسة بني مزار الثانوية الجديدة بنين شرق المحطة"
+                src="https://www.openstreetmap.org/export/embed.html?bbox=30.7930%2C28.4960%2C30.8110%2C28.5090&amp;layer=mapnik&amp;marker=28.5026%2C30.8020"
+                loading="lazy"></iframe>
             </div>
-            <div>
-              <strong>نخبة هيئة التدريس</strong>
-              <span>كبار المعلمين والخبراء في كافة التخصصات</span>
-            </div>
-          </div>
-
-          <div class="metric-item">
-            <div class="metric-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <circle cx="12" cy="12" r="10" />
-                <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20" />
-                <path d="M2 12h20" />
-              </svg>
-            </div>
-            <div>
-              <strong>منشآت وملاعب مطورة</strong>
-              <span>مبنيان دراسيان وملعب خماسي نجيل صناعي</span>
-            </div>
-          </div>
-
-          <div class="metric-item">
-            <div class="metric-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
-                <circle cx="12" cy="10" r="3" />
-              </svg>
-            </div>
-            <div>
-              <strong>موقع مركزي متميز</strong>
-              <span>شرق المحطة — قلب مدينة بني مزار بالمنيا</span>
+            <div class="map-caption-bar">
+              <span>📍 شرق المحطة — مدينة بني مزار، المنيا</span>
+              <a href="https://www.google.com/maps/search/?api=1&query=مدرسة+بني+مزار+الثانوية+بنين+الجديدة+المنيا"
+                target="_blank" rel="noopener noreferrer" class="map-gmaps-btn">
+                فتح الاتجاهات في خرائط جوجل ↗
+              </a>
             </div>
           </div>
         </div>
       </div>
     </section>
+  </main>
 
-    <main>
-      <!-- 1. قسم كلمة مدير المدرسة (بطاقة عنابية فخمة بصورة غير مقصوصة) -->
-      <section class="section-band band-ivory" id="principal">
-        <div class="container">
-          <div class="section-header-arch">
-            <span class="arch-eyebrow">القيادة التربوية</span>
-            <h2 class="arch-title">كلمة مدير المدرسة</h2>
-            <div class="arch-rule"><span></span></div>
-          </div>
-
-          <div class="principal-executive-card">
-            <div class="principal-velvet-body">
-              <span class="quote-ornament" aria-hidden="true">«</span>
-              <div class="principal-kicker-row">
-                <span class="gold-tag">رسالة الإدارة المدرسية</span>
-                <span>مدرسة بني مزار الثانوية الجديدة بنين — شرق المحطة</span>
-              </div>
-              <h3>كلمة إدارة المدرسة..</h3>
-              <p class="principal-lead">
-                نرحب بأبنائنا الطلاب، والسادة أولياء الأمور الكرام في رحاب <strong>مدرسة بني مزار الثانوية الجديدة بنين (شرق المحطة)</strong>.. هذا الصرح التربوي الذي نفخر بانتمائنا إليه، ونسعى في كل يوم دراسي يبدأ بتحية علم مصر أن نغرس في نفوس أبنائنا قيم الجدية، الانضباط، والتفوق العلمي والأخلاقي.
-              </p>
-              <p class="principal-sub">
-                تفتح إدارة المدرسة أبوابها دوماً للتواصل البناء مع الطلاب وأولياء الأمور، وتعمل بتكاتف كامل مع السادة الوكلاء وكبار المعلمين لتوفير بيئة تعليمية ورياضية تليق بأبناء مركز بني مزار وتؤهلهم لكبرى الكليات الجامعية.
-              </p>
-
-              <div class="principal-footer-bar">
-                <div class="principal-signature">
-                  <strong>مدير المدرسة</strong>
-                  <span>إدارة مدرسة بني مزار الثانوية الجديدة بنين</span>
-                </div>
-                <div class="principal-seal-stamp" aria-hidden="true">
-                  <img src="assets/images/logo.jpg" alt="" />
-                </div>
-              </div>
-            </div>
-
-            <div class="principal-portrait-box">
-              <div class="portrait-gold-bezel">
-                <img
-                  src="assets/images/principal.jpg"
-                  alt="السيد مدير مدرسة بني مزار الثانوية الجديدة بنين في طابور الصباح"
-                  loading="lazy"
-                />
-                <div class="portrait-caption-strip">
-                  <strong>قيادة ميدانية قدوة</strong>
-                  <span>وسط أبنائه الطلاب في الطابور الصباحي</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- 2. قسم ماذا عن المدرسة (About Section بخلفية رملية هادئة يظهر عليها ختم الشعار) -->
-      <section class="section-band band-sandstone" id="about">
-        <div class="container">
-          <div class="section-header-arch">
-            <span class="arch-eyebrow">تاريخ عريق وتطوير معاصر</span>
-            <h2 class="arch-title">ماذا عن مدرسة بني مزار الثانوية الجديدة بنين؟</h2>
-            <div class="arch-rule"><span></span></div>
-          </div>
-
-          <div class="about-editorial-grid">
-            <div class="about-narrative-card surface-card">
-              <div class="narrative-crest-head">
-                <img src="assets/images/logo.jpg" alt="شعار المدرسة" class="crest-blend" />
-                <div>
-                  <h3>قلعة التعليم الثانوي العام للبنين بشرق المحطة</h3>
-                  <span>تابعة لإدارة بني مزار التعليمية — مديرية التربية والتعليم بمحافظة المنيا</span>
-                </div>
-              </div>
-
-              <p>
-                تُعد <strong>مدرسة بني مزار الثانوية الجديدة بنين</strong> واحدة من أعرق وأهم المؤسسات التعليمية الثانوية بشمال محافظة المنيا. وبفضل أعمال التطوير ورفع الكفاءة الحديثة، تجمع المدرسة اليوم بين الأصالة المعمارية لمبانيها الدراسية وتكامل مرافقها التربوية والرياضية.
-              </p>
-
-              <div class="vision-pillars-grid">
-                <div class="v-pillar">
-                  <span class="v-pillar-num">01</span>
-                  <div>
-                    <h4>التفوق العلمي والأكاديمي</h4>
-                    <p>رعاية متكاملة لطلاب الشعبتين العلمية (علوم ورياضة) والأدبية ومعامل مجهزة للتطبيق العملي.</p>
-                  </div>
-                </div>
-                <div class="v-pillar">
-                  <span class="v-pillar-num">02</span>
-                  <div>
-                    <h4>الانضباط والانتماء الوطني</h4>
-                    <p>اصطفاف صباحي منتظم، إذاعة مدرسية هادفة، وترسيخ قيم الاحترام المتبادل والقدوة الحسنة.</p>
-                  </div>
-                </div>
-                <div class="v-pillar">
-                  <span class="v-pillar-num">03</span>
-                  <div>
-                    <h4>بناء الشخصية والنشاط الرياضي</h4>
-                    <p>ملعب خماسي حديث بالنجيل الصناعي وجداريات أولمبية لاحتضان البطولات المدرسية والمواهب.</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="about-collage">
-              <figure class="collage-primary surface-card">
-                <img
-                  src="assets/images/school-facade.jpg"
-                  alt="واجهة مدرسة بني مزار الثانوية الجديدة بنين وعلم مصر"
-                  loading="lazy"
-                />
-                <figcaption>واجهة الصرح التعليمي ويتوسطها علم جمهورية مصر العربية</figcaption>
-              </figure>
-
-              <figure class="collage-secondary surface-card">
-                <img
-                  src="assets/images/school-campus.jpg"
-                  alt="الأجنحة الدراسية وفناء المدرسة"
-                  loading="lazy"
-                />
-                <figcaption>تكامل المبنيين الدراسيين والفناء المركزي الفسيح</figcaption>
-              </figure>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- 3. قسم التدرج الوظيفي وهيئة التدريس (3-Tier Academic Hierarchy) -->
-      <section class="section-band band-ivory" id="teachers">
-        <div class="container">
-          <div class="section-header-arch">
-            <span class="arch-eyebrow">الهيكل الإداري والأكاديمي</span>
-            <h2 class="arch-title">هيئة التدريس وتدرج المعلمين</h2>
-            <div class="arch-rule"><span></span></div>
-          </div>
-
-          <!-- المستوى القيادي والوكلاء (شجرة التدرج التنظيمي) -->
-          <div class="org-hierarchy-box surface-card">
-            <div class="org-tier-top">
-              <div class="org-leader-pill">
-                <span class="org-badge-gold">قمة الهرم الإداري</span>
-                <strong>مدير المدرسة</strong>
-                <span>الإشراف العام والقيادة التربوية</span>
-              </div>
-            </div>
-            <div class="org-stem" aria-hidden="true"></div>
-            <div class="org-tier-deputies">
-              <div class="org-deputy-card">
-                <strong>وكيل شؤون الطلاب</strong>
-                <span>انتظام الصفوف • السجلات • الامتحانات</span>
-              </div>
-              <div class="org-deputy-card">
-                <strong>وكيل شؤون المعلمين</strong>
-                <span>الجدول المدرسي • الإشراف الأكاديمي</span>
-              </div>
-              <div class="org-deputy-card">
-                <strong>وكيل الأنشطة الطلابية</strong>
-                <span>الإذاعة • الملعب الرياضي • المسابقات</span>
-              </div>
-            </div>
-          </div>
-
-          <!-- شريط تصفية أقسام المعلمين -->
-          <div class="teachers-toolbar">
-            <p class="toolbar-note">اختر التخصص لاستعراض أسرة المادة والتدرج التدريسي:</p>
-            <div class="dept-filter-pills" id="deptTabs" role="tablist" aria-label="أقسام هيئة التدريس">
-              <button class="dept-pill active" data-dept="all" type="button">جميع التخصصات</button>
-              <button class="dept-pill" data-dept="arabic" type="button">اللغة العربية والدين</button>
-              <button class="dept-pill" data-dept="math" type="button">الرياضيات</button>
-              <button class="dept-pill" data-dept="science" type="button">العلوم والمعامل</button>
-              <button class="dept-pill" data-dept="languages" type="button">اللغات الأجنبية</button>
-              <button class="dept-pill" data-dept="humanities" type="button">المواد الأدبية والأنشطة</button>
-            </div>
-          </div>
-
-          <!-- شبكة كروت هيئة التدريس (3 أعمدة متناسقة بأيقونات أكاديمية وصور دائرية) -->
-          <div class="faculty-cards-grid" id="teachersGrid"></div>
-        </div>
-      </section>
-
-      <!-- 4. قسم أحدث المنشورات تلقائياً من صفحة المدرسة على فيسبوك (مهيأ لربط الزميل التلقائي) -->
-      <section class="section-band band-sandstone" id="newsroom">
-        <div class="container">
-          <div class="section-header-arch">
-            <span class="arch-eyebrow">المتابعة الإعلامية التلقائية</span>
-            <h2 class="arch-title">أحدث المنشورات من صفحة المدرسة على فيسبوك</h2>
-            <div class="arch-rule"><span></span></div>
-          </div>
-
-          <!-- حاوية الربط التلقائي بصفحة فيسبوك المدرسة (COLLEAGUE TASK: Facebook Page Auto-Sync) -->
-          <div class="newsroom-dual-grid" id="fbPageSyncRoot">
-            <!-- العمود الأيمن: آخر المنشورات المسحوبة من الصفحة -->
-            <div class="news-list-panel surface-card">
-              <div class="news-panel-top">
-                <div>
-                  <h3>آخر منشورات صفحة المدرسة الرسمية</h3>
-                  <span>يتم سحب الأخبار والبيانات تلقائياً من صفحة فيسبوك المعتمدة للمدرسة</span>
-                </div>
-                <div class="news-cat-tabs" id="newsCatTabs">
-                  <button type="button" class="news-cat-btn active" data-cat="all">الكل</button>
-                  <button type="button" class="news-cat-btn" data-cat="announcements">البيانات الرسمية</button>
-                  <button type="button" class="news-cat-btn" data-cat="activities">الأنشطة والطابور</button>
-                </div>
-              </div>
-
-              <div class="news-feed-stack" id="newsFeedStack"></div>
-            </div>
-
-            <!-- العمود الأيسر: الإطار العنابي المميز لمعاينة منشور صفحة الفيسبوك -->
-            <aside class="fb-showcase-frame" aria-label="إطار صفحة فيسبوك المدرسة">
-              <div class="fb-frame-top">
-                <div>
-                  <h3>صفحة المدرسة على فيسبوك</h3>
-                  <span class="fb-sync-status" id="fbSyncStatus">● بانتظار ربط التغذية التلقائية للصفحة</span>
-                </div>
-                <div class="fb-nav-arrows">
-                  <button type="button" id="fbPrevBtn" class="fb-arrow-btn" aria-label="المنشور السابق">‹</button>
-                  <button type="button" id="fbNextBtn" class="fb-arrow-btn" aria-label="المنشور التالي">›</button>
-                </div>
-              </div>
-
-              <!-- الكارت الأبيض لمنشور صفحة الفيسبوك (أو Facebook Page Plugin Embed عند التفعيل) -->
-              <div class="fb-embed-card" id="fbActivePostCard"></div>
-
-              <div class="fb-frame-bottom">
-                <div class="fb-Indicator-dots" id="fbDotsContainer"></div>
-                <a
-                  href="https://www.facebook.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  id="fbGroupExternalLink"
-                  class="fb-direct-btn"
-                >
-                  فتح صفحة المدرسة على فيسبوك ↗
-                </a>
-              </div>
-            </aside>
-          </div>
-        </div>
-      </section>
-
-      <!-- 5. قسم أعظم اللحظات البارزة في المدرسة (5-Photo Bento Gallery + Lightbox) -->
-      <section class="section-band band-ivory" id="highlights">
-        <div class="container">
-          <div class="section-header-arch">
-            <span class="arch-eyebrow">ذاكرة الصرح الموثقة</span>
-            <h2 class="arch-title">أعظم اللحظات البارزة في المدرسة</h2>
-            <div class="arch-rule"><span></span></div>
-          </div>
-
-          <div class="moments-bento-grid" id="momentsGalleryGrid">
-            <!-- صورة 1 بانورامية كبرى -->
-            <figure class="bento-moment span-8" data-lightbox-index="0" tabindex="0" role="button">
-              <img
-                src="assets/images/morning-assembly.jpg"
-                alt="الاصطفاف الصباحي المهيب وتحية العلم"
-                loading="lazy"
-              />
-              <span class="moment-ribbon ribbon-navy">طابور الصباح وتحية العلم</span>
-              <figcaption>
-                <h3>الاصطفاف الصباحي المهيب في فناء المدرسة</h3>
-                <p>مئات الطلاب في صفوف منتظمة كل صباح بحضور إدارة المدرسة وهيئة التدريس (اضغط للتكبير).</p>
-              </figcaption>
-            </figure>
-
-            <!-- صورة 2 طولية للقيادة -->
-            <figure class="bento-moment span-4" data-lightbox-index="1" tabindex="0" role="button">
-              <img
-                src="assets/images/principal.jpg"
-                alt="مدير المدرسة وسط أبنائه الطلاب وأمام علم مصر"
-                loading="lazy"
-              />
-              <span class="moment-ribbon ribbon-maroon">القدوة والانتماء</span>
-              <figcaption>
-                <h3>القيادة المدرسية وسط الطلاب</h3>
-                <p>تلاحم تربوي ووطني خلف علم جمهورية مصر العربية.</p>
-              </figcaption>
-            </figure>
-
-            <!-- صورة 3 الملعب الخماسي -->
-            <figure class="bento-moment span-4" data-lightbox-index="2" tabindex="0" role="button">
-              <img
-                src="assets/images/sports-field.jpg"
-                alt="الملعب الخماسي النجيل الصناعي والجدارية الرياضية"
-                loading="lazy"
-              />
-              <span class="moment-ribbon ribbon-gold">الطفرة الرياضية</span>
-              <figcaption>
-                <h3>الملعب الخماسي النجيل الصناعي</h3>
-                <p>ملعب قانوني مطور تحيط به جدارية الألعاب الأولمبية بألوان علم مصر.</p>
-              </figcaption>
-            </figure>
-
-            <!-- صورة 4 واجهة المدرسة -->
-            <figure class="bento-moment span-4" data-lightbox-index="3" tabindex="0" role="button">
-              <img
-                src="assets/images/school-facade.jpg"
-                alt="واجهة مدرسة بني مزار الثانوية الجديدة بنين وعلم مصر"
-                loading="lazy"
-              />
-              <span class="moment-ribbon ribbon-navy">شموخ معماري</span>
-              <figcaption>
-                <h3>واجهة المدرسة تتزين بعلم مصر</h3>
-                <p>المبنى الرئيسي للصرح التعليمي بمنطقة شرق المحطة ببني مزار.</p>
-              </figcaption>
-            </figure>
-
-            <!-- صورة 5 الحرم والمباني -->
-            <figure class="bento-moment span-4" data-lightbox-index="4" tabindex="0" role="button">
-              <img
-                src="assets/images/school-campus.jpg"
-                alt="المباني الدراسية والفناء الواسع للمدرسة"
-                loading="lazy"
-              />
-              <span class="moment-ribbon ribbon-gold">البيئة التعليمية</span>
-              <figcaption>
-                <h3>تكامل الأجنحة الدراسية والفناء</h3>
-                <p>مبانٍ فسيحة توفر التهوية والإضاءة المثالية للفصول والمعامل.</p>
-              </figcaption>
-            </figure>
-          </div>
-        </div>
-      </section>
-
-      <!-- 6. قسم روابط سريعة للطلاب (مطابق للصورة: 3 كحلي في الأعلى + 3 ذهبي في الأسفل مع نوافذ تفاعلية) -->
-      <section class="section-band band-sandstone" id="quick-links">
-        <div class="container">
-          <div class="section-header-arch">
-            <span class="arch-eyebrow">خدمات الطلاب التعليمية</span>
-            <h2 class="arch-title">روابط سريعة</h2>
-            <div class="arch-rule"><span></span></div>
-          </div>
-
-          <div class="quick-portals-grid">
-            <button type="button" class="portal-tile tile-navy" data-open-modal="examsModal">
-              <span class="tile-label">نتائج الامتحانات والتقييمات</span>
-              <span class="tile-sub">متابعة التقييمات الأسبوعية والشهرية</span>
-            </button>
-
-            <button type="button" class="portal-tile tile-navy" data-open-modal="scheduleModal">
-              <span class="tile-label">جداول الحصص الدراسية</span>
-              <span class="tile-sub">مواعيد الطابور والحصص للصفوف الثلاثة</span>
-            </button>
-
-            <button type="button" class="portal-tile tile-navy" data-open-modal="honorModal">
-              <span class="tile-label">لوحة شرف أوائل المدرسة</span>
-              <span class="tile-sub">تكريم المتفوقين علمياً ورياضياً</span>
-            </button>
-
-            <a
-              href="https://ekb.eg"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="portal-tile tile-gold"
-            >
-              <span class="tile-label">بنك المعرفة المصري</span>
-              <span class="tile-sub">المصادر الرقمية والمراجعات الوزارية ↗</span>
-            </a>
-
-            <a
-              href="https://moe.gov.eg"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="portal-tile tile-gold"
-            >
-              <span class="tile-label">بوابة وزارة التربية والتعليم</span>
-              <span class="tile-sub">المنصات التعليمية والنماذج الاسترشادية ↗</span>
-            </a>
-
-            <a href="#location" class="portal-tile tile-gold">
-              <span class="tile-label">موقع المدرسة والتواصل</span>
-              <span class="tile-sub">شرق المحطة — إرشادات الوصول السريع</span>
-            </a>
-          </div>
-        </div>
-      </section>
-
-      <!-- 7. قسم موقع المدرسة بشرق المحطة وتواصل معنا -->
-      <section class="section-band band-ivory" id="location">
-        <div class="container">
-          <div class="section-header-arch">
-            <span class="arch-eyebrow">العنوان والتواصل المباشر</span>
-            <h2 class="arch-title">موقع المدرسة وتواصل معنا</h2>
-            <div class="arch-rule"><span></span></div>
-          </div>
-
-          <div class="location-master-card surface-card">
-            <div class="location-info-col">
-              <div class="loc-header-box">
-                <img src="assets/images/logo.jpg" alt="شعار المدرسة" class="crest-blend" />
-                <div>
-                  <h3>مدرسة بني مزار الثانوية الجديدة بنين</h3>
-                  <span>شرق المحطة — مركز ومدينة بني مزار — محافظة المنيا</span>
-                </div>
-              </div>
-
-              <div class="loc-specs-grid">
-                <div class="loc-spec">
-                  <strong>📍 العنوان الجغرافي الدقيق</strong>
-                  <p>محافظة المنيا — مدينة بني مزار — منطقة شرق المحطة (بالقرب من محطة قطار بني مزار).</p>
-                </div>
-                <div class="loc-spec">
-                  <strong>🕢 مواعيد اليوم الدراسي الرسمية</strong>
-                  <p>الأحد إلى الخميس — يبدأ الاصطفاف الصباحي الساعة 7:30 صباحاً حتى نهاية اليوم الدراسي.</p>
-                </div>
-                <div class="loc-spec">
-                  <strong>🏛️ الإشراف الإداري والتعليمي</strong>
-                  <p>مديرية التربية والتعليم بالمنيا — إدارة بني مزار التعليمية — التعليم الثانوي العام.</p>
-                </div>
-              </div>
-
-              <!-- نموذج مراسلة شؤون الطلاب وإدارة المدرسة -->
-              <form id="contactForm" class="institutional-form">
-                <h4>رسالة سريعة لمكتب شؤون الطلاب / الإدارة</h4>
-                <div class="form-split-row">
-                  <input
-                    type="text"
-                    id="visitorName"
-                    placeholder="الاسم الرباعي (طالب / ولي أمر)"
-                    required
-                  />
-                  <select id="visitorGrade" required aria-label="الصف الدراسي">
-                    <option value="">اختر الصف الدراسي</option>
-                    <option value="الصف الأول الثانوي">الصف الأول الثانوي</option>
-                    <option value="الصف الثاني الثانوي">الصف الثاني الثانوي</option>
-                    <option value="الصف الثالث الثانوي">الصف الثالث الثانوي</option>
-                    <option value="ولي أمر / زائر">ولي أمر / استفسار عام</option>
-                  </select>
-                </div>
-                <div class="form-submit-row">
-                  <input
-                    type="text"
-                    id="visitorMsg"
-                    placeholder="اكتب استفسارك أو مقترحك لإدارة المدرسة..."
-                    required
-                  />
-                  <button type="submit" class="btn-institutional btn-maroon">إرسال الرسالة</button>
-                </div>
-                <p id="contactSuccessMsg" class="form-status-msg" hidden></p>
-              </form>
-            </div>
-
-            <div class="location-map-col">
-              <div class="map-frame">
-                <iframe
-                  title="خريطة موقع مدرسة بني مزار الثانوية الجديدة بنين شرق المحطة"
-                  src="https://www.openstreetmap.org/export/embed.html?bbox=30.7930%2C28.4960%2C30.8110%2C28.5090&amp;layer=mapnik&amp;marker=28.5026%2C30.8020"
-                  loading="lazy"
-                ></iframe>
-              </div>
-              <div class="map-caption-bar">
-                <span>📍 شرق المحطة — مدينة بني مزار، المنيا</span>
-                <a
-                  href="https://www.google.com/maps/search/?api=1&query=مدرسة+بني+مزار+الثانوية+بنين+الجديدة+المنيا"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="map-gmaps-btn"
-                >
-                  فتح الاتجاهات في خرائط جوجل ↗
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-    </main>
-
-    <!-- الفوتر المؤسسي الرسمي -->
-    <footer class="institutional-footer">
-      <div class="container footer-top-grid">
-        <div class="footer-col-brand">
-          <div class="footer-crest-lockup">
-            <img src="assets/images/logo.jpg" alt="شعار المدرسة" width="54" height="54" loading="lazy" />
-            <div>
-              <h3>مدرسة بني مزار الثانوية الجديدة بنين</h3>
-              <span>شرق المحطة • منارة العلم والتميز في بني مزار</span>
-            </div>
-          </div>
-          <p>
-            البوابة الرسمية للتعريف بالمدرسة، هيئتها التدريسية، أنشطتها الطلابية والرياضية، ومتابعة أحدث المنشورات والبيانات الرسمية لخدمة أبنائنا الطلاب وأولياء الأمور.
-          </p>
-        </div>
-
-        <div class="footer-col-links">
-          <h4>أقسام البوابة</h4>
-          <ul>
-            <li><a href="#principal">كلمة مدير المدرسة</a></li>
-            <li><a href="#about">ماذا عن المدرسة</a></li>
-            <li><a href="#teachers">تدرج هيئة التدريس</a></li>
-            <li><a href="#newsroom">أحدث منشورات فيسبوك</a></li>
-            <li><a href="#highlights">أعظم اللحظات البارزة</a></li>
-            <li><a href="#quick-links">روابط سريعة للطلاب</a></li>
-          </ul>
-        </div>
-
-        <div class="footer-col-card">
-          <h4>بيانات الاعتماد الرسمي</h4>
-          <p><strong>المديرية:</strong> التربية والتعليم بمحافظة المنيا</p>
-          <p><strong>الإدارة:</strong> إدارة بني مزار التعليمية</p>
-          <p><strong>المقر:</strong> شرق المحطة — مدينة بني مزار</p>
-        </div>
-      </div>
-
-      <div class="container footer-bottom-strip">
-        <p>© جميع الحقوق محفوظة — مدرسة بني مزار الثانوية الجديدة بنين (شرق المحطة)</p>
-      </div>
-    </footer>
-
-    <!-- النوافذ المنبثقة القياسية (<dialog>) للصور المكبرة وخدمات الطلاب والمعلمين -->
-    <dialog
-      class="institutional-dialog lightbox-dialog"
-      id="lightboxDialog"
-      closedby="any"
-      aria-labelledby="lightboxTitle"
-    >
-      <div class="dialog-inner lightbox-inner">
-        <button type="button" class="dialog-close-btn" data-close-dialog aria-label="إغلاق">✕</button>
-        <div class="lightbox-stage">
-          <button type="button" class="lb-nav lb-prev" id="lbPrevBtn" aria-label="الصورة السابقة">‹</button>
-          <img src="" alt="" id="lightboxImg" />
-          <button type="button" class="lb-nav lb-next" id="lbNextBtn" aria-label="الصورة التالية">›</button>
-        </div>
-        <div class="lightbox-caption-bar">
+  <!-- الفوتر المؤسسي الرسمي -->
+  <footer class="institutional-footer">
+    <div class="container footer-top-grid">
+      <div class="footer-col-brand">
+        <div class="footer-crest-lockup">
+          <img src="assets/images/logo.jpg" alt="شعار المدرسة" width="54" height="54" loading="lazy" />
           <div>
-            <strong id="lightboxTitle"></strong>
-            <p id="lightboxDesc"></p>
+            <h3>مدرسة بني مزار الثانوية الجديدة بنين</h3>
+            <span>شرق المحطة • منارة العلم والتميز في بني مزار</span>
           </div>
-          <span id="lightboxCounter" class="lb-counter"></span>
         </div>
+        <p>
+          البوابة الرسمية للتعريف بالمدرسة، هيئتها التدريسية، أنشطتها الطلابية والرياضية، ومتابعة أحدث المنشورات
+          والبيانات الرسمية لخدمة أبنائنا الطلاب وأولياء الأمور.
+        </p>
       </div>
-    </dialog>
 
-    <dialog
-      class="institutional-dialog info-dialog"
-      id="portalInfoDialog"
-      closedby="any"
-      aria-labelledby="infoDialogTitle"
-    >
-      <div class="dialog-inner">
-        <div class="info-dialog-header">
-          <h3 id="infoDialogTitle">خدمة الطلاب</h3>
-          <button type="button" class="dialog-close-btn" data-close-dialog aria-label="إغلاق">✕</button>
+      <div class="footer-col-links">
+        <h4>أقسام البوابة</h4>
+        <ul>
+          <li><a href="#principal">كلمة مدير المدرسة</a></li>
+          <li><a href="#about">ماذا عن المدرسة</a></li>
+          <li><a href="#teachers">تدرج هيئة التدريس</a></li>
+          <li><a href="#newsroom">أحدث منشورات فيسبوك</a></li>
+          <li><a href="#highlights">أعظم اللحظات البارزة</a></li>
+          <li><a href="#quick-links">روابط سريعة للطلاب</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col-card">
+        <h4>بيانات الاعتماد الرسمي</h4>
+        <p><strong>المديرية:</strong> التربية والتعليم بمحافظة المنيا</p>
+        <p><strong>الإدارة:</strong> إدارة بني مزار التعليمية</p>
+        <p><strong>المقر:</strong> شرق المحطة — مدينة بني مزار</p>
+      </div>
+    </div>
+
+    <div class="container footer-bottom-strip">
+      <p>© جميع الحقوق محفوظة — مدرسة بني مزار الثانوية الجديدة بنين (شرق المحطة)</p>
+    </div>
+  </footer>
+
+  <!-- النوافذ المنبثقة القياسية (<dialog>) للصور المكبرة وخدمات الطلاب والمعلمين -->
+  <dialog class="institutional-dialog lightbox-dialog" id="lightboxDialog" closedby="any"
+    aria-labelledby="lightboxTitle">
+    <div class="dialog-inner lightbox-inner">
+      <button type="button" class="dialog-close-btn" data-close-dialog aria-label="إغلاق">✕</button>
+      <div class="lightbox-stage">
+        <button type="button" class="lb-nav lb-prev" id="lbPrevBtn" aria-label="الصورة السابقة">‹</button>
+        <img src="" alt="" id="lightboxImg" />
+        <button type="button" class="lb-nav lb-next" id="lbNextBtn" aria-label="الصورة التالية">›</button>
+      </div>
+      <div class="lightbox-caption-bar">
+        <div>
+          <strong id="lightboxTitle"></strong>
+          <p id="lightboxDesc"></p>
         </div>
-        <div class="info-dialog-body" id="infoDialogBody"></div>
+        <span id="lightboxCounter" class="lb-counter"></span>
       </div>
-    </dialog>
+    </div>
+  </dialog>
 
-    <script src="app.js?v=4"></script>
-  </body>
+  <dialog class="institutional-dialog info-dialog" id="portalInfoDialog" closedby="any"
+    aria-labelledby="infoDialogTitle">
+    <div class="dialog-inner">
+      <div class="info-dialog-header">
+        <h3 id="infoDialogTitle">خدمة الطلاب</h3>
+        <button type="button" class="dialog-close-btn" data-close-dialog aria-label="إغلاق">✕</button>
+      </div>
+      <div class="info-dialog-body" id="infoDialogBody"></div>
+    </div>
+  </dialog>
+
+  <script src="app.js?v=4"></script>
+</body>
+
 </html>
